@@ -3,7 +3,10 @@
 require 'bundler/gem_tasks'
 
 task :compile do
-  sh 'make build-static'
+  sh 'make attached-bundle'
 end
 
-task default: %i[]
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec)
+
+task default: %i[compile spec]

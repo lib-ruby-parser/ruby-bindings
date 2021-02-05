@@ -1,0 +1,10 @@
+[package]
+authors = ["Ilya Bylich <ibylich@gmail.com>"]
+edition = "2018"
+name = "build-convert"
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+lib-ruby-parser-nodes = "0.8.0"
