@@ -11,4 +11,7 @@ Gemfile.lock
 lib-ruby-parser.a
 lib-ruby-parser.lib
 lib-ruby-parser.h
-lib/lib_ruby_parser_native.*
+lib/lib-ruby-parser/lib_ruby_parser_native.*
+src/convert.h
+src/convert.c
+lib/lib-ruby-parser/nodes.rb

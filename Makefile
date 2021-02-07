@@ -83,7 +83,7 @@ $(BUNDLE): $(OBJECTS) src/main.c
 	$(CC) src/main.c $(LOCAL_LIB_NAME) $(OBJECTS) $(CCFLAGS)  -shared -o $(BUNDLE)
 native-bundle: $(BUNDLE)
 
-ATTACHED_BUNDLE = lib/lib_ruby_parser_native$(RUBY_LIB_EXT)
+ATTACHED_BUNDLE = lib/lib-ruby-parser/lib_ruby_parser_native$(RUBY_LIB_EXT)
 $(ATTACHED_BUNDLE): $(BUNDLE)
 	cp $(BUNDLE) $(ATTACHED_BUNDLE)
 attached-bundle: $(ATTACHED_BUNDLE)

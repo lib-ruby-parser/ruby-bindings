@@ -13,37 +13,37 @@ fn relative_path(path: &str) -> String {
         .to_owned()
 }
 
-struct Converter {
+struct RubyNode {
     node: Node,
 }
 
-impl Converter {
+impl RubyNode {
     pub fn new(node: Node) -> Self {
         Self { node }
     }
 
-    pub fn declaration(&self) -> String {
+    pub fn c_convert_declaration(&self) -> String {
         format!(
             "VALUE convert_{node_name}(struct {node_name} *node);",
             node_name = self.node.struct_name
         )
     }
 
-    pub fn implementation(&self) -> String {
+    pub fn c_convert_implementation(&self) -> String {
         format!(
             "VALUE convert_{node_name}(struct {node_name} *node) {{
     VALUE lib_ruby_parser_mod = rb_const_get(rb_cObject, rb_intern(\"LibRubyParser\"));
     VALUE node_klass = rb_const_get(lib_ruby_parser_mod, rb_intern(\"{node_name}\"));
     VALUE result = rb_obj_alloc(node_klass);
-    {convert_fields}
+    {c_convert_fields}
     return result;
 }}",
             node_name = self.node.struct_name,
-            convert_fields = self.convert_fields()
+            c_convert_fields = self.c_convert_fields()
         )
     }
 
-    fn convert_fields(&self) -> String {
+    fn c_convert_fields(&self) -> String {
         self.node
             .fields
             .iter()
@@ -52,14 +52,7 @@ impl Converter {
             .join("\n    ")
     }
 
-    pub fn ruby_class_declaration(&self) -> String {
-        format!(
-            "rb_define_class_under(lib_ruby_parser_mod, \"{class_name}\", rb_Node);",
-            class_name = self.node.struct_name
-        )
-    }
-
-    pub fn switch_branch(&self) -> String {
+    pub fn c_switch_branch(&self) -> String {
         format!(
             "case NODE_{upper}:
             return convert_{node_name}(node->inner->_{lower});",
@@ -68,12 +61,30 @@ impl Converter {
             lower = self.node.filename.to_lowercase()
         )
     }
+
+    pub fn ruby_declaration(&self) -> String {
+        format!(
+            "  class {class_name} < Node
+    attr_reader {attr_readers}
+  end",
+            class_name = self.node.struct_name,
+            attr_readers = self.attr_readers().join(", ")
+        )
+    }
+
+    pub fn attr_readers(&self) -> Vec<String> {
+        self.node
+            .fields
+            .iter()
+            .map(|f| format!(":{}", f.field_name))
+            .collect()
+    }
 }
 
-fn convert_h(converters: &[Converter]) -> String {
-    let declarations = converters
+fn convert_h(ruby_nodes: &[RubyNode]) -> String {
+    let declarations = ruby_nodes
         .iter()
-        .map(Converter::declaration)
+        .map(RubyNode::c_convert_declaration)
         .collect::<Vec<_>>()
         .join("\n");
 
@@ -140,22 +151,16 @@ impl FieldConverter {
     }
 }
 
-fn convert_c(converters: &[Converter]) -> String {
-    let implementations = converters
+fn convert_c(ruby_nodes: &[RubyNode]) -> String {
+    let implementations = ruby_nodes
         .iter()
-        .map(Converter::implementation)
+        .map(RubyNode::c_convert_implementation)
         .collect::<Vec<_>>()
         .join("\n");
 
-    let init_classes = converters
+    let switch_branches = ruby_nodes
         .iter()
-        .map(Converter::ruby_class_declaration)
-        .collect::<Vec<_>>()
-        .join("\n    ");
-
-    let switch_branches = converters
-        .iter()
-        .map(Converter::switch_branch)
+        .map(RubyNode::c_switch_branch)
         .collect::<Vec<_>>()
         .join("\n        ");
 
@@ -180,19 +185,41 @@ VALUE convert_Node(struct Node* node)
 void InitNodeClasses(VALUE lib_ruby_parser_mod)
 {{
     VALUE rb_Node = rb_define_class_under(lib_ruby_parser_mod, \"Node\", rb_cObject);
-    {init_classes}
 }}
 ",
         implementations = implementations,
         switch_branches = switch_branches,
-        init_classes = init_classes,
     )
 }
 
-fn main() {
-    let nodes = lib_ruby_parser_nodes::nodes().unwrap();
-    let convertes = nodes.into_iter().map(Converter::new).collect::<Vec<_>>();
+fn nodes_rb(ruby_nodes: &[RubyNode]) -> String {
+    let node_classes = ruby_nodes
+        .iter()
+        .map(RubyNode::ruby_declaration)
+        .collect::<Vec<_>>()
+        .join("\n\n");
 
-    std::fs::write(&relative_path("../src/convert.h"), &convert_h(&convertes)).unwrap();
-    std::fs::write(&relative_path("../src/convert.c"), &convert_c(&convertes)).unwrap();
+    format!(
+        "module LibRubyParser
+  class Node
+  end
+
+{node_classes}
+end
+",
+        node_classes = node_classes
+    )
+}
+
+fn write(path: &str, f: &dyn Fn(&[RubyNode]) -> String) {
+    let nodes = lib_ruby_parser_nodes::nodes().unwrap();
+    let convertes = nodes.into_iter().map(RubyNode::new).collect::<Vec<_>>();
+
+    std::fs::write(&relative_path(path), &f(&convertes)).unwrap();
+}
+
+fn main() {
+    write("../src/convert.h", &convert_h);
+    write("../src/convert.c", &convert_c);
+    write("../lib/lib-ruby-parser/nodes.rb", &nodes_rb);
 }

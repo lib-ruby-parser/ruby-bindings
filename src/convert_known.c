@@ -25,6 +25,7 @@ VALUE convert_Range(struct Range *range)
     rb_ivar_set(result, rb_intern("@end_pos"), convert_uint32_t(range->end_pos));
     return result;
 }
+
 VALUE convert_String(char *string)
 {
     if (string == NULL)
@@ -33,12 +34,8 @@ VALUE convert_String(char *string)
     }
     return rb_str_new_cstr(string);
 }
+
 VALUE convert_uint32_t(uint32_t value)
 {
     return INT2FIX(value);
-}
-
-VALUE InitKnownClasses(VALUE lib_ruby_parser_mod)
-{
-    rb_define_class_under(lib_ruby_parser_mod, "Range", rb_cObject);
 }

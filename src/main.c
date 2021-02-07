@@ -14,6 +14,22 @@
         rb_##key = (fallback);                                         \
     }
 
+struct TokenRewriterOutput rewrite_token_wrapper(void *rewriter, struct Token token, const char *input)
+{
+    VALUE rb_rewriter = (VALUE)rewriter;
+    if (NIL_P(rb_rewriter))
+    {
+        struct TokenRewriterOutput result = {
+            .token = token,
+            .token_rewriter_action = REWRITE_ACTION_KEEP,
+            .lex_state_action = {.kind = LEX_STATE_ACTION_KEEP}};
+        return result;
+    }
+    rb_proc_call(rb_rewriter, rb_ary_new());
+
+    rb_raise(rb_eException, "Unimplemented");
+}
+
 struct ParserOptions parser_options(VALUE rb_options)
 {
     get_parser_option_or(buffer_name, rb_str_new2("(eval)"));
@@ -26,7 +42,9 @@ struct ParserOptions parser_options(VALUE rb_options)
     bool debug = RTEST(rb_debug);
     CustomDecoder *decoder = NULL; // FIXME
     bool record_tokens = RTEST(rb_record_tokens);
-    struct TokenRewriter *token_rewriter = NULL; // FIXME
+    struct TokenRewriter *token_rewriter = malloc(sizeof(struct TokenRewriter));
+    token_rewriter->state = rb_token_rewriter;
+    token_rewriter->rewriter = rewrite_token_wrapper;
 
     struct ParserOptions options = {
         .buffer_name = buffer_name,
@@ -99,7 +117,5 @@ VALUE rb_parse(VALUE self, VALUE rb_code, VALUE rb_options)
 void Init_lib_ruby_parser_native()
 {
     VALUE lib_ruby_parser_mod = rb_define_module("LibRubyParser");
-    InitNodeClasses(lib_ruby_parser_mod);
-    InitKnownClasses(lib_ruby_parser_mod);
     rb_define_singleton_method(lib_ruby_parser_mod, "parse", rb_parse, 2);
 }
