@@ -93,4 +93,11 @@ describe LibRubyParser do
     end
   end
 
+  describe ':input' do
+    it 'returns decoded input' do
+      input = LibRubyParser::parse('42', {})[:input]
+      expect(input).to eq('42')
+    end
+  end
+
 end
