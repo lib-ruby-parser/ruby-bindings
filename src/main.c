@@ -43,7 +43,7 @@ struct ParserOptions parser_options(VALUE rb_options)
     CustomDecoder *decoder = NULL; // FIXME
     bool record_tokens = RTEST(rb_record_tokens);
     struct TokenRewriter *token_rewriter = malloc(sizeof(struct TokenRewriter));
-    token_rewriter->state = rb_token_rewriter;
+    token_rewriter->state = (void *)rb_token_rewriter;
     token_rewriter->rewriter = rewrite_token_wrapper;
 
     struct ParserOptions options = {
@@ -62,7 +62,12 @@ VALUE ast_to_ruby(struct Node *node)
 }
 VALUE tokens_to_ruby(struct TokenList *tokens)
 {
-    return Qnil;
+    VALUE result = rb_ary_new_capa(tokens->len);
+    for (uint32_t i = 0; i < tokens->len; i++)
+    {
+        rb_ary_push(result, convert_Token(&(tokens->list[i])));
+    }
+    return result;
 }
 VALUE diagnostics_to_ruby(struct Diagnostics *diagnostics)
 {

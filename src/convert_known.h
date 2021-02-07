@@ -6,6 +6,8 @@
 
 VALUE convert_NodeList(struct NodeList *list);
 VALUE convert_Range(struct Range *range);
+VALUE convert_Loc(struct Loc *loc);
+VALUE convert_Token(struct Token *token);
 VALUE convert_String(char *string);
 VALUE convert_uint32_t(uint32_t value);
 
