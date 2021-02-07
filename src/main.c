@@ -60,6 +60,7 @@ VALUE ast_to_ruby(struct Node *node)
 {
     return convert_Node(node);
 }
+
 VALUE tokens_to_ruby(struct TokenList *tokens)
 {
     VALUE result = rb_ary_new_capa(tokens->len);
@@ -69,21 +70,40 @@ VALUE tokens_to_ruby(struct TokenList *tokens)
     }
     return result;
 }
+
 VALUE diagnostics_to_ruby(struct Diagnostics *diagnostics)
 {
-    return Qnil;
+    VALUE result = rb_ary_new_capa(diagnostics->len);
+    for (uint32_t i = 0; i < diagnostics->len; i++)
+    {
+        rb_ary_push(result, convert_Diagnostic(&(diagnostics->list[i])));
+    }
+    return result;
 }
+
 VALUE comments_to_ruby(struct CommentList *comments)
 {
-    return Qnil;
+    VALUE result = rb_ary_new_capa(comments->len);
+    for (uint32_t i = 0; i < comments->len; i++)
+    {
+        rb_ary_push(result, convert_Comment(&(comments->list[i])));
+    }
+    return result;
 }
+
 VALUE magic_comments_to_ruby(struct MagicCommentList *magic_comments)
 {
-    return Qnil;
+    VALUE result = rb_ary_new_capa(magic_comments->len);
+    for (uint32_t i = 0; i < magic_comments->len; i++)
+    {
+        rb_ary_push(result, convert_MagicComment(&(magic_comments->list[i])));
+    }
+    return result;
 }
+
 VALUE input_to_ruby(char *input)
 {
-    return Qnil;
+    return convert_String(input);
 }
 
 VALUE parser_result_to_ruby(struct ParserResult *result)

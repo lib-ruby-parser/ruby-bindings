@@ -10,6 +10,18 @@ module LibRubyParser
   class Token
     attr_reader :token_name, :loc
   end
+
+  class Diagnostic
+    attr_reader :level, :message, :range
+  end
+
+  class Comment
+    attr_reader :location
+  end
+
+  class MagicComment
+    attr_reader :kind, :key_l, :value_l
+  end
 end
 
 require_relative './lib-ruby-parser/nodes'
