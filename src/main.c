@@ -27,8 +27,8 @@ struct DecoderOutput rb_decoder_wrapper(void *state, const char *encoding, const
 {
     VALUE rb_decoder = (VALUE)state;
 
-    VALUE rb_encoding = rb_str_new_cstr(copy_string(encoding, strlen(encoding)));
-    VALUE rb_input = rb_external_str_new(copy_string(input, len), len);
+    VALUE rb_encoding = rb_external_str_new_cstr(encoding);
+    VALUE rb_input = rb_external_str_new(input, len);
     rb_input = rb_enc_associate(rb_input, rb_ascii8bit_encoding());
 
     VALUE rb_decoded = rb_proc_call(rb_decoder, rb_ary_new_from_args(2, rb_encoding, rb_input));
@@ -132,7 +132,7 @@ VALUE magic_comments_to_ruby(struct MagicCommentList *magic_comments)
 
 VALUE input_to_ruby(char *input, uint32_t len)
 {
-    return rb_utf8_str_new(copy_string(input, len), len);
+    return rb_utf8_str_new(input, len);
 }
 
 VALUE parser_result_to_ruby(struct ParserResult *result)
@@ -161,9 +161,13 @@ VALUE rb_parse(VALUE self, VALUE rb_code, VALUE rb_options)
 
     struct ParserOptions options = parser_options(rb_options);
     long code_len = rb_str_strlen(rb_code);
-    char *code = copy_string(StringValueCStr(rb_code), code_len);
+    char *code = StringValueCStr(rb_code);
 
     struct ParserResult *result = parse(&options, code, code_len);
+    if (options.decoder != NULL)
+    {
+        free(options.decoder);
+    }
 
     return parser_result_to_ruby(result);
 }
