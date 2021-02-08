@@ -14,22 +14,6 @@
         rb_##key = (fallback);                                         \
     }
 
-struct TokenRewriterOutput rewrite_token_wrapper(void *rewriter, struct Token token, const char *input)
-{
-    VALUE rb_rewriter = (VALUE)rewriter;
-    if (NIL_P(rb_rewriter))
-    {
-        struct TokenRewriterOutput result = {
-            .token = token,
-            .token_rewriter_action = REWRITE_ACTION_KEEP,
-            .lex_state_action = {.kind = LEX_STATE_ACTION_KEEP}};
-        return result;
-    }
-    rb_proc_call(rb_rewriter, rb_ary_new());
-
-    rb_raise(rb_eException, "Unimplemented");
-}
-
 struct ParserOptions parser_options(VALUE rb_options)
 {
     get_parser_option_or(buffer_name, rb_str_new2("(eval)"));
@@ -42,16 +26,17 @@ struct ParserOptions parser_options(VALUE rb_options)
     bool debug = RTEST(rb_debug);
     CustomDecoder *decoder = NULL; // FIXME
     bool record_tokens = RTEST(rb_record_tokens);
-    struct TokenRewriter *token_rewriter = malloc(sizeof(struct TokenRewriter));
-    token_rewriter->state = (void *)rb_token_rewriter;
-    token_rewriter->rewriter = rewrite_token_wrapper;
+    if (!NIL_P(rb_token_rewriter))
+    {
+        rb_raise(rb_eNotImpError, ":token_rewriter is currently unsupported, please open an issue on https://github.com/lib-ruby-parser/ruby-bindings if you need this feature");
+    }
 
     struct ParserOptions options = {
         .buffer_name = buffer_name,
         .debug = debug,
         .decoder = decoder,
         .record_tokens = record_tokens,
-        .token_rewriter = token_rewriter};
+        .token_rewriter = NULL};
 
     return options;
 }
@@ -135,7 +120,6 @@ VALUE rb_parse(VALUE self, VALUE rb_code, VALUE rb_options)
     long code_len = rb_str_strlen(rb_code);
 
     struct ParserResult *result = parse(&options, code, code_len);
-
     return parser_result_to_ruby(result);
 }
 

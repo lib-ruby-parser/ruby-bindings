@@ -100,4 +100,16 @@ describe LibRubyParser do
     end
   end
 
+  describe ':token_rewriter' do
+    context 'when given' do
+      it 'throws an error' do
+        expect {
+          LibRubyParser::parse('foo', token_rewriter: 42)
+        }.to raise_error(
+          NotImplementedError,
+          ':token_rewriter is currently unsupported, please open an issue on https://github.com/lib-ruby-parser/ruby-bindings if you need this feature'
+        )
+      end
+    end
+  end
 end
