@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "convert.h"
 #include "convert_known.h"
+#include <ruby/encoding.h>
 #include "../lib-ruby-parser.h"
 
 #define UNUSED(x) (void)(x)
@@ -14,6 +15,33 @@
         rb_##key = (fallback);                                         \
     }
 
+char *copy_string(const char *source, uint32_t length)
+{
+    char *out = (char *)malloc(length + 1);
+    memcpy(out, source, length);
+    out[length] = '\0';
+    return out;
+}
+
+struct DecoderOutput rb_decoder_wrapper(void *state, const char *encoding, const char *input, uint32_t len)
+{
+    VALUE rb_decoder = (VALUE)state;
+
+    VALUE rb_encoding = rb_str_new_cstr(copy_string(encoding, strlen(encoding)));
+    VALUE rb_input = rb_external_str_new(copy_string(input, len), len);
+    rb_input = rb_enc_associate(rb_input, rb_ascii8bit_encoding());
+
+    VALUE rb_decoded = rb_proc_call(rb_decoder, rb_ary_new_from_args(2, rb_encoding, rb_input));
+    if (!RB_TYPE_P(rb_decoded, T_STRING))
+    {
+        rb_raise(rb_eTypeError, ":decoder must return a String");
+    }
+    uint32_t length = RSTRING_LEN(rb_decoded);
+    char *ptr = copy_string(StringValueCStr(rb_decoded), length);
+
+    return decode_ok(ptr, length);
+}
+
 struct ParserOptions parser_options(VALUE rb_options)
 {
     get_parser_option_or(buffer_name, rb_str_new2("(eval)"));
@@ -24,7 +52,23 @@ struct ParserOptions parser_options(VALUE rb_options)
 
     char *buffer_name = StringValueCStr(rb_buffer_name);
     bool debug = RTEST(rb_debug);
-    CustomDecoder *decoder = NULL; // FIXME
+
+    struct CustomDecoder *decoder;
+    if (NIL_P(rb_decoder))
+    {
+        decoder = NULL;
+    }
+    else if (RTEST(rb_obj_is_proc(rb_decoder)))
+    {
+        decoder = (struct CustomDecoder *)malloc(sizeof(struct CustomDecoder));
+        decoder->state = (void *)rb_decoder;
+        decoder->decoder = rb_decoder_wrapper;
+    }
+    else
+    {
+        rb_raise(rb_eTypeError, ":decoder must be nil or Proc");
+    }
+
     bool record_tokens = RTEST(rb_record_tokens);
     if (!NIL_P(rb_token_rewriter))
     {
@@ -86,9 +130,9 @@ VALUE magic_comments_to_ruby(struct MagicCommentList *magic_comments)
     return result;
 }
 
-VALUE input_to_ruby(char *input)
+VALUE input_to_ruby(char *input, uint32_t len)
 {
-    return convert_String(input);
+    return rb_utf8_str_new(copy_string(input, len), len);
 }
 
 VALUE parser_result_to_ruby(struct ParserResult *result)
@@ -100,7 +144,7 @@ VALUE parser_result_to_ruby(struct ParserResult *result)
     rb_hash_aset(rb_result, rb_sym_from_cstr("diagnostics"), diagnostics_to_ruby(result->diagnostics));
     rb_hash_aset(rb_result, rb_sym_from_cstr("comments"), comments_to_ruby(result->comments));
     rb_hash_aset(rb_result, rb_sym_from_cstr("magic_comments"), magic_comments_to_ruby(result->magic_comments));
-    rb_hash_aset(rb_result, rb_sym_from_cstr("input"), input_to_ruby(result->input));
+    rb_hash_aset(rb_result, rb_sym_from_cstr("input"), input_to_ruby(result->input, result->input_len));
 
     parser_result_free(result);
 
@@ -116,10 +160,11 @@ VALUE rb_parse(VALUE self, VALUE rb_code, VALUE rb_options)
     }
 
     struct ParserOptions options = parser_options(rb_options);
-    char *code = StringValueCStr(rb_code);
     long code_len = rb_str_strlen(rb_code);
+    char *code = copy_string(StringValueCStr(rb_code), code_len);
 
     struct ParserResult *result = parse(&options, code, code_len);
+
     return parser_result_to_ruby(result);
 }
 

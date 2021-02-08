@@ -112,4 +112,55 @@ describe LibRubyParser do
       end
     end
   end
+
+  describe ':custom_decoder' do
+    let(:source) do
+      <<~RUBY.force_encoding('Windows-1251')
+        # encoding: Windows-1251
+        "\xFF"
+      RUBY
+    end
+
+    context 'when not given' do
+      it 'returns an error for unsupported encoding' do
+        decoder = proc do |decoding, input|
+          "foo"
+        end
+
+        result = LibRubyParser::parse(source, {})
+        expect(result[:ast]).to be_nil
+        expect(result[:diagnostics].length).to eq(1)
+        expect(result[:diagnostics][0].message).to eq('encoding error: UnsupportdEncoding("WINDOWS-1251")')
+      end
+    end
+
+    context 'when given' do
+      it 'uses it to decode unsupported encoding' do
+        called = false
+
+        decoder = proc do |encoding, input|
+          called = true
+          expect(encoding).to eq('WINDOWS-1251')
+          expect(input.encoding).to eq(Encoding::BINARY)
+          expect(input.bytes).to eq(source.bytes)
+
+          encoding = Encoding.find(encoding)
+          input.force_encoding(encoding).encode('utf-8')
+        end
+
+        result = LibRubyParser::parse(source, decoder: decoder)
+
+        expect(called).to eq(true)
+
+        expect(result[:input].encoding).to eq(Encoding::UTF_8)
+        expect(result[:input]).to eq(<<~RUBY)
+          # encoding: Windows-1251
+          "я"
+        RUBY
+
+        expect(result[:ast].value.encoding).to eq(Encoding::UTF_8)
+        expect(result[:ast].value).to eq("я")
+      end
+    end
+  end
 end

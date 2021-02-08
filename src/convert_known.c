@@ -64,7 +64,7 @@ VALUE convert_Diagnostic(struct Diagnostic *diagnostic)
     VALUE rb_Diagnostic = rb_const_get(lib_ruby_parser_mod, rb_intern("Diagnostic"));
     VALUE result = rb_obj_alloc(rb_Diagnostic);
     rb_ivar_set(result, rb_intern("@level"), convert_ErrorLevel(diagnostic->level));
-    rb_ivar_set(result, rb_intern("@message"), convert_String(diagnostic->message));
+    rb_ivar_set(result, rb_intern("@message"), rb_str_new_cstr(diagnostic->message));
     rb_ivar_set(result, rb_intern("@range"), convert_Range(diagnostic->range));
     return result;
 }
@@ -110,7 +110,7 @@ VALUE convert_String(char *string)
     {
         return Qnil;
     }
-    return rb_str_new_cstr(string);
+    return rb_utf8_str_new_cstr(string);
 }
 
 VALUE convert_uint32_t(uint32_t value)
