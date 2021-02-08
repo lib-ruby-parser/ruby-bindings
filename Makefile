@@ -39,15 +39,11 @@ LIB_URL = $(ASSET_PREFIX)/$(LIB_ASSET_NAME)
 ifeq ($(DETECTED_OS), Darwin)
 	CCFLAGS += -Wall -Wextra
 	CCOBJFLAGS += -fPIC -c
-	CCEXECFLAGS = -lpthread -ldl
-	LDFLAGS = -r
-	# rubyhdrdir"=>"/Users/ilyabylich/.rvm/rubies/ruby-3.0.0/include/ruby-3.0.0
-	CCFLAGS += -I /Users/ilyabylich/.rvm/rubies/ruby-3.0.0/include/ruby-3.0.0/
-	# rubyarchhdrdir"=>"/Users/ilyabylich/.rvm/rubies/ruby-3.0.0/include/ruby-3.0.0/x86_64-darwin19
-	CCFLAGS += -I /Users/ilyabylich/.rvm/rubies/ruby-3.0.0/include/ruby-3.0.0/x86_64-darwin19/
+	CCFLAGS += -I $$(ruby -rrbconfig -e "puts RbConfig::CONFIG['rubyhdrdir']")
+	CCFLAGS += -I $$(ruby -rrbconfig -e "puts RbConfig::CONFIG['rubyarchhdrdir']")
 
 	CCFLAGS += -fdeclspec
-	CCFLAGS += -undefined dynamic_lookup
+	CCSHAREDFLAGS += -shared -undefined dynamic_lookup
 
 	ifeq ($(BUILD_ENV), debug)
 		CCFLAGS += -g -O0
@@ -55,32 +51,84 @@ ifeq ($(DETECTED_OS), Darwin)
 		CCFLAGS += -O2
 	endif
 	OBJ_FILE_EXT = .o
-	STATIC_LIB_EXT = .a
-	EXEC_EXT =
 	RUBY_LIB_EXT = .bundle
 
 	CC_SET_OUT_FILE = -o #
-	LD_SET_OUT_FILE = -o #
 	LIST_DEPS = otool -L
 endif
+
+ifeq ($(DETECTED_OS), Linux)
+	CCFLAGS += -Wall -Wextra
+	CCOBJFLAGS += -fPIC -c
+	CCFLAGS += -I $$(ruby -rrbconfig -e "puts RbConfig::CONFIG['rubyhdrdir']")
+	CCFLAGS += -I $$(ruby -rrbconfig -e "puts RbConfig::CONFIG['rubyarchhdrdir']")
+
+	CCFLAGS += -fdeclspec
+	CCSHAREDFLAGS += -shared -fPIC
+
+	ifeq ($(BUILD_ENV), debug)
+		CCFLAGS += -g -O0
+	else
+		CCFLAGS += -O2
+	endif
+	OBJ_FILE_EXT = .o
+	RUBY_LIB_EXT = .so
+
+	CC_SET_OUT_FILE = -o #
+	LIST_DEPS = ldd
+endif
+
+ifeq ($(DETECTED_OS), Windows)
+	CCFLAGS += -Wall -Wextra
+	CCOBJFLAGS += -c
+	# -fPIC
+	CCFLAGS += -I $$(ruby -rrbconfig -e "puts RbConfig::CONFIG['rubyhdrdir']")
+	CCFLAGS += -I $$(ruby -rrbconfig -e "puts RbConfig::CONFIG['rubyarchhdrdir']")
+
+	# CCFLAGS += -fdeclspec
+	CCSHAREDFLAGS += -pie -static -shared -Wl,--allow-shlib-undefined,--enable-runtime-pseudo-reloc
+	#  -fPIC
+
+	ifeq ($(BUILD_ENV), debug)
+		CCFLAGS += -g -O0
+	else
+		CCFLAGS += -O2
+	endif
+	OBJ_FILE_EXT = .o
+	RUBY_LIB_EXT = .so
+
+	CC_SET_OUT_FILE = -o #
+	LIST_DEPS = dumpbin /dependents
+endif
+
+ifeq ($(BUILD_ENV), debug)
+	TARGET_DIR = target/debug
+else
+	TARGET_DIR = target/release
+endif
+
+generate-ruby-bindings:
+	cd build-convert && cargo build
 
 # objects
 
 OBJECTS =
 
-target/convert.o: src/convert.h src/convert.c
-	@echo $(A)
-	$(CC) src/convert.c $(CCFLAGS) $(CCOBJFLAGS) -o target/convert.o
-OBJECTS += target/convert.o
+$(TARGET_DIR)/convert$(OBJ_FILE_EXT): src/convert.h src/convert.c
+	$(CC) src/convert.c $(CCFLAGS) $(CCOBJFLAGS)
+	mv convert$(OBJ_FILE_EXT) $(TARGET_DIR)/convert$(OBJ_FILE_EXT)
+OBJECTS += $(TARGET_DIR)/convert$(OBJ_FILE_EXT)
 
-target/convert_known.o: src/convert_known.h src/convert_known.c
-	@echo $(A)
-	$(CC) src/convert_known.c $(CCFLAGS) $(CCOBJFLAGS) -o target/convert_known.o
-OBJECTS += target/convert_known.o
+$(TARGET_DIR)/convert_known$(OBJ_FILE_EXT): src/convert_known.h src/convert_known.c
+	$(CC) src/convert_known.c $(CCFLAGS) $(CCOBJFLAGS)
+	mv convert_known$(OBJ_FILE_EXT) $(TARGET_DIR)/convert_known$(OBJ_FILE_EXT)
+OBJECTS += $(TARGET_DIR)/convert_known$(OBJ_FILE_EXT)
 
-BUNDLE = target/lib_ruby_parser_native$(RUBY_LIB_EXT)
+BUNDLE = $(TARGET_DIR)/lib_ruby_parser_native$(RUBY_LIB_EXT)
 $(BUNDLE): $(OBJECTS) src/main.c
-	$(CC) src/main.c $(LOCAL_LIB_NAME) $(OBJECTS) $(CCFLAGS)  -shared -o $(BUNDLE)
+	$(CC) src/main.c $(LOCAL_LIB_NAME) $(OBJECTS) $(CCFLAGS) $(CCSHAREDFLAGS) $(CC_SET_OUT_FILE)$(BUNDLE)
+	ls -l
+	ls -l $(TARGET_DIR)
 native-bundle: $(BUNDLE)
 
 ATTACHED_BUNDLE = lib/lib-ruby-parser/lib_ruby_parser_native$(RUBY_LIB_EXT)
@@ -95,12 +143,13 @@ download-c-bindings:
 	wget -q $(LIB_URL) -O $(LOCAL_LIB_NAME)
 
 setup:
-	mkdir -p target
+	mkdir -p $(TARGET_DIR)
 
 print-env:
+	ruby -rrbconfig -e 'pp RbConfig::CONFIG'
 	@echo $(CCFLAGS)
 
 clean:
-	rm -rf target
-	mkdir -p target
+	rm -rf $(TARGET_DIR)
+	mkdir -p $(TARGET_DIR)
 	rm -f $(ATTACHED_BUNDLE)
