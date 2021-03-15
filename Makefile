@@ -1,17 +1,4 @@
-ifeq ($(OS), Windows_NT)
-	DETECTED_OS = Windows
-else
-	UNAME_S := $(shell uname -s)
-	ifeq ($(UNAME_S), Linux)
-		DETECTED_OS = Linux
-	else
-		ifeq ($(UNAME_S), Darwin)
-			DETECTED_OS = Darwin
-		else
-			DETECTED_OS = Unknown
-		endif
-	endif
-endif
+include scripts/setup.mk
 
 ifeq ($(DETECTED_OS), Windows)
 	LIB_ASSET_NAME = lib-ruby-parser-x86_64-pc-windows-msvc.lib
@@ -27,10 +14,6 @@ ifeq ($(UNAME_S), Darwin)
 endif
 
 VERSION = 3.0.0-3.6
-
-ifndef BUILD_ENV
-	BUILD_ENV = debug
-endif
 
 ASSET_PREFIX = https://github.com/lib-ruby-parser/c-bindings/releases/download/v$(VERSION)
 HEADER_URL = $(ASSET_PREFIX)/lib-ruby-parser.h
@@ -99,12 +82,6 @@ ifeq ($(DETECTED_OS), Windows)
 
 	CC_SET_OUT_FILE = -o #
 	LIST_DEPS = dumpbin /dependents
-endif
-
-ifeq ($(BUILD_ENV), debug)
-	TARGET_DIR = target/debug
-else
-	TARGET_DIR = target/release
 endif
 
 generate-ruby-bindings:
