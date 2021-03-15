@@ -26,7 +26,7 @@ ifeq ($(UNAME_S), Darwin)
 	LOCAL_LIB_NAME = lib-ruby-parser.a
 endif
 
-VERSION = 3.0.0-3.1
+VERSION = 3.0.0-3.6
 
 ifndef BUILD_ENV
 	BUILD_ENV = debug
