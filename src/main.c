@@ -3,7 +3,7 @@
 #include "convert.h"
 #include "convert_known.h"
 #include <ruby/encoding.h>
-#include "../lib-ruby-parser.h"
+#include "../c-bindings/lib-ruby-parser.h"
 
 #define UNUSED(x) (void)(x)
 #define rb_sym_from_cstr(x) ID2SYM(rb_intern(x))
@@ -23,7 +23,7 @@ char *copy_string(const char *source, uint32_t length)
     return out;
 }
 
-struct DecoderOutput rb_decoder_wrapper(void *state, const char *encoding, const char *input, uint32_t len)
+DecoderOutput rb_decoder_wrapper(void *state, const char *encoding, const char *input, uint32_t len)
 {
     VALUE rb_decoder = (VALUE)state;
 
@@ -42,7 +42,7 @@ struct DecoderOutput rb_decoder_wrapper(void *state, const char *encoding, const
     return decode_ok(ptr, length);
 }
 
-struct ParserOptions parser_options(VALUE rb_options)
+ParserOptions parser_options(VALUE rb_options)
 {
     get_parser_option_or(buffer_name, rb_str_new2("(eval)"));
     get_parser_option_or(debug, Qfalse);
@@ -53,14 +53,14 @@ struct ParserOptions parser_options(VALUE rb_options)
     char *buffer_name = StringValueCStr(rb_buffer_name);
     bool debug = RTEST(rb_debug);
 
-    struct CustomDecoder *decoder;
+    CustomDecoder *decoder;
     if (NIL_P(rb_decoder))
     {
         decoder = NULL;
     }
     else if (RTEST(rb_obj_is_proc(rb_decoder)))
     {
-        decoder = (struct CustomDecoder *)malloc(sizeof(struct CustomDecoder));
+        decoder = (CustomDecoder *)malloc(sizeof(CustomDecoder));
         decoder->state = (void *)rb_decoder;
         decoder->decoder = rb_decoder_wrapper;
     }
@@ -75,7 +75,7 @@ struct ParserOptions parser_options(VALUE rb_options)
         rb_raise(rb_eNotImpError, ":token_rewriter is currently unsupported, please open an issue on https://github.com/lib-ruby-parser/ruby-bindings if you need this feature");
     }
 
-    struct ParserOptions options = {
+    ParserOptions options = {
         .buffer_name = buffer_name,
         .debug = debug,
         .decoder = decoder,
@@ -85,12 +85,12 @@ struct ParserOptions parser_options(VALUE rb_options)
     return options;
 }
 
-VALUE ast_to_ruby(struct Node *node)
+VALUE ast_to_ruby(Node *node)
 {
     return convert_Node(node);
 }
 
-VALUE tokens_to_ruby(struct TokenList *tokens)
+VALUE tokens_to_ruby(TokenList *tokens)
 {
     VALUE result = rb_ary_new_capa(tokens->len);
     for (uint32_t i = 0; i < tokens->len; i++)
@@ -100,7 +100,7 @@ VALUE tokens_to_ruby(struct TokenList *tokens)
     return result;
 }
 
-VALUE diagnostics_to_ruby(struct Diagnostics *diagnostics)
+VALUE diagnostics_to_ruby(DiagnosticList *diagnostics)
 {
     VALUE result = rb_ary_new_capa(diagnostics->len);
     for (uint32_t i = 0; i < diagnostics->len; i++)
@@ -110,7 +110,7 @@ VALUE diagnostics_to_ruby(struct Diagnostics *diagnostics)
     return result;
 }
 
-VALUE comments_to_ruby(struct CommentList *comments)
+VALUE comments_to_ruby(CommentList *comments)
 {
     VALUE result = rb_ary_new_capa(comments->len);
     for (uint32_t i = 0; i < comments->len; i++)
@@ -120,7 +120,7 @@ VALUE comments_to_ruby(struct CommentList *comments)
     return result;
 }
 
-VALUE magic_comments_to_ruby(struct MagicCommentList *magic_comments)
+VALUE magic_comments_to_ruby(MagicCommentList *magic_comments)
 {
     VALUE result = rb_ary_new_capa(magic_comments->len);
     for (uint32_t i = 0; i < magic_comments->len; i++)
@@ -130,12 +130,14 @@ VALUE magic_comments_to_ruby(struct MagicCommentList *magic_comments)
     return result;
 }
 
-VALUE input_to_ruby(char *input, uint32_t len)
+VALUE input_to_ruby(Input *input)
 {
-    return rb_utf8_str_new(input, len);
+    uint32_t len = input_len(input);
+    char *ptr = copy_string(input_ptr(input), len);
+    return rb_utf8_str_new(ptr, len);
 }
 
-VALUE parser_result_to_ruby(struct ParserResult *result)
+VALUE parser_result_to_ruby(ParserResult *result)
 {
     VALUE rb_result = rb_hash_new();
 
@@ -144,7 +146,7 @@ VALUE parser_result_to_ruby(struct ParserResult *result)
     rb_hash_aset(rb_result, rb_sym_from_cstr("diagnostics"), diagnostics_to_ruby(result->diagnostics));
     rb_hash_aset(rb_result, rb_sym_from_cstr("comments"), comments_to_ruby(result->comments));
     rb_hash_aset(rb_result, rb_sym_from_cstr("magic_comments"), magic_comments_to_ruby(result->magic_comments));
-    rb_hash_aset(rb_result, rb_sym_from_cstr("input"), input_to_ruby(result->input, result->input_len));
+    rb_hash_aset(rb_result, rb_sym_from_cstr("input"), input_to_ruby(result->input));
 
     parser_result_free(result);
 
@@ -159,11 +161,11 @@ VALUE rb_parse(VALUE self, VALUE rb_code, VALUE rb_options)
         rb_options = rb_hash_new();
     }
 
-    struct ParserOptions options = parser_options(rb_options);
+    ParserOptions options = parser_options(rb_options);
     long code_len = rb_str_strlen(rb_code);
     char *code = StringValueCStr(rb_code);
 
-    struct ParserResult *result = parse(&options, code, code_len);
+    ParserResult *result = parse(&options, code, code_len);
     if (options.decoder != NULL)
     {
         free(options.decoder);

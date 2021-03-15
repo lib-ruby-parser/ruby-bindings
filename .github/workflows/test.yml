@@ -6,19 +6,10 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  CARGO_TERM_COLOR: always
-
 jobs:
   test:
-    name: ${{ matrix.build.target }} / ruby ${{ matrix.ruby }}
-    runs-on: ${{ matrix.build.os }}
-    env:
-      CARGO_BUILD_TARGET: ${{ matrix.build.target }}
-      CC: ${{ matrix.build.cc }}
-      CXX: ${{ matrix.build.cxx }}
-      LD: ${{ matrix.build.ld }}
-      CARGOFLAGS: ${{ matrix.build.cargoflags }}
+    name: test ruby ${{ matrix.ruby }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
@@ -26,41 +17,11 @@ jobs:
           # - '2.6'
           # - '2.7'
           - '3.0'
-        build:
-          # - os: ubuntu-latest
-          #   target: x86_64-unknown-linux-gnu
-          #   cc: clang-9
-          #   cxx: clang++-9
-          #   ld: ld.lld-9
-          #   run: rake
-
-          # - os: macos-latest
-          #   target: x86_64-apple-darwin
-          #   cc: clang
-          #   cxx: clang++
-          #   ld: ld
-          #   run: rake
-
-          - os: windows-latest
-            target: x86_64-pc-windows-gnu
-            cc: x86_64-w64-mingw32-gcc
-            cxx: x86_64-w64-mingw32-g++
-            ld: ld
-            run: rake
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
     steps:
-      - name: show env
-        shell: bash
-        run: |
-          x86_64-w64-mingw32-gcc --help
-          which ld
-          ld --help
-
-      # - name: show compilers
-      #   shell: bash
-      #   run: |
-      #     which $CC
-      #     which $LD
-
       - name: checkout
         uses: actions/checkout@v2
 
@@ -68,10 +29,6 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-
-      - name: print-env
-        shell: bash
-        run: make print-env
 
       # - name: setup msvc on windows
       #   if: runner.os == 'Windows'
@@ -93,19 +50,15 @@ jobs:
         with:
           profile: minimal
           toolchain: stable
-          target: ${{ matrix.build.target }}
           override: true
 
       - name: run bundler
         shell: bash
-        run: |
-          gem install bundler
-          bundle install
+        run: gem install bundler && bundle install
 
       - name: run tests
         shell: bash
         run: |
-          make setup
           make download-c-bindings
           make generate-ruby-bindings
-          ${{ matrix.build.run }}
+          make test

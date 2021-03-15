@@ -8,9 +8,9 @@ describe LibRubyParser do
       expect(result[:ast]).to be_instance_of(LibRubyParser::Int)
       expect(result[:ast].value).to eq('42')
       expect(result[:ast].operator_l).to be_nil
-      expect(result[:ast].expression_l).to be_instance_of(LibRubyParser::Range)
-      expect(result[:ast].expression_l.begin_pos).to eq(0)
-      expect(result[:ast].expression_l.end_pos).to eq(2)
+      expect(result[:ast].expression_l).to be_instance_of(LibRubyParser::Loc)
+      expect(result[:ast].expression_l.begin).to eq(0)
+      expect(result[:ast].expression_l.end).to eq(2)
     end
   end
 
@@ -43,9 +43,9 @@ describe LibRubyParser do
       expect(diagnostics[0]).to be_instance_of(LibRubyParser::Diagnostic)
       expect(diagnostics[0].level).to eq(:error)
       expect(diagnostics[0].message).to eq('unexpected END_OF_INPUT')
-      expect(diagnostics[0].range).to be_instance_of(LibRubyParser::Range)
-      expect(diagnostics[0].range.begin_pos).to eq(4)
-      expect(diagnostics[0].range.end_pos).to eq(4)
+      expect(diagnostics[0].loc).to be_instance_of(LibRubyParser::Loc)
+      expect(diagnostics[0].loc.begin).to eq(4)
+      expect(diagnostics[0].loc.end).to eq(4)
     end
   end
 
@@ -61,14 +61,14 @@ describe LibRubyParser do
       expect(comments.length).to eq(2)
 
       expect(comments[0]).to be_instance_of(LibRubyParser::Comment)
-      expect(comments[0].location).to be_instance_of(LibRubyParser::Range)
-      expect(comments[0].location.begin_pos).to eq(0)
-      expect(comments[0].location.end_pos).to eq(6)
+      expect(comments[0].location).to be_instance_of(LibRubyParser::Loc)
+      expect(comments[0].location.begin).to eq(0)
+      expect(comments[0].location.end).to eq(6)
 
       expect(comments[1]).to be_instance_of(LibRubyParser::Comment)
-      expect(comments[1].location).to be_instance_of(LibRubyParser::Range)
-      expect(comments[1].location.begin_pos).to eq(6)
-      expect(comments[1].location.end_pos).to eq(12)
+      expect(comments[1].location).to be_instance_of(LibRubyParser::Loc)
+      expect(comments[1].location.begin).to eq(6)
+      expect(comments[1].location.end).to eq(12)
     end
   end
 
@@ -84,12 +84,12 @@ describe LibRubyParser do
 
       expect(magic_comments[0]).to be_instance_of(LibRubyParser::MagicComment)
       expect(magic_comments[0].kind).to eq(:frozen_string_literal)
-      expect(magic_comments[0].key_l).to be_instance_of(LibRubyParser::Range)
-      expect(magic_comments[0].key_l.begin_pos).to eq(2)
-      expect(magic_comments[0].key_l.end_pos).to eq(23)
-      expect(magic_comments[0].value_l).to be_instance_of(LibRubyParser::Range)
-      expect(magic_comments[0].value_l.begin_pos).to eq(25)
-      expect(magic_comments[0].value_l.end_pos).to eq(29)
+      expect(magic_comments[0].key_l).to be_instance_of(LibRubyParser::Loc)
+      expect(magic_comments[0].key_l.begin).to eq(2)
+      expect(magic_comments[0].key_l.end).to eq(23)
+      expect(magic_comments[0].value_l).to be_instance_of(LibRubyParser::Loc)
+      expect(magic_comments[0].value_l.begin).to eq(25)
+      expect(magic_comments[0].value_l.end).to eq(29)
     end
   end
 
@@ -130,7 +130,7 @@ describe LibRubyParser do
         result = LibRubyParser::parse(source, {})
         expect(result[:ast]).to be_nil
         expect(result[:diagnostics].length).to eq(1)
-        expect(result[:diagnostics][0].message).to eq('encoding error: UnsupportdEncoding("WINDOWS-1251")')
+        expect(result[:diagnostics][0].message).to eq('encoding error: UnsupportedEncoding("WINDOWS-1251")')
       end
     end
 

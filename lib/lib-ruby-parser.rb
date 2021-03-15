@@ -1,8 +1,4 @@
 module LibRubyParser
-  class Range
-    attr_reader :begin_pos, :end_pos
-  end
-
   class Loc
     attr_reader :begin, :end
   end
@@ -12,7 +8,7 @@ module LibRubyParser
   end
 
   class Diagnostic
-    attr_reader :level, :message, :range
+    attr_reader :level, :message, :loc
   end
 
   class Comment

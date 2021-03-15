@@ -17,29 +17,134 @@ impl<'a> ConvertH<'a> {
 #define LIB_RUBY_PARSER_CONVERT_H
 
 #include <ruby.h>
-#include \"../lib-ruby-parser.h\"
+#include \"../c-bindings/lib-ruby-parser.h\"
 
-{declarations}
+VALUE convert_Node(Node*);
+VALUE convert_Loc(Loc*);
+VALUE convert_NodeList(NodeList*);
+VALUE convert_String(char *);
+VALUE convert_uint32_t(uint32_t);
 
-VALUE convert_Node(struct Node* node);
+{implementations}
 
-void InitNodeClasses(VALUE lib_ruby_parser_mod);
+VALUE convert_Node(Node* node)
+{{
+    if (node == NULL)
+    {{
+        return Qnil;
+    }}
+    switch(node->node_type)
+    {{
+        {switch_branches}
+    }}
+}}
 
 #endif // LIB_RUBY_PARSER_CONVERT_H
 ",
-            declarations = self.declarations().join("\n"),
+            implementations = self.implementations().join("\n"),
+            switch_branches = self.switch_branches().join("\n        "),
         )
     }
 
-    fn declarations(&self) -> Vec<String> {
+    fn implementations(&self) -> Vec<String> {
         self.nodes
             .iter()
-            .map(|node| {
-                format!(
-                    "VALUE convert_{node_name}(struct {node_name} *node);",
-                    node_name = node.struct_name
-                )
-            })
+            .map(|node| Node::new(node).convert_fn_implementation())
             .collect()
+    }
+
+    fn switch_branches(&self) -> Vec<String> {
+        self.nodes
+            .iter()
+            .map(|node| Node::new(node).c_switch_branch())
+            .collect()
+    }
+}
+
+struct Node<'a> {
+    node: &'a lib_ruby_parser_nodes::Node,
+}
+
+impl<'a> Node<'a> {
+    fn new(node: &'a lib_ruby_parser_nodes::Node) -> Self {
+        Self { node }
+    }
+
+    fn convert_fn_implementation(&self) -> String {
+        format!(
+            "VALUE convert_{node_name}({node_name} *node) {{
+    VALUE lib_ruby_parser_mod = rb_const_get(rb_cObject, rb_intern(\"LibRubyParser\"));
+    VALUE node_klass = rb_const_get(lib_ruby_parser_mod, rb_intern(\"{node_name}\"));
+    VALUE result = rb_obj_alloc(node_klass);
+    {convert_fields}
+    return result;
+}}",
+            node_name = self.node.struct_name,
+            convert_fields = self.convert_fields().join("\n    ")
+        )
+    }
+
+    fn convert_fields(&self) -> Vec<String> {
+        self.node
+            .fields
+            .iter()
+            .map(|f| Field::new(f).code())
+            .collect()
+    }
+
+    fn c_switch_branch(&self) -> String {
+        format!(
+            "case NODE_{upper}:
+            return convert_{node_name}(node->inner->_{lower});",
+            upper = self.node.filename.to_uppercase(),
+            node_name = self.node.struct_name,
+            lower = self.node.filename.to_lowercase()
+        )
+    }
+}
+
+struct Field<'a> {
+    field: &'a lib_ruby_parser_nodes::Field,
+}
+
+impl<'a> Field<'a> {
+    pub fn new(field: &'a lib_ruby_parser_nodes::Field) -> Self {
+        Self { field }
+    }
+
+    pub fn code(&self) -> String {
+        format!(
+            "rb_ivar_set(result, rb_intern(\"@{field_name}\"), {convert_fn}(node->{field_name}));",
+            convert_fn = self.convert_fn(),
+            field_name = self.field_name()
+        )
+    }
+
+    fn convert_fn(&self) -> &str {
+        use lib_ruby_parser_nodes::FieldType;
+
+        match self.field.field_type {
+            FieldType::Node | FieldType::MaybeNode | FieldType::RegexOptions => "convert_Node",
+
+            FieldType::Nodes => "convert_NodeList",
+
+            FieldType::Loc | FieldType::MaybeLoc => "convert_Loc",
+
+            FieldType::Str
+            | FieldType::MaybeStr
+            | FieldType::Chars
+            | FieldType::StringValue
+            | FieldType::RawString => "convert_String",
+
+            FieldType::U8 | FieldType::Usize => "convert_uint32_t",
+        }
+    }
+
+    fn field_name(&self) -> String {
+        match &self.field.field_name[..] {
+            "default" => "default_",
+            other => other,
+        }
+        .to_string()
     }
 }
