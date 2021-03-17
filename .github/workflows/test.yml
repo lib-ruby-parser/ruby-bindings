@@ -59,6 +59,7 @@ jobs:
       - name: run tests
         shell: bash
         run: |
+          make clean
           make download-c-bindings
           make generate-ruby-bindings
           make test

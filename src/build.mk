@@ -67,25 +67,24 @@ ALL_SRCS = $(wildcard src/*.c)
 ALL_HEADERS = $(wildcard src/*.h)
 OBJECTS = $(foreach src,$(ALL_SRCS), $(patsubst src/%.c,$(TARGET_DIR)/%.$(OBJ_FILE_EXT),$(src)))
 
-COMPILE_RUBY_DYLIB = $$(ruby scripts/compile.rb)
-
+MAIN_C = src/main.c
+OBJECT_FILE = $(TARGET_DIR)/lib_ruby_parser_native.o
 ifeq ($(DETECTED_OS), Windows)
-	SET_OUT_FILE = /OUT:
-else
-	SET_OUT_FILE = -o #
-endif
-
-ifeq ($(DETECTED_OS), Windows)
-	DLEXT = dll
+	DLEXT = so
 else ifeq ($(DETECTED_OS), Linux)
 	DLEXT = so
 else ifeq ($(DETECTED_OS), Darwin)
 	DLEXT = bundle
 endif
-
 DYLIB = lib/lib-ruby-parser/lib_ruby_parser_native.$(DLEXT)
 
-COMPILE_DYLIB = $(COMPILE_RUBY_DYLIB) $(CFLAGS) src/main.c $(LIB_RUBY_PARSER_STATIC) -o $(DYLIB)
-$(DYLIB): $(ALL_SRCS) $(ALL_HEADERS)
-	@echo "$(COMPILE_DYLIB)"
-	$(COMPILE_DYLIB)
+COMPILE_COMMAND = $$(ruby scripts/compile.rb $(MAIN_C) $(OBJECT_FILE))
+LINK_COMMAND = $$(ruby scripts/link.rb $(OBJECT_FILE) $(LIB_RUBY_PARSER_STATIC) $(DYLIB))
+
+$(OBJECT_FILE): $(ALL_SRCS) $(ALL_HEADERS)
+	@echo "$(COMPILE_COMMAND)"
+	$(COMPILE_COMMAND)
+
+$(DYLIB): $(OBJECT_FILE)
+	@echo "$(LINK_COMMAND)"
+	$(LINK_COMMAND)

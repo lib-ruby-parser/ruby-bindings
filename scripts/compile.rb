@@ -1,13 +1,20 @@
 require 'rbconfig'
 
 def include_dir(dir)
-    "-I #{dir}"
+    "-I#{dir}"
 end
 
+src = ARGV[0]
+output = ARGV[1]
+
 puts [
-    RbConfig::CONFIG['LDSHARED'],
-    include_dir(RbConfig::CONFIG['rubyhdrdir']),
+    RbConfig::CONFIG['CC'],
+    include_dir('.'),
     include_dir(RbConfig::CONFIG['rubyarchhdrdir']),
+    include_dir(RbConfig::CONFIG['rubyhdrdir']),
+    include_dir(RbConfig::CONFIG['includedir']),
+    RbConfig::CONFIG['CCDLFLAGS'],
     RbConfig::CONFIG['CFLAGS'],
-    RbConfig::CONFIG['DLDFLAGS'].dup.gsub('$(DEFFILE)', ''),
+    "-o #{output} -c",
+    src
 ].join(' ')
