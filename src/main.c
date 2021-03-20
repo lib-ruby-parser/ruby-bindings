@@ -165,7 +165,7 @@ VALUE rb_parse(VALUE self, VALUE rb_code, VALUE rb_options)
     long code_len = rb_str_strlen(rb_code);
     char *code = StringValueCStr(rb_code);
 
-    ParserResult *result = parse(&options, code, code_len);
+    ParserResult *result = parse(&options, code);
     if (options.decoder != NULL)
     {
         free(options.decoder);
