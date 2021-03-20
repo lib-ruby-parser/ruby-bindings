@@ -9,7 +9,7 @@ end
 OS_SPECIFIC_OPTIONS =
     case RbConfig::CONFIG['host_os']
     when /mingw/
-        ['-m64']
+        ['-m64', '-luserenv']
     else
         []
     end
@@ -27,4 +27,4 @@ puts [
     RbConfig::CONFIG['LIBRUBYARG'],
     RbConfig::CONFIG['LIBS'],
 
-].join(' ').gsub('$(DEFFILE)', 'librope_native-x64-mingw32.def')
+].join(' ').gsub('$(DEFFILE)', 'lib_ruby_parser_native-x64-mingw32.def')
