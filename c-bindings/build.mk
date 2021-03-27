@@ -8,7 +8,7 @@ else ifeq ($(UNAME_S), Darwin)
 	LIB_RUBY_PARSER_NAME = lib-ruby-parser-x86_64-apple-darwin.a
 endif
 
-VERSION = v3.0.0-3.8
+VERSION = v3.0.0-3.9
 
 ASSET_PREFIX = https://github.com/lib-ruby-parser/c-bindings/releases/download/$(VERSION)
 HEADER_URL = $(ASSET_PREFIX)/lib-ruby-parser.h
