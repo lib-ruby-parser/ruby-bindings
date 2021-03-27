@@ -20,15 +20,16 @@ jobs:
         os:
           - ubuntu-latest
           - macos-latest
-          # - windows-latest
+          - windows-latest
     steps:
       - name: checkout
         uses: actions/checkout@v2
 
       - name: install ruby
-        uses: actions/setup-ruby@v1
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
 
       - name: install wget
         if: runner.os == 'Windows'
