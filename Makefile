@@ -13,4 +13,4 @@ clean:
 	rm -f $(DYLIB)
 
 test: $(DYLIB)
-	rake spec
+	bundle exec rake spec
