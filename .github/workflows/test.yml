@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: test ruby ${{ matrix.ruby }} on ${{ matrix.os }}
+    name: ${{ matrix.ruby }} / ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
