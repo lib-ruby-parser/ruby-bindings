@@ -4,14 +4,14 @@ OBJECTS = $(foreach src,$(ALL_SRCS), $(patsubst src/%.c,$(TARGET_DIR)/%.$(OBJ_FI
 
 MAIN_C = src/main.c
 OBJECT_FILE = $(TARGET_DIR)/lib_ruby_parser_native.o
-ifeq ($(DETECTED_OS), Windows)
+ifeq ($(DETECTED_OS), windows)
 	DLEXT = so
-else ifeq ($(DETECTED_OS), Linux)
+else ifeq ($(DETECTED_OS), linux)
 	DLEXT = so
-else ifeq ($(DETECTED_OS), Darwin)
+else ifeq ($(DETECTED_OS), darwin)
 	DLEXT = bundle
 endif
-DYLIB = lib/lib-ruby-parser/lib_ruby_parser_native.$(DLEXT)
+DYLIB = lib/lib-ruby-parser/lib_ruby_parser_native_$(DETECTED_OS).$(DLEXT)
 
 COMPILE_COMMAND = $$(ruby scripts/compile.rb $(MAIN_C) $(OBJECT_FILE))
 LINK_COMMAND = $$(ruby scripts/link.rb $(OBJECT_FILE) $(LIB_RUBY_PARSER_STATIC) $(DYLIB))

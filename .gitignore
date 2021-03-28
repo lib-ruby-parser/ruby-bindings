@@ -9,5 +9,6 @@
 Gemfile.lock
 
 target/
-lib/lib-ruby-parser/lib_ruby_parser_native.*
+lib/lib-ruby-parser/*.bundle
+lib/lib-ruby-parser/*.so
 lib/lib-ruby-parser/nodes.rb

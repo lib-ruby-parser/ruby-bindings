@@ -1,10 +1,10 @@
 C_BINDINGS_DIR = c-bindings
 
-ifeq ($(DETECTED_OS), Windows)
+ifeq ($(DETECTED_OS), windows)
 	LIB_RUBY_PARSER_NAME = lib-ruby-parser-x86_64-pc-windows-gnu.a
-else ifeq ($(DETECTED_OS), Linux)
+else ifeq ($(DETECTED_OS), linux)
 	LIB_RUBY_PARSER_NAME = lib-ruby-parser-x86_64-unknown-linux-gnu.a
-else ifeq ($(UNAME_S), Darwin)
+else ifeq ($(DETECTED_OS), darwin)
 	LIB_RUBY_PARSER_NAME = lib-ruby-parser-x86_64-apple-darwin.a
 endif
 

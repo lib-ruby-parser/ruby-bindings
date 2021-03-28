@@ -179,3 +179,19 @@ void Init_lib_ruby_parser_native()
     VALUE lib_ruby_parser_mod = rb_define_module("LibRubyParser");
     rb_define_singleton_method(lib_ruby_parser_mod, "parse", rb_parse, 2);
 }
+
+// Platform-specific entry points
+void Init_lib_ruby_parser_native_darwin()
+{
+    Init_lib_ruby_parser_native();
+}
+
+void Init_lib_ruby_parser_native_linux()
+{
+    Init_lib_ruby_parser_native();
+}
+
+void Init_lib_ruby_parser_native_windows()
+{
+    Init_lib_ruby_parser_native();
+}

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LibRubyParser
   class Loc
     attr_reader :begin, :end
@@ -21,4 +23,19 @@ module LibRubyParser
 end
 
 require_relative './lib-ruby-parser/nodes'
-require_relative './lib-ruby-parser/lib_ruby_parser_native'
+
+require 'rbconfig'
+host_os = RbConfig::CONFIG['host_os']
+platform =
+  case host_os
+  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+    'windows'
+  when /darwin|mac os/
+    'darwin'
+  when /linux/
+    'linux'
+  else
+    raise NotImplementedError, "Unsupported host_os: #{host_os.inspect}"
+  end
+
+require_relative "./lib-ruby-parser/lib_ruby_parser_native_#{platform}"

@@ -1,14 +1,14 @@
 ifeq ($(OS), Windows_NT)
-	DETECTED_OS = Windows
+	DETECTED_OS = windows
 else
 	UNAME_S := $(shell uname -s)
 	ifeq ($(UNAME_S), Linux)
-		DETECTED_OS = Linux
+		DETECTED_OS = linux
 	else
 		ifeq ($(UNAME_S), Darwin)
-			DETECTED_OS = Darwin
+			DETECTED_OS = darwin
 		else
-			DETECTED_OS = Unknown
+			DETECTED_OS = unknown
 		endif
 	endif
 endif
