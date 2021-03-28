@@ -19,4 +19,3 @@ LIB_RUBY_PARSER_STATIC = $(C_BINDINGS_DIR)/$(LIB_RUBY_PARSER_NAME)
 download-c-bindings:
 	wget -q $(HEADER_URL) -O $(C_BINDINGS_DIR)/lib-ruby-parser.h
 	wget -q $(LIB_URL) -O $(LIB_RUBY_PARSER_STATIC)
-
