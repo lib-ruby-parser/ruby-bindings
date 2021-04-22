@@ -1,3 +1,4 @@
+GC.disable
 ROOT = File.expand_path('../lib', __dir__)
 $:.unshift ROOT
 

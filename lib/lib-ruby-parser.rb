@@ -2,23 +2,53 @@
 
 module LibRubyParser
   class Loc
-    attr_reader :begin, :end
+    attr_accessor :begin, :end
+
+    def initialize(**options)
+      @begin = options[:begin]
+      @end = options[:end]
+    end
   end
 
   class Token
-    attr_reader :token_name, :loc
+    attr_accessor :token_type, :token_name, :token_value, :lex_state_before, :lex_state_after, :loc
+
+    def initialize(**options)
+      @token_type = options[:token_type]
+      @token_name = options[:token_name]
+      @token_value = options[:token_value]
+      @lex_state_before = options[:lex_state_before]
+      @lex_state_after = options[:lex_state_after]
+      @loc = options[:loc]
+    end
   end
 
   class Diagnostic
-    attr_reader :level, :message, :loc
+    attr_accessor :level, :message, :loc
+
+    def initialize(**options)
+      @level = options[:level]
+      @message = options[:message]
+      @loc = options[:loc]
+    end
   end
 
   class Comment
-    attr_reader :location
+    attr_accessor :location
+
+    def initialize(**options)
+      @location = options[:location]
+    end
   end
 
   class MagicComment
-    attr_reader :kind, :key_l, :value_l
+    attr_accessor :kind, :key_l, :value_l
+
+    def initialize(**options)
+      @kind = options[:kind]
+      @key_l = options[:key_l]
+      @value_l = options[:value_l]
+    end
   end
 end
 

@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe LibRubyParser do
+  def expect_loc(loc, expected_range)
+    expect(loc).to be_instance_of(LibRubyParser::Loc)
+    expect(loc.begin).to eq(expected_range.begin)
+    expect(loc.end).to eq(expected_range.end)
+  end
+
   describe ':ast' do
     it 'returns ast' do
       result = LibRubyParser.parse('42', {})
@@ -8,45 +14,50 @@ describe LibRubyParser do
       expect(result[:ast]).to be_instance_of(LibRubyParser::Int)
       expect(result[:ast].value).to eq('42')
       expect(result[:ast].operator_l).to be_nil
-      expect(result[:ast].expression_l).to be_instance_of(LibRubyParser::Loc)
-      expect(result[:ast].expression_l.begin).to eq(0)
-      expect(result[:ast].expression_l.end).to eq(2)
+      expect_loc(result[:ast].expression_l, 0...2)
     end
+  end
+
+  def expect_token(token, expected_token_name, expected_range)
+    expect(token.token_name).to eq(expected_token_name)
+    expect_loc(token.loc, expected_range)
   end
 
   describe ':tokens' do
     it 'is empty when record_tokens: false passed' do
       expect(
-        LibRubyParser::parse('42', record_tokens: false)[:tokens]
+        LibRubyParser.parse('42', record_tokens: false)[:tokens]
       ).to eq([])
     end
 
     it 'contains tokens when record_tokens: true passed' do
-      tokens = LibRubyParser::parse('42', record_tokens: true)[:tokens]
+      tokens = LibRubyParser.parse('42', record_tokens: true)[:tokens]
       expect(tokens.length).to eq(2)
 
-      expect(tokens[0].token_name).to eq('tINTEGER')
-      expect(tokens[0].loc.begin).to eq(0)
-      expect(tokens[0].loc.end).to eq(2)
-
-      expect(tokens[1].token_name).to eq('EOF')
-      expect(tokens[1].loc.begin).to eq(2)
-      expect(tokens[1].loc.end).to eq(2)
+      expect_token(tokens[0], 'tINTEGER', 0...2)
+      expect_token(tokens[1], 'EOF',      2...2)
     end
+  end
+
+  def expect_diagnostic(diagnostic, expected_level, expected_message, expected_range)
+    expect(diagnostic).to be_instance_of(LibRubyParser::Diagnostic)
+    expect(diagnostic.level).to eq(expected_level)
+    expect(diagnostic.message).to eq(expected_message)
+    expect_loc(diagnostic.loc, expected_range)
   end
 
   describe ':diagnostics' do
     it 'returns a list of diagnostics' do
-      diagnostics = LibRubyParser::parse('foo+', {})[:diagnostics]
+      diagnostics = LibRubyParser.parse('foo+', {})[:diagnostics]
       expect(diagnostics.length).to eq(1)
 
-      expect(diagnostics[0]).to be_instance_of(LibRubyParser::Diagnostic)
-      expect(diagnostics[0].level).to eq(:error)
-      expect(diagnostics[0].message).to eq('unexpected END_OF_INPUT')
-      expect(diagnostics[0].loc).to be_instance_of(LibRubyParser::Loc)
-      expect(diagnostics[0].loc.begin).to eq(4)
-      expect(diagnostics[0].loc.end).to eq(4)
+      expect_diagnostic(diagnostics[0], :error, 'unexpected END_OF_INPUT', 4...4)
     end
+  end
+
+  def expect_comment(comment, expected_range)
+    expect(comment).to be_instance_of(LibRubyParser::Comment)
+    expect_loc(comment.location, expected_range)
   end
 
   describe ':comments' do
@@ -57,19 +68,19 @@ describe LibRubyParser do
         42
       RUBY
 
-      comments = LibRubyParser::parse(code, {})[:comments]
+      comments = LibRubyParser.parse(code, {})[:comments]
       expect(comments.length).to eq(2)
 
-      expect(comments[0]).to be_instance_of(LibRubyParser::Comment)
-      expect(comments[0].location).to be_instance_of(LibRubyParser::Loc)
-      expect(comments[0].location.begin).to eq(0)
-      expect(comments[0].location.end).to eq(6)
-
-      expect(comments[1]).to be_instance_of(LibRubyParser::Comment)
-      expect(comments[1].location).to be_instance_of(LibRubyParser::Loc)
-      expect(comments[1].location.begin).to eq(6)
-      expect(comments[1].location.end).to eq(12)
+      expect_comment(comments[0], 0...6)
+      expect_comment(comments[1], 6...12)
     end
+  end
+
+  def expect_magic_comment(magic_comment, expected_kind, expected_key_range, expected_value_range)
+    expect(magic_comment).to be_instance_of(LibRubyParser::MagicComment)
+    expect(magic_comment.kind).to eq(expected_kind)
+    expect_loc(magic_comment.key_l, expected_key_range)
+    expect_loc(magic_comment.value_l, expected_value_range)
   end
 
   describe ':magic_comments' do
@@ -79,36 +90,65 @@ describe LibRubyParser do
         42
       RUBY
 
-      magic_comments = LibRubyParser::parse(code, {})[:magic_comments]
+      magic_comments = LibRubyParser.parse(code, {})[:magic_comments]
       expect(magic_comments.length).to eq(1)
 
-      expect(magic_comments[0]).to be_instance_of(LibRubyParser::MagicComment)
-      expect(magic_comments[0].kind).to eq(:frozen_string_literal)
-      expect(magic_comments[0].key_l).to be_instance_of(LibRubyParser::Loc)
-      expect(magic_comments[0].key_l.begin).to eq(2)
-      expect(magic_comments[0].key_l.end).to eq(23)
-      expect(magic_comments[0].value_l).to be_instance_of(LibRubyParser::Loc)
-      expect(magic_comments[0].value_l.begin).to eq(25)
-      expect(magic_comments[0].value_l.end).to eq(29)
+      expect_magic_comment(magic_comments[0], :frozen_string_literal, 2...23, 25...29)
     end
   end
 
   describe ':input' do
     it 'returns decoded input' do
-      input = LibRubyParser::parse('42', {})[:input]
+      input = LibRubyParser.parse('42', {})[:input]
       expect(input).to eq('42')
     end
   end
 
   describe ':token_rewriter' do
+    let(:source) do
+      "2 + 2"
+    end
+
+    context 'when not given' do
+      it 'has no effect' do
+        result = LibRubyParser.parse(source, record_tokens: true)
+
+        tokens = result[:tokens]
+        expect(tokens.length).to eq(4)
+
+        expect_token(tokens[0], 'tINTEGER', 0...1)
+        expect_token(tokens[1], 'tPLUS',    2...3)
+        expect_token(tokens[2], 'tINTEGER', 4...5)
+        expect_token(tokens[3], 'EOF',      5...5)
+
+        expect(result[:ast]).to be_instance_of(LibRubyParser::Send)
+        expect(result[:ast].recv).to be_instance_of(LibRubyParser::Int)
+        expect(result[:ast].recv.value).to eq('2')
+      end
+    end
+
     context 'when given' do
-      it 'throws an error' do
-        expect {
-          LibRubyParser::parse('foo', token_rewriter: 42)
-        }.to raise_error(
-          NotImplementedError,
-          ':token_rewriter is currently unsupported, please open an issue on https://github.com/lib-ruby-parser/ruby-bindings if you need this feature'
-        )
+      it 'rewrites tokens' do
+        token_rewriter = proc do |token, input|
+          if token.token_value == '2'
+            token.token_value = '3'
+          end
+          { rewritten_token: token }
+        end
+
+        result = LibRubyParser.parse(source, record_tokens: true, token_rewriter: token_rewriter)
+
+        tokens = result[:tokens]
+        expect(tokens.length).to eq(4)
+
+        expect_token(tokens[0], 'tINTEGER', 0...1)
+        expect_token(tokens[1], 'tPLUS',    2...3)
+        expect_token(tokens[2], 'tINTEGER', 4...5)
+        expect_token(tokens[3], 'EOF',      5...5)
+
+        expect(result[:ast]).to be_instance_of(LibRubyParser::Send)
+        expect(result[:ast].recv).to be_instance_of(LibRubyParser::Int)
+        expect(result[:ast].recv.value).to eq('3')
       end
     end
   end
@@ -123,14 +163,10 @@ describe LibRubyParser do
 
     context 'when not given' do
       it 'returns an error for unsupported encoding' do
-        decoder = proc do |decoding, input|
-          "foo"
-        end
-
-        result = LibRubyParser::parse(source, {})
+        result = LibRubyParser.parse(source, {})
         expect(result[:ast]).to be_nil
         expect(result[:diagnostics].length).to eq(1)
-        expect(result[:diagnostics][0].message).to eq('encoding error: UnsupportedEncoding("WINDOWS-1251")')
+        expect(result[:diagnostics][0].message).to eq('encoding error: UnsupportedEncoding("Windows-1251")')
       end
     end
 
@@ -140,7 +176,7 @@ describe LibRubyParser do
 
         decoder = proc do |encoding, input|
           called = true
-          expect(encoding).to eq('WINDOWS-1251')
+          expect(encoding).to eq('Windows-1251')
           expect(input.encoding).to eq(Encoding::BINARY)
           expect(input.bytes).to eq(source.bytes)
 
@@ -148,7 +184,7 @@ describe LibRubyParser do
           input.force_encoding(encoding).encode('utf-8')
         end
 
-        result = LibRubyParser::parse(source, decoder: decoder)
+        result = LibRubyParser.parse(source, decoder: decoder)
 
         expect(called).to eq(true)
 
