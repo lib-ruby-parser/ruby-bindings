@@ -199,4 +199,9 @@ describe LibRubyParser do
       end
     end
   end
+
+  it 'handles all nodes' do
+    source = File.read('all_nodes.rb')
+    LibRubyParser.parse(source, {})
+  end
 end

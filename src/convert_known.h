@@ -9,6 +9,7 @@ VALUE convert_Bytes(LIB_RUBY_PARSER_Bytes bytes);
 VALUE convert_StringValue(LIB_RUBY_PARSER_StringValue string_value);
 VALUE convert_LexState(LIB_RUBY_PARSER_LexState lex_state);
 VALUE convert_uint32_t(uint32_t value);
+VALUE convert_MaybeStringPtr(LIB_RUBY_PARSER_MaybeStringPtr maybe_string_ptr);
 
 VALUE convert_NodeList(LIB_RUBY_PARSER_NodeList node_list)
 {
@@ -168,7 +169,7 @@ VALUE convert_StringPtr(LIB_RUBY_PARSER_StringPtr string_ptr)
 {
     if (string_ptr.len == 0)
     {
-        return Qnil;
+        return rb_str_new2("");
     }
     char *ptr = (char *)(string_ptr.ptr);
     string_ptr.ptr = NULL;
@@ -179,7 +180,7 @@ VALUE convert_Bytes(LIB_RUBY_PARSER_Bytes bytes)
 {
     if (bytes.raw.len == 0)
     {
-        return Qnil;
+        return rb_str_new2("");
     }
     char *ptr = (char *)(bytes.raw.ptr);
     bytes.raw.ptr = NULL;
@@ -189,6 +190,17 @@ VALUE convert_Bytes(LIB_RUBY_PARSER_Bytes bytes)
 VALUE convert_StringValue(LIB_RUBY_PARSER_StringValue string_value)
 {
     return convert_Bytes(string_value.bytes);
+}
+
+VALUE convert_MaybeStringPtr(LIB_RUBY_PARSER_MaybeStringPtr maybe_string_ptr)
+{
+    if (maybe_string_ptr.len == 0)
+    {
+        return rb_str_new2("");
+    }
+    char *ptr = (char *)(maybe_string_ptr.ptr);
+    maybe_string_ptr.ptr = NULL;
+    return rb_utf8_str_new(ptr, maybe_string_ptr.len);
 }
 
 VALUE convert_LexState(LIB_RUBY_PARSER_LexState lex_state)
