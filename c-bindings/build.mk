@@ -8,14 +8,17 @@ else ifeq ($(DETECTED_OS), darwin)
 	LIB_RUBY_PARSER_NAME = lib-ruby-parser-x86_64-apple-darwin.a
 endif
 
-VERSION = v3.0.4.2
+VERSION = v1.0.0
 
-ASSET_PREFIX = https://github.com/lib-ruby-parser/c-bindings/releases/download/$(VERSION)
-HEADER_URL = $(ASSET_PREFIX)/lib-ruby-parser.h
-LIB_URL = $(ASSET_PREFIX)/$(LIB_RUBY_PARSER_NAME)
+C_BINDINGS_BASE_URL = https://github.com/lib-ruby-parser/c-bindings/releases/download/$(VERSION)
+HEADER_URL = $(C_BINDINGS_BASE_URL)/lib-ruby-parser.h
 
-LIB_RUBY_PARSER_STATIC = $(C_BINDINGS_DIR)/$(LIB_RUBY_PARSER_NAME)
+c-bindings/libruby_parser_c-$(TARGET).$(A):
+	$(call download_file, $(C_BINDINGS_BASE_URL)/libruby_parser_c-$(TARGET).$(A), $@)
 
-download-c-bindings:
-	wget -q $(HEADER_URL) -O $(C_BINDINGS_DIR)/lib-ruby-parser.h
-	wget -q $(LIB_URL) -O $(LIB_RUBY_PARSER_STATIC)
+c-bindings/lib-ruby-parser.h:
+	$(call download_file, $(C_BINDINGS_BASE_URL)/lib-ruby-parser.h, $@)
+
+c-bindings/clean:
+	rm -f libruby_parser_c-$(TARGET).$(A)
+	rm -f c-bindings/lib-ruby-parser.h
