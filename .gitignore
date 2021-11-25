@@ -15,3 +15,5 @@ lib/lib-ruby-parser/nodes.rb
 c-bindings/lib-ruby-parser.h
 c-bindings/*.a
 c-bindings/*.lib
+messages.h
+nodes.h
