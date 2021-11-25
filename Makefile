@@ -1,15 +1,11 @@
 include scripts/setup.mk
 include c-bindings/build.mk
 
-generate-ruby-bindings:
-	cd build-convert && cargo build
+main.$(O): main.c nodes.h messages.h
+	$(call compile_o)
 
-# include src/build.mk
+lib_ruby_parser_native.$(DYLIB): main.$(O) c-bindings/libruby_parser_c-$(TARGET).$(A)
+	$(call link_dylib)
 
-clean:
-	rm -rf $(TARGET_DIR)
-	mkdir -p $(TARGET_DIR)
-	rm -f $(DYLIB)
-
-test: $(DYLIB)
+test: lib_ruby_parser_native.$(DYLIB)
 	bundle exec rake spec

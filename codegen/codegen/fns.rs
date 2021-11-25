@@ -8,7 +8,7 @@ mod nodes {
     use super::Node;
 
     pub(crate) fn comment(node: &Node) -> String {
-        node.render_comment("//", 0)
+        node.render_comment("#", 2)
     }
 }
 
@@ -16,7 +16,7 @@ mod node_fields {
     use super::NodeField;
 
     pub(crate) fn comment(node_field: &NodeField) -> String {
-        node_field.render_comment("//", 4)
+        node_field.render_comment("#", 4)
     }
 }
 
@@ -24,7 +24,7 @@ mod messages {
     use super::Message;
 
     pub(crate) fn comment(message: &Message) -> String {
-        message.render_comment("//", 0)
+        message.render_comment("#", 2)
     }
 }
 
@@ -32,7 +32,7 @@ mod message_fields {
     use super::MessageField;
 
     pub(crate) fn comment(message_field: &MessageField) -> String {
-        message_field.render_comment("//", 4)
+        message_field.render_comment("#", 4)
     }
 }
 
