@@ -7,7 +7,7 @@ end
 src = ARGV[0]
 output = ARGV[1]
 
-puts [
+script = [
     RbConfig::CONFIG['CC'],
     include_dir('.'),
     include_dir(RbConfig::CONFIG['rubyarchhdrdir']),
@@ -18,3 +18,11 @@ puts [
     "-o #{output} -c",
     src
 ].join(' ')
+
+if ENV['DRY_RUN']
+    puts script
+else
+    puts script
+    system(script)
+    exit $?.exitstatus
+end
