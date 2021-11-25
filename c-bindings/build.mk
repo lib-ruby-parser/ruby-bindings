@@ -1,14 +1,4 @@
-C_BINDINGS_DIR = c-bindings
-
-ifeq ($(DETECTED_OS), windows)
-	LIB_RUBY_PARSER_NAME = lib-ruby-parser-x86_64-pc-windows-gnu.a
-else ifeq ($(DETECTED_OS), linux)
-	LIB_RUBY_PARSER_NAME = lib-ruby-parser-x86_64-unknown-linux-gnu.a
-else ifeq ($(DETECTED_OS), darwin)
-	LIB_RUBY_PARSER_NAME = lib-ruby-parser-x86_64-apple-darwin.a
-endif
-
-VERSION = v1.0.0
+VERSION = v2.0.0
 
 C_BINDINGS_BASE_URL = https://github.com/lib-ruby-parser/c-bindings/releases/download/$(VERSION)
 HEADER_URL = $(C_BINDINGS_BASE_URL)/lib-ruby-parser.h

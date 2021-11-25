@@ -13,7 +13,11 @@ ruby scripts/compile.rb main.c main.o
 endef
 
 define link_dylib
-ruby scripts/link.rb main.o c-bindings/libruby_parser_c-$(TARGET).$(A) lib_ruby_parser_native.$(DYLIB)
+ruby \
+	scripts/link.rb \
+	main.o \
+	c-bindings/libruby_parser_c-$(TARGET).$(A) \
+	lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB)
 endef
 
 build-info:

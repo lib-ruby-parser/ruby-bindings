@@ -39,10 +39,11 @@ module LibRubyParser
   end
 
   class Comment
-    attr_accessor :location
+    attr_accessor :location, :kind
 
-    def initialize(**options)
-      @location = options[:location]
+    def initialize(location:, kind:)
+      @location = location
+      @kind = kind
     end
   end
 
@@ -66,4 +67,4 @@ end
 require_relative './lib-ruby-parser/nodes'
 require_relative './lib-ruby-parser/messages'
 
-# require_relative "./lib-ruby-parser/lib_ruby_parser_native"
+require_relative "./lib-ruby-parser/lib_ruby_parser_native"

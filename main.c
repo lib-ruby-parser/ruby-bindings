@@ -36,11 +36,11 @@ static VALUE LIB_RUBY_PARSER_MagicComment__to_ruby(LIB_RUBY_PARSER_MagicComment 
 static VALUE LIB_RUBY_PARSER_MagicCommentList__to_ruby(LIB_RUBY_PARSER_MagicCommentList *magic_comment_list);
 static VALUE LIB_RUBY_PARSER_DecodedInput__to_ruby(LIB_RUBY_PARSER_DecodedInput *decoded_input);
 
-static VALUE rb_parse(VALUE self, VALUE rb_options, VALUE rb_input)
+static VALUE rb_parse(VALUE self, VALUE rb_input, VALUE rb_options)
 {
     LIB_RUBY_PARSER_ParserOptions options = LIB_RUBY_PARSER_ParserOptions__from_ruby(rb_options);
     LIB_RUBY_PARSER_ByteList input = LIB_RUBY_PARSER_ByteList__from_ruby(rb_input);
-    LIB_RUBY_PARSER_ParserResult result = LIB_RUBY_PARSER_parse(options, input);
+    LIB_RUBY_PARSER_ParserResult result = LIB_RUBY_PARSER_parse(input, options);
     return LIB_RUBY_PARSER_ParserResult__to_ruby(result);
 }
 
@@ -72,7 +72,7 @@ static LIB_RUBY_PARSER_ParserOptions LIB_RUBY_PARSER_ParserOptions__from_ruby(VA
     VALUE rb_maybe_token_rewriter = rb_hash_aref(rb_options, rb_intern("token_rewriter"));
     LIB_RUBY_PARSER_MaybeTokenRewriter maybe_token_rewriter = LIB_RUBY_PARSER_MaybeTokenRewriter__from_ruby(rb_maybe_token_rewriter);
 
-    VALUE rb_record_tokens = rb_hash_aref(rb_options, rb_intern("record_tokens"));
+    VALUE rb_record_tokens = rb_hash_aref(rb_options, CSTR_TO_SYM("record_tokens"));
     bool record_tokens = RTEST(rb_record_tokens);
 
     return (LIB_RUBY_PARSER_ParserOptions){
@@ -85,8 +85,8 @@ static LIB_RUBY_PARSER_ParserOptions LIB_RUBY_PARSER_ParserOptions__from_ruby(VA
 static LIB_RUBY_PARSER_ByteList LIB_RUBY_PARSER_ByteList__from_ruby(VALUE rb_input)
 {
     Check_Type(rb_input, T_STRING);
-    char *rb_ptr = StringValueCStr(rb_input);
-    size_t len = rb_str_length(rb_input);
+    char *rb_ptr = StringValuePtr(rb_input);
+    size_t len = rb_str_strlen(rb_input);
     char *ptr = (char *)malloc(len);
     memcpy(ptr, rb_ptr, len);
     return (LIB_RUBY_PARSER_ByteList){
@@ -98,7 +98,7 @@ static LIB_RUBY_PARSER_String LIB_RUBY_PARSER_String__from_ruby(VALUE rb_s)
 {
     Check_Type(rb_s, T_STRING);
     char *rb_ptr = StringValueCStr(rb_s);
-    size_t len = rb_str_length(rb_s);
+    size_t len = rb_str_strlen(rb_s);
     char *ptr = (char *)malloc(len);
     memcpy(ptr, rb_ptr, len);
     return (LIB_RUBY_PARSER_String){
@@ -218,6 +218,7 @@ static VALUE LIB_RUBY_PARSER_Token__to_ruby(LIB_RUBY_PARSER_Token *token)
     VALUE rb_token = rb_obj_alloc(rb_cToken);
     rb_ivar_set(rb_token, rb_intern("@token_type"), INT2FIX(token->token_type));
     rb_ivar_set(rb_token, rb_intern("@token_value"), LIB_RUBY_PARSER_Bytes__to_ruby(&(token->token_value)));
+    rb_ivar_set(rb_token, rb_intern("@token_name"), rb_str_new_cstr(LIB_RUBY_PARSER_token_name(token)));
     rb_ivar_set(rb_token, rb_intern("@loc"), LIB_RUBY_PARSER_Loc__to_ruby(&(token->loc)));
     rb_ivar_set(rb_token, rb_intern("@lex_state_before"), INT2FIX(token->lex_state_before));
     rb_ivar_set(rb_token, rb_intern("@lex_state_after"), INT2FIX(token->lex_state_after));
@@ -238,9 +239,9 @@ static VALUE LIB_RUBY_PARSER_ErrorLevel__to_ruby(LIB_RUBY_PARSER_ErrorLevel *lev
     switch (*level)
     {
     case LIB_RUBY_PARSER_ERROR_LEVEL_ERROR:
-        return rb_intern("error");
+        return CSTR_TO_SYM("error");
     case LIB_RUBY_PARSER_ERROR_LEVEL_WARNING:
-        return rb_intern("warning");
+        return CSTR_TO_SYM("warning");
     }
 }
 static VALUE LIB_RUBY_PARSER_Diagnostic__to_ruby(LIB_RUBY_PARSER_Diagnostic *diagnostic)
@@ -248,7 +249,7 @@ static VALUE LIB_RUBY_PARSER_Diagnostic__to_ruby(LIB_RUBY_PARSER_Diagnostic *dia
     VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
     VALUE rb_cDiagnostic = rb_const_get(rb_mLibRubyParser, rb_intern("Diagnostic"));
     VALUE rb_diagnostic = rb_obj_alloc(rb_cDiagnostic);
-    rb_ivar_set(rb_diagnostic, rb_intern("@error_level"), LIB_RUBY_PARSER_ErrorLevel__to_ruby(&(diagnostic->level)));
+    rb_ivar_set(rb_diagnostic, rb_intern("@level"), LIB_RUBY_PARSER_ErrorLevel__to_ruby(&(diagnostic->level)));
     rb_ivar_set(rb_diagnostic, rb_intern("@message"), LIB_RUBY_PARSER_DiagnosticMessage__to_ruby(&(diagnostic->message)));
     rb_ivar_set(rb_diagnostic, rb_intern("@loc"), LIB_RUBY_PARSER_Loc__to_ruby(&(diagnostic->loc)));
     return rb_diagnostic;
@@ -268,11 +269,11 @@ static VALUE LIB_RUBY_PARSER_CommentType__to_ruby(LIB_RUBY_PARSER_CommentType *c
     switch (*comment_type)
     {
     case LIB_RUBY_PARSER_COMMENT_TYPE_INLINE:
-        return rb_intern("inline");
+        return CSTR_TO_SYM("inline");
     case LIB_RUBY_PARSER_COMMENT_TYPE_DOCUMENT:
-        return rb_intern("document");
+        return CSTR_TO_SYM("document");
     case LIB_RUBY_PARSER_COMMENT_TYPE_UNKNOWN:
-        return rb_intern("unknown");
+        return CSTR_TO_SYM("unknown");
     }
 }
 static VALUE LIB_RUBY_PARSER_Comment__to_ruby(LIB_RUBY_PARSER_Comment *comment)
@@ -299,13 +300,13 @@ static VALUE LIB_RUBY_PARSER_MagicCommentKind__to_ruby(LIB_RUBY_PARSER_MagicComm
     switch (*magic_comment_kind)
     {
     case LIB_RUBY_PARSER_MAGIC_COMMENT_KIND_ENCODING:
-        return rb_intern("encoding");
+        return CSTR_TO_SYM("encoding");
     case LIB_RUBY_PARSER_MAGIC_COMMENT_KIND_FROZEN_STRING_LITERAL:
-        return rb_intern("frozen_string_literal");
+        return CSTR_TO_SYM("frozen_string_literal");
     case LIB_RUBY_PARSER_MAGIC_COMMENT_KIND_WARN_INDENT:
-        return rb_intern("warn_indent");
+        return CSTR_TO_SYM("warn_indent");
     case LIB_RUBY_PARSER_MAGIC_COMMENT_KIND_SHAREABLE_CONSTANT_VALUE:
-        return rb_intern("shareable_constant_value");
+        return CSTR_TO_SYM("shareable_constant_value");
     }
 }
 static VALUE LIB_RUBY_PARSER_MagicComment__to_ruby(LIB_RUBY_PARSER_MagicComment *magic_comment)
