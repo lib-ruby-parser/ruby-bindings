@@ -106,7 +106,7 @@ RSpec.describe LibRubyParser do
     end
   end
 
-  xdescribe ':token_rewriter' do
+  describe ':token_rewriter' do
     let(:source) do
       "2 + 2"
     end
@@ -123,13 +123,13 @@ RSpec.describe LibRubyParser do
         expect_token(tokens[2], 'tINTEGER', 4...5)
         expect_token(tokens[3], 'EOF',      5...5)
 
-        expect(result[:ast]).to be_instance_of(LibRubyParser::Send)
-        expect(result[:ast].recv).to be_instance_of(LibRubyParser::Int)
+        expect(result[:ast]).to be_instance_of(LibRubyParser::Nodes::Send)
+        expect(result[:ast].recv).to be_instance_of(LibRubyParser::Nodes::Int)
         expect(result[:ast].recv.value).to eq('2')
       end
     end
 
-    context 'when given' do
+    xcontext 'when given' do
       it 'rewrites tokens' do
         token_rewriter = proc do |token, input|
           if token.token_value == '2'
@@ -155,7 +155,7 @@ RSpec.describe LibRubyParser do
     end
   end
 
-  xdescribe ':custom_decoder' do
+  describe ':custom_decoder' do
     let(:source) do
       <<~RUBY.force_encoding('Windows-1251')
         # encoding: Windows-1251
@@ -168,11 +168,12 @@ RSpec.describe LibRubyParser do
         result = LibRubyParser.parse(source, {})
         expect(result[:ast]).to be_nil
         expect(result[:diagnostics].length).to eq(1)
-        expect(result[:diagnostics][0].message).to eq('encoding error: UnsupportedEncoding("Windows-1251")')
+        expect(result[:diagnostics][0].message).to be_instance_of(LibRubyParser::Messages::EncodingError)
+        expect(result[:diagnostics][0].message.error).to eq('UnsupportedEncoding("Windows-1251")')
       end
     end
 
-    context 'when given' do
+    xcontext 'when given' do
       it 'uses it to decode unsupported encoding' do
         called = false
 
