@@ -9,8 +9,8 @@ const TEMPLATE: &str = "#ifndef MESSAGES_H
 #include <ruby.h>
 #include \"c-bindings/lib-ruby-parser.h\"
 
-static VALUE LIB_RUBY_PARSER_String__to_ruby(LIB_RUBY_PARSER_String string);
-static VALUE uint8_t__to_ruby(uint8_t n);
+static VALUE LIB_RUBY_PARSER_String__to_ruby(LIB_RUBY_PARSER_String *string);
+static VALUE uint8_t__to_ruby(uint8_t *n);
 
 {{ each message }}<dnl>
 static VALUE LIB_RUBY_PARSER_{{ helper message-camelcase-name }}__to_ruby(LIB_RUBY_PARSER_{{ helper message-camelcase-name }} *variant)
@@ -20,7 +20,7 @@ static VALUE LIB_RUBY_PARSER_{{ helper message-camelcase-name }}__to_ruby(LIB_RU
     VALUE rb_c{{ helper message-camelcase-name }} = rb_const_get(rb_mMessages, rb_intern(\"{{ helper message-camelcase-name }}\"));
     VALUE rb_result = rb_obj_alloc(rb_c{{ helper message-camelcase-name }});
 {{ each message-field }}<dnl>
-    rb_ivar_set(rb_result, rb_intern(\"{{ helper message-field-name }}\"), {{ helper message-field-c-field-type }}__to_ruby(variant->{{ helper message-field-c-name }}));
+    rb_ivar_set(rb_result, rb_intern(\"{{ helper message-field-name }}\"), {{ helper message-field-c-field-type }}__to_ruby(&(variant->{{ helper message-field-c-name }})));
 {{ end }}<dnl>
     return rb_result;
 }

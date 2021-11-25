@@ -17,3 +17,7 @@ c-bindings/*.a
 c-bindings/*.lib
 messages.h
 nodes.h
+*.o
+*.bundle
+*.so
+*.dll

@@ -35,9 +35,9 @@ pub(crate) mod node_fields {
         use lib_ruby_parser_nodes::NodeFieldType::*;
 
         match node_field.field_type {
-            Node => "LIB_RUBY_PARSER_Node",
+            Node => "LIB_RUBY_PARSER_NodePtr",
             Nodes => "LIB_RUBY_PARSER_NodeList",
-            MaybeNode { .. } => "LIB_RUBY_PARSER_MaybeNode",
+            MaybeNode { .. } => "LIB_RUBY_PARSER_MaybeNodePtr",
             Loc => "LIB_RUBY_PARSER_Loc",
             MaybeLoc => "LIB_RUBY_PARSER_MaybeLoc",
             Str { .. } => "LIB_RUBY_PARSER_String",

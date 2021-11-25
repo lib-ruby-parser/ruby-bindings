@@ -9,14 +9,18 @@ const TEMPLATE: &str = "#ifndef NODES_H
 #include <ruby.h>
 #include \"c-bindings/lib-ruby-parser.h\"
 
-static VALUE LIB_RUBY_PARSER_Loc__to_ruby(LIB_RUBY_PARSER_Loc loc);
-static VALUE LIB_RUBY_PARSER_MaybeLoc__to_ruby(LIB_RUBY_PARSER_MaybeLoc maybe_loc);
-static VALUE LIB_RUBY_PARSER_NodeList__to_ruby(LIB_RUBY_PARSER_NodeList list);
-static VALUE LIB_RUBY_PARSER_String__to_ruby(LIB_RUBY_PARSER_String string);
-static VALUE LIB_RUBY_PARSER_MaybeString__to_ruby(LIB_RUBY_PARSER_MaybeString maybe_string);
-static VALUE LIB_RUBY_PARSER_MaybeNode__to_ruby(LIB_RUBY_PARSER_Node *maybe_node);
-static VALUE LIB_RUBY_PARSER_Bytes__to_ruby(LIB_RUBY_PARSER_Bytes bytes);
-static VALUE uint8_t__to_ruby(uint8_t n);
+#define CSTR_TO_SYM(s) ID2SYM(rb_intern(s))
+
+static VALUE LIB_RUBY_PARSER_Loc__to_ruby(LIB_RUBY_PARSER_Loc *loc);
+static VALUE LIB_RUBY_PARSER_MaybeLoc__to_ruby(LIB_RUBY_PARSER_MaybeLoc *maybe_loc);
+static VALUE LIB_RUBY_PARSER_NodeList__to_ruby(LIB_RUBY_PARSER_NodeList *list);
+static VALUE LIB_RUBY_PARSER_String__to_ruby(LIB_RUBY_PARSER_String *string);
+static VALUE LIB_RUBY_PARSER_MaybeString__to_ruby(LIB_RUBY_PARSER_MaybeString *maybe_string);
+static VALUE LIB_RUBY_PARSER_Node__to_ruby(LIB_RUBY_PARSER_Node *node);
+static VALUE LIB_RUBY_PARSER_NodePtr__to_ruby(LIB_RUBY_PARSER_Node **node);
+static VALUE LIB_RUBY_PARSER_MaybeNodePtr__to_ruby(LIB_RUBY_PARSER_Node **maybe_node);
+static VALUE LIB_RUBY_PARSER_Bytes__to_ruby(LIB_RUBY_PARSER_Bytes *bytes);
+static VALUE uint8_t__to_ruby(uint8_t *n);
 
 {{ each node }}<dnl>
 static VALUE LIB_RUBY_PARSER_{{ helper node-camelcase-name }}__to_ruby(LIB_RUBY_PARSER_{{ helper node-camelcase-name }} *variant)
@@ -26,7 +30,7 @@ static VALUE LIB_RUBY_PARSER_{{ helper node-camelcase-name }}__to_ruby(LIB_RUBY_
     VALUE rb_c{{ helper node-camelcase-name }} = rb_const_get(rb_mNodes, rb_intern(\"{{ helper node-camelcase-name }}\"));
     VALUE rb_result = rb_obj_alloc(rb_c{{ helper node-camelcase-name }});
 {{ each node-field }}<dnl>
-    rb_ivar_set(rb_result, rb_intern(\"{{ helper node-field-name }}\"), {{ helper field-to-ruby-fn-name }}__to_ruby(variant->{{ helper node-field-c-name }}));
+    rb_ivar_set(rb_result, rb_intern(\"@{{ helper node-field-name }}\"), {{ helper field-to-ruby-fn-name }}__to_ruby(&(variant->{{ helper node-field-c-name }})));
 {{ end }}
     return rb_result;
 }
@@ -42,15 +46,6 @@ static VALUE LIB_RUBY_PARSER_Node__to_ruby(LIB_RUBY_PARSER_Node *node)
 {{ end }}<dnl>
         default:
             return Qnil;
-    }
-}
-
-static VALUE LIB_RUBY_PARSER_MaybeNode__to_ruby(LIB_RUBY_PARSER_Node *maybe_node)
-{
-    if (maybe_node == NULL) {
-        return Qnil;
-    } else {
-        return LIB_RUBY_PARSER_Node__to_ruby(maybe_node);
     }
 }
 
