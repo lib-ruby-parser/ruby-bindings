@@ -10,6 +10,8 @@ jobs:
   test:
     name: ${{ matrix.ruby }} / ${{ matrix.build.os }}
     runs-on: ${{ matrix.build.os }}
+    env:
+      TARGET: ${{ matrix.build.target }}
     strategy:
       fail-fast: false
       matrix:
