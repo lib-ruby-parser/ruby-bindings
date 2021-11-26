@@ -14,7 +14,7 @@ lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB): main.$(O) c-bindings/librub
 CLEAN += lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB)
 
 test: lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB)
-	bundle exec rake spec
+	ruby test/test_parser.rb
 
 clean:
 	rm -rf $(CLEAN)
