@@ -85,10 +85,24 @@ static LIB_RUBY_PARSER_ParserOptions LIB_RUBY_PARSER_ParserOptions__from_ruby(VA
 static LIB_RUBY_PARSER_ByteList LIB_RUBY_PARSER_ByteList__from_ruby(VALUE rb_input)
 {
     Check_Type(rb_input, T_STRING);
-    char *rb_ptr = StringValuePtr(rb_input);
     size_t len = rb_str_strlen(rb_input);
-    char *ptr = (char *)malloc(len);
-    memcpy(ptr, rb_ptr, len);
+    struct RString *rb_input_s = RSTRING(rb_input);
+    char *ptr;
+    if (RB_FL_ANY_RAW(rb_input, RSTRING_NOEMBED))
+    {
+        // Steal value from heap-allocated string
+        ptr = rb_input_s->as.heap.ptr;
+        rb_input_s->as.heap.ptr = NULL;
+        rb_input_s->as.heap.len = 0;
+        RB_FL_SET(rb_input, FL_USER18); // set STR_NOFREE
+    }
+    else
+    {
+        // Copy value from embedded string
+        char *rb_ptr = StringValuePtr(rb_input);
+        ptr = malloc(len);
+        memcpy(ptr, rb_ptr, len);
+    }
     return (LIB_RUBY_PARSER_ByteList){
         .ptr = ptr,
         .len = len,
@@ -97,8 +111,8 @@ static LIB_RUBY_PARSER_ByteList LIB_RUBY_PARSER_ByteList__from_ruby(VALUE rb_inp
 static LIB_RUBY_PARSER_String LIB_RUBY_PARSER_String__from_ruby(VALUE rb_s)
 {
     Check_Type(rb_s, T_STRING);
-    char *rb_ptr = StringValueCStr(rb_s);
     size_t len = rb_str_strlen(rb_s);
+    char *rb_ptr = StringValueCStr(rb_s);
     char *ptr = (char *)malloc(len);
     memcpy(ptr, rb_ptr, len);
     return (LIB_RUBY_PARSER_String){
@@ -155,8 +169,11 @@ static VALUE LIB_RUBY_PARSER_MaybeLoc__to_ruby(LIB_RUBY_PARSER_MaybeLoc *maybe_l
 
 static VALUE LIB_RUBY_PARSER_String__to_ruby(LIB_RUBY_PARSER_String *string)
 {
-    // rb_utf8_str_new_static
-    return rb_str_new(string->ptr, string->len);
+    VALUE rb_s = rb_utf8_str_new_static(string->ptr, string->len);
+    string->ptr = NULL;
+    string->len = 0;
+    string->capacity = 0;
+    return rb_s;
 }
 static VALUE LIB_RUBY_PARSER_MaybeString__to_ruby(LIB_RUBY_PARSER_MaybeString *maybe_string)
 {
@@ -207,8 +224,11 @@ static VALUE LIB_RUBY_PARSER_Bytes__to_ruby(LIB_RUBY_PARSER_Bytes *bytes)
 }
 static VALUE LIB_RUBY_PARSER_ByteList__to_ruby(LIB_RUBY_PARSER_ByteList *byte_list)
 {
-    // rb_utf8_str_new_static
-    return rb_str_new(byte_list->ptr, byte_list->len);
+    VALUE rb_byte_list = rb_utf8_str_new_static(byte_list->ptr, byte_list->len);
+    byte_list->ptr = NULL;
+    byte_list->len = 0;
+    byte_list->capacity = 0;
+    return rb_byte_list;
 }
 
 static VALUE LIB_RUBY_PARSER_Token__to_ruby(LIB_RUBY_PARSER_Token *token)
@@ -218,7 +238,8 @@ static VALUE LIB_RUBY_PARSER_Token__to_ruby(LIB_RUBY_PARSER_Token *token)
     VALUE rb_token = rb_obj_alloc(rb_cToken);
     rb_ivar_set(rb_token, rb_intern("@token_type"), INT2FIX(token->token_type));
     rb_ivar_set(rb_token, rb_intern("@token_value"), LIB_RUBY_PARSER_Bytes__to_ruby(&(token->token_value)));
-    rb_ivar_set(rb_token, rb_intern("@token_name"), rb_str_new_cstr(LIB_RUBY_PARSER_token_name(token)));
+    char *token_name = LIB_RUBY_PARSER_token_name(token);
+    rb_ivar_set(rb_token, rb_intern("@token_name"), rb_utf8_str_new_static(token_name, strlen(token_name)));
     rb_ivar_set(rb_token, rb_intern("@loc"), LIB_RUBY_PARSER_Loc__to_ruby(&(token->loc)));
     rb_ivar_set(rb_token, rb_intern("@lex_state_before"), INT2FIX(token->lex_state_before));
     rb_ivar_set(rb_token, rb_intern("@lex_state_after"), INT2FIX(token->lex_state_after));
