@@ -1,4 +1,7 @@
+class C; end
+module A; end
 class A::B < ::C
+    def bar; end
     alias foo bar
     undef foo
 
@@ -34,38 +37,49 @@ class A::B < ::C
         a || b
         a or b
 
-        case foo
-        in [1, [2], 3,] then true
-        in Foo
-            true
-        in Foo[1, 2, 3]
-            true
-        in { foo: bar }
-            true
-        in ^foo
-            true
-        in foo => bar then true
-        in [*, foo, *] then
-            nil
-        in foo if bar
-            nil
-        in foo unless bar
-            nil
-        in foo | bar then
-            nil
-        in **nil then
-            nil
-        in *foo then
-            nil
-        else
-            nil
-        end
+        def pm
+            v = 1
+            case foo
+            in [1, [2], 3,] then true
+            in Foo
+                true
+            in Foo[1, 2, 3]
+                true
+            in { foo: bar }
+                true
+            in ^v
+                true
+            end
 
-        case foo
-        in bar
-            nil
-        else
-            # empty else
+            case foo
+            in foo => bar then true
+            in [*, x] then
+                nil
+            in [x, *] then
+                nil
+            in foo if bar
+                nil
+            in foo unless bar
+                nil
+            in 1 | 2 then
+                nil
+            end
+
+            case foo
+            in **nil then
+                nil
+            in *foo then
+                nil
+            else
+                nil
+            end
+
+            case foo
+            in bar
+                nil
+            else
+                # empty else
+            end
         end
 
         :foo
@@ -106,9 +120,13 @@ class A::B < ::C
             yield(42)
             next 42
             redo
-            retry
             super(foo)
             super
+        end
+
+        [].each do
+        rescue
+            retry
         end
 
         case foo
@@ -187,12 +205,12 @@ class A::B < ::C
 
     module M
         class << self
-            foo
+            foo = 1
         end
     end
 
-    ::A = 1
-    ::A::B = 1
+    ::A = Class.new
+    ::A::E = 1
     A = 1
 
     def foo(...)
@@ -203,5 +221,5 @@ class A::B < ::C
     end
 end
 
-BEGIN { foo }
-END { foo }
+BEGIN { a = 1 }
+END { a = 2 }
