@@ -3,6 +3,15 @@
 #include "nodes.h"
 #include "messages.h"
 
+#define DBG(v)                        \
+    rb_p(                             \
+        rb_ary_new_from_args(         \
+            4,                        \
+            rb_str_new_cstr("line "), \
+            INT2FIX(__LINE__),        \
+            rb_str_new_cstr(#v),      \
+            v))
+
 // Ruby -> C
 static LIB_RUBY_PARSER_ParserOptions LIB_RUBY_PARSER_ParserOptions__from_ruby(VALUE rb_options);
 static LIB_RUBY_PARSER_ByteList LIB_RUBY_PARSER_ByteList__from_ruby(VALUE rb_input);
@@ -59,17 +68,17 @@ static LIB_RUBY_PARSER_ParserOptions LIB_RUBY_PARSER_ParserOptions__from_ruby(VA
     }
     Check_Type(rb_options, T_HASH);
 
-    VALUE rb_buffer_name = rb_hash_aref(rb_options, rb_intern("buffer_name"));
-    if (rb_buffer_name == Qnil)
+    VALUE rb_buffer_name = rb_hash_aref(rb_options, CSTR_TO_SYM("buffer_name"));
+    if (NIL_P(rb_buffer_name))
     {
         rb_buffer_name = rb_str_new_cstr("(eval)");
     }
     LIB_RUBY_PARSER_String buffer_name = LIB_RUBY_PARSER_String__from_ruby(rb_buffer_name);
 
-    VALUE rb_maybe_decoder = rb_hash_aref(rb_options, rb_intern("decoder"));
+    VALUE rb_maybe_decoder = rb_hash_aref(rb_options, CSTR_TO_SYM("decoder"));
     LIB_RUBY_PARSER_MaybeDecoder maybe_decoder = LIB_RUBY_PARSER_MaybeDecoder__from_ruby(rb_maybe_decoder);
 
-    VALUE rb_maybe_token_rewriter = rb_hash_aref(rb_options, rb_intern("token_rewriter"));
+    VALUE rb_maybe_token_rewriter = rb_hash_aref(rb_options, CSTR_TO_SYM("token_rewriter"));
     LIB_RUBY_PARSER_MaybeTokenRewriter maybe_token_rewriter = LIB_RUBY_PARSER_MaybeTokenRewriter__from_ruby(rb_maybe_token_rewriter);
 
     VALUE rb_record_tokens = rb_hash_aref(rb_options, CSTR_TO_SYM("record_tokens"));
@@ -86,23 +95,9 @@ static LIB_RUBY_PARSER_ByteList LIB_RUBY_PARSER_ByteList__from_ruby(VALUE rb_inp
 {
     Check_Type(rb_input, T_STRING);
     size_t len = rb_str_strlen(rb_input);
-    struct RString *rb_input_s = RSTRING(rb_input);
-    char *ptr;
-    if (RB_FL_ANY_RAW(rb_input, RSTRING_NOEMBED))
-    {
-        // Steal value from heap-allocated string
-        ptr = rb_input_s->as.heap.ptr;
-        rb_input_s->as.heap.ptr = NULL;
-        rb_input_s->as.heap.len = 0;
-        RB_FL_SET(rb_input, FL_USER18); // set STR_NOFREE
-    }
-    else
-    {
-        // Copy value from embedded string
-        char *rb_ptr = StringValuePtr(rb_input);
-        ptr = malloc(len);
-        memcpy(ptr, rb_ptr, len);
-    }
+    char *rb_ptr = StringValuePtr(rb_input);
+    char *ptr = malloc(len);
+    memcpy(ptr, rb_ptr, len);
     return (LIB_RUBY_PARSER_ByteList){
         .ptr = ptr,
         .len = len,
@@ -120,15 +115,91 @@ static LIB_RUBY_PARSER_String LIB_RUBY_PARSER_String__from_ruby(VALUE rb_s)
         .len = len,
         .capacity = len};
 }
-static LIB_RUBY_PARSER_MaybeDecoder LIB_RUBY_PARSER_MaybeDecoder__from_ruby(VALUE maybe_decoder)
+static VALUE rb_call_decoder(VALUE rb_decoder_call_args)
 {
-    // FIXME
-    return (LIB_RUBY_PARSER_MaybeDecoder){.decoder = {.f = NULL}};
+    VALUE rb_decoder = rb_ary_entry(rb_decoder_call_args, 0);
+    VALUE rb_encoding = rb_ary_entry(rb_decoder_call_args, 1);
+    VALUE rb_input = rb_ary_entry(rb_decoder_call_args, 2);
+
+    VALUE rb_output = rb_funcall(rb_decoder, rb_intern("call"), 2, rb_encoding, rb_input);
+    Check_Type(rb_output, T_STRING);
+
+    return rb_output;
+}
+static VALUE rb_handle_decode_error(VALUE rb_success_ptr, VALUE rb_error)
+{
+    VALUE *rb_success = (VALUE *)rb_success_ptr;
+    *rb_success = Qfalse;
+    return rb_error;
+}
+static LIB_RUBY_PARSER_DecoderResult rb_decode(void *state, LIB_RUBY_PARSER_String encoding, LIB_RUBY_PARSER_ByteList input)
+{
+    VALUE rb_decoder = (VALUE)state;
+
+    VALUE rb_encoding = rb_utf8_str_new(encoding.ptr, encoding.len);
+    LIB_RUBY_PARSER_drop_string(&encoding);
+
+    VALUE rb_input = rb_str_new(input.ptr, input.len);
+    LIB_RUBY_PARSER_drop_byte_list(&input);
+
+    VALUE rb_success = Qtrue;
+    VALUE rb_decoder_call_args = rb_ary_new_from_args(3, rb_decoder, rb_encoding, rb_input);
+    VALUE rb_output = rb_rescue2(
+        rb_call_decoder,
+        rb_decoder_call_args,
+        rb_handle_decode_error,
+        (VALUE)(&rb_success),
+        rb_eException,
+        0);
+
+    if (RTEST(rb_success))
+    {
+        // rb_output is a String returned from decoder object
+        LIB_RUBY_PARSER_ByteList decoded = LIB_RUBY_PARSER_new_bytes_from_cstr(
+            StringValueCStr(rb_output),
+            rb_str_strlen(rb_output));
+        return (LIB_RUBY_PARSER_DecoderResult){
+            .tag = LIB_RUBY_PARSER_DECODER_RESULT_OK,
+            .as = {.ok = decoded}};
+    }
+    else
+    {
+        // rb_output is an error
+        VALUE rb_error_message = rb_funcall(rb_output, rb_intern("message"), 0);
+        LIB_RUBY_PARSER_InputError error = {
+            .tag = LIB_RUBY_PARSER_INPUT_ERROR_DECODING_ERROR,
+            .as = {
+                .decoding_error =
+                    LIB_RUBY_PARSER_new_string_from_cstr(
+                        StringValueCStr(rb_error_message))}};
+        return (LIB_RUBY_PARSER_DecoderResult){
+            .tag = LIB_RUBY_PARSER_DECODER_RESULT_ERR,
+            .as = {.err = error}};
+    }
+}
+static LIB_RUBY_PARSER_MaybeDecoder LIB_RUBY_PARSER_MaybeDecoder__from_ruby(VALUE rb_maybe_decoder)
+{
+    if (NIL_P(rb_maybe_decoder))
+    {
+        return (LIB_RUBY_PARSER_MaybeDecoder){
+            .decoder = {
+                .f = NULL,
+                .state = NULL}};
+    }
+    else
+    {
+        return (LIB_RUBY_PARSER_MaybeDecoder){
+            .decoder = {
+                .f = rb_decode,
+                .state = (void *)rb_maybe_decoder}};
+    }
 }
 static LIB_RUBY_PARSER_MaybeTokenRewriter LIB_RUBY_PARSER_MaybeTokenRewriter__from_ruby(VALUE rb_maybe_token_rewriter)
 {
-    // FIXME
-    return (LIB_RUBY_PARSER_MaybeTokenRewriter){.token_rewriter = {.f = NULL}};
+    return (LIB_RUBY_PARSER_MaybeTokenRewriter){
+        .token_rewriter = {
+            .f = NULL,
+            .state = (void *)rb_maybe_token_rewriter}};
 }
 
 // __to_ruby
@@ -169,7 +240,7 @@ static VALUE LIB_RUBY_PARSER_MaybeLoc__to_ruby(LIB_RUBY_PARSER_MaybeLoc *maybe_l
 
 static VALUE LIB_RUBY_PARSER_String__to_ruby(LIB_RUBY_PARSER_String *string)
 {
-    return rb_str_new(string->ptr, string->len);
+    return rb_utf8_str_new(string->ptr, string->len);
 }
 static VALUE LIB_RUBY_PARSER_MaybeString__to_ruby(LIB_RUBY_PARSER_MaybeString *maybe_string)
 {
@@ -220,7 +291,7 @@ static VALUE LIB_RUBY_PARSER_Bytes__to_ruby(LIB_RUBY_PARSER_Bytes *bytes)
 }
 static VALUE LIB_RUBY_PARSER_ByteList__to_ruby(LIB_RUBY_PARSER_ByteList *byte_list)
 {
-    return rb_str_new(byte_list->ptr, byte_list->len);
+    return rb_utf8_str_new(byte_list->ptr, byte_list->len);
 }
 
 static VALUE LIB_RUBY_PARSER_Token__to_ruby(LIB_RUBY_PARSER_Token *token)

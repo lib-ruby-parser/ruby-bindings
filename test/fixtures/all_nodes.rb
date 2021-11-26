@@ -1,3 +1,5 @@
+# encoding: Windows-1251
+
 class C; end
 module A; end
 class A::B < ::C

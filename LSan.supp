@@ -18,9 +18,11 @@ leak:add_opcode
 leak:add_rel_addr
 leak:add_mem_num
 leak:add_bytes
+leak:rb_reg_initialize
 
 # from gc.c
 leak:stack_chunk_alloc
+leak:gc_grey
 
 # from regparse.c
 leak:name_add

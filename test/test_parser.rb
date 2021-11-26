@@ -149,7 +149,11 @@ class ParserTest < Minitest::Test
   RUBY
 
   def test_decoded_empty
-    result = LibRubyParser.parse(SOURCE_WITH_CUSTOM_ENCODING.dup, {})
+    src = <<~RUBY.force_encoding('Windows-1251')
+      # encoding: Windows-1251
+      "\xFF"
+    RUBY
+    result = LibRubyParser.parse(src, {})
 
     assert_nil(result[:ast])
 
@@ -160,37 +164,60 @@ class ParserTest < Minitest::Test
   end
 
   def test_decoded_custom
-    skip 'still pending'
-
     called = false
+
+    src = SOURCE_WITH_CUSTOM_ENCODING
 
     decoder = proc do |encoding, input|
       called = true
       assert_equal(encoding, 'Windows-1251')
       assert_equal(input.encoding, Encoding::BINARY)
-      assert_equal(input.bytes, source.bytes)
+      assert_equal(input.bytes, src.bytes)
 
       encoding = Encoding.find(encoding)
       input.force_encoding(encoding).encode('utf-8')
     end
 
-    result = LibRubyParser.parse(SOURCE_WITH_CUSTOM_ENCODING.dup, decoder: decoder)
+    result = LibRubyParser.parse(src, decoder: decoder)
 
     assert_equal(called, true)
 
-    assert_equal(result[:input].encoding, Encoding::UTF_8)
-    assert_equal(result[:input], <<~RUBY)
-      # encoding: Windows-1251
-      "я"
-    RUBY
+    # assert_equal(result[:input].encoding, Encoding::UTF_8)
+    # assert_equal(result[:input], <<~RUBY)
+    #   # encoding: Windows-1251
+    #   "я"
+    # RUBY
 
     assert_equal(result[:ast].value.encoding, Encoding::UTF_8)
     assert_equal(result[:ast].value, "я")
   end
 
+  def test_decoder_custom_err
+    decoder = proc do |encoding, input|
+      raise 'I am the error, fight the power!'
+    end
+
+    result = LibRubyParser.parse(SOURCE_WITH_CUSTOM_ENCODING, decoder: decoder)
+
+    assert_nil(result[:ast])
+
+    assert_equal(result[:diagnostics].length, 1)
+
+    diagnostic = result[:diagnostics][0]
+    assert_equal(diagnostic.level, :error)
+    assert_loc(diagnostic.loc, 12...24)
+    assert_instance_of(LibRubyParser::Messages::EncodingError, diagnostic.message)
+    assert_equal(diagnostic.message.error, 'DecodingError("I am the error, fight the power!")')
+  end
+
   def test_all_nodes
     source = File.read('test/fixtures/all_nodes.rb')
-    result = LibRubyParser.parse(source, {})
+    decoder = proc do |encoding, input|
+      encoding = Encoding.find(encoding)
+      input.force_encoding(encoding).encode('utf-8')
+    end
+
+    result = LibRubyParser.parse(source, decoder: decoder)
     refute_nil(result[:ast])
   end
 end
