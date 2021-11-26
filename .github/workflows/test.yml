@@ -39,6 +39,8 @@ jobs:
             name: test-asan
             target: x86_64-unknown-linux-gnu
             run: |
+              gcc -print-file-name=libasan.so
+
               export LSAN_OPTIONS=suppressions=LSan.supp
               export ASAN_OPTIONS=detect_leaks=1
 
