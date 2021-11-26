@@ -22,3 +22,9 @@ nodes.h
 *.bundle
 *.so
 *.dll
+benchmark/repos.zip
+benchmark/rust-parser
+benchmark/ruby-parser.rb
+benchmark/repos
+benchmark/filelist
+benchmark/stats

@@ -3,6 +3,7 @@ CLEAN =
 include scripts/setup.mk
 include c-bindings/build.mk
 include codegen/build.mk
+include benchmark/build.mk
 
 main.$(O): main.c nodes.h messages.h c-bindings/lib-ruby-parser.h
 	$(call compile_o)
