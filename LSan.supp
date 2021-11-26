@@ -4,3 +4,6 @@ leak:onig_compile_ruby
 leak:objspace_xmalloc0
 leak:Init_heap
 leak:objspace_xrealloc
+leak:onig_new_with_source
+leak:entry_repeat_range
+leak:onig_bbuf_init
