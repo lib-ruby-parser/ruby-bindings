@@ -1,6 +1,7 @@
-# ignore (potential?) leaks in MRI
+# ignore (false-positive?) leaks in MRI
 leak:ruby_xcalloc_body
 leak:onig_compile_ruby
+leak:onig_region_resize
 leak:objspace_xmalloc0
 leak:Init_heap
 leak:objspace_xrealloc

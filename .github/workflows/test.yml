@@ -39,7 +39,8 @@ jobs:
             name: test-asan
             target: x86_64-unknown-linux-gnu
             run: |
-              gcc -print-file-name=libasan.so
+              LIBASAN=$(gcc -print-file-name=libasan.so)
+              echo $LIBASAN
 
               # just to be sure, also print what executables are linked to
               # when compiled with asan
@@ -51,12 +52,12 @@ jobs:
               export ASAN_OPTIONS=detect_leaks=1
 
               # make sure our supression list includes everything from MRI
-              LD_PRELOAD=/usr/lib/gcc/x86_64-linux-gnu/9/libasan.so ruby -e 'p 42'
+              LD_PRELOAD=$LIBASAN ruby -e 'p 42'
 
               # compile .so with ASAN
               CFLAGS="-fsanitize=address" make lib/lib-ruby-parser/lib_ruby_parser_native.so
 
-              LD_PRELOAD=/usr/lib/gcc/x86_64-linux-gnu/9/libasan.so make test
+              LD_PRELOAD=$LIBASAN make test
 
     steps:
       - name: checkout
