@@ -19,6 +19,8 @@ script = [
     "-o #{output}",
     *src,
 
+    ENV['EXTRA_CFLAGS'] || '',
+
     link_dir(RbConfig::CONFIG['libdir']),
     RbConfig::CONFIG['LDFLAGS'],
     RbConfig::CONFIG['DLDFLAGS'],

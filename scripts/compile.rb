@@ -7,8 +7,11 @@ end
 src = ARGV[0]
 output = ARGV[1]
 
+cc = RbConfig::CONFIG['CC'].split(' ').first
+cc_override = ENV['CC'] || cc
+
 script = [
-    RbConfig::CONFIG['CC'],
+    RbConfig::CONFIG['CC'].gsub(cc, cc_override),
     include_dir('.'),
     include_dir(RbConfig::CONFIG['rubyarchhdrdir']),
     include_dir(RbConfig::CONFIG['rubyhdrdir']),
@@ -16,6 +19,7 @@ script = [
     RbConfig::CONFIG['CCDLFLAGS'],
     RbConfig::CONFIG['CFLAGS'],
     "-o #{output} -c",
+    ENV['EXTRA_CFLAGS'] || '',
     src
 ].join(' ')
 

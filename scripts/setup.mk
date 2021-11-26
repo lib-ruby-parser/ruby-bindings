@@ -9,11 +9,11 @@ URL="$(1)" SAVE_AS="$(2)" ruby scripts/download_file.rb
 endef
 
 define compile_o
-ruby scripts/compile.rb main.c main.o
+EXTRA_CFLAGS="$(CFLAGS)" ruby scripts/compile.rb main.c main.o
 endef
 
 define link_dylib
-ruby \
+EXTRA_CFLAGS="$(CFLAGS)" ruby \
 	scripts/link.rb \
 	main.o \
 	c-bindings/libruby_parser_c-$(TARGET).$(A) \

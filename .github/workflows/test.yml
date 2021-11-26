@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    name: ${{ matrix.ruby }} / ${{ matrix.build.os }}
+    name: ${{ matrix.build.name }} (${{ matrix.ruby }} / ${{ matrix.build.os }})
     runs-on: ${{ matrix.build.os }}
     env:
       TARGET: ${{ matrix.build.target }}
@@ -20,14 +20,35 @@ jobs:
           - '2.7'
           - '3.0'
         build:
+          # - name: test
+          #   os: ubuntu-latest
+          #   target: x86_64-unknown-linux-gnu
+          #   run: make test
+
+          # - name: test
+          #   os: macos-latest
+          #   target: x86_64-apple-darwin
+          #   run: make test
+
+          # - os: windows-latest
+          #   name: test
+          #   target: x86_64-pc-windows-gnu
+          #   run: make test
+
           - os: ubuntu-latest
+            name: test-asan
             target: x86_64-unknown-linux-gnu
+            run: |
+              export LSAN_OPTIONS=suppressions=LSan.supp
+              export ASAN_OPTIONS=detect_leaks=1
 
-          - os: macos-latest
-            target: x86_64-apple-darwin
+              # make sure our supression list includes everything from MRI
+              # ruby -e 'p 42'
 
-          - os: windows-latest
-            target: x86_64-pc-windows-gnu
+              # compile .so with ASAN
+              CFLAGS="-fsanitize=address" make lib/lib-ruby-parser/lib_ruby_parser_native.so
+
+              make test
 
     steps:
       - name: checkout
@@ -48,4 +69,4 @@ jobs:
 
       - name: run tests
         shell: bash
-        run: make test
+        run: ${{ matrix.build.run }}
