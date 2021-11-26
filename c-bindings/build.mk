@@ -1,4 +1,4 @@
-VERSION = v2.0.0
+VERSION = v3.0.0
 
 C_BINDINGS_BASE_URL = https://github.com/lib-ruby-parser/c-bindings/releases/download/$(VERSION)
 HEADER_URL = $(C_BINDINGS_BASE_URL)/lib-ruby-parser.h
