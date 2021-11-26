@@ -14,8 +14,11 @@ OS_SPECIFIC_OPTIONS =
         []
     end
 
+cc = RbConfig::CONFIG['LDSHARED'].split(' ').first
+cc_override = ENV['CC'] || cc
+
 script = [
-    RbConfig::CONFIG['LDSHARED'],
+    RbConfig::CONFIG['LDSHARED'].gsub(cc, cc_override),
     "-o #{output}",
     *src,
 
