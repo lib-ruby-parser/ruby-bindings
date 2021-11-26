@@ -169,11 +169,7 @@ static VALUE LIB_RUBY_PARSER_MaybeLoc__to_ruby(LIB_RUBY_PARSER_MaybeLoc *maybe_l
 
 static VALUE LIB_RUBY_PARSER_String__to_ruby(LIB_RUBY_PARSER_String *string)
 {
-    VALUE rb_s = rb_utf8_str_new_static(string->ptr, string->len);
-    string->ptr = NULL;
-    string->len = 0;
-    string->capacity = 0;
-    return rb_s;
+    return rb_str_new(string->ptr, string->len);
 }
 static VALUE LIB_RUBY_PARSER_MaybeString__to_ruby(LIB_RUBY_PARSER_MaybeString *maybe_string)
 {
@@ -224,11 +220,7 @@ static VALUE LIB_RUBY_PARSER_Bytes__to_ruby(LIB_RUBY_PARSER_Bytes *bytes)
 }
 static VALUE LIB_RUBY_PARSER_ByteList__to_ruby(LIB_RUBY_PARSER_ByteList *byte_list)
 {
-    VALUE rb_byte_list = rb_utf8_str_new_static(byte_list->ptr, byte_list->len);
-    byte_list->ptr = NULL;
-    byte_list->len = 0;
-    byte_list->capacity = 0;
-    return rb_byte_list;
+    return rb_str_new(byte_list->ptr, byte_list->len);
 }
 
 static VALUE LIB_RUBY_PARSER_Token__to_ruby(LIB_RUBY_PARSER_Token *token)
@@ -239,7 +231,8 @@ static VALUE LIB_RUBY_PARSER_Token__to_ruby(LIB_RUBY_PARSER_Token *token)
     rb_ivar_set(rb_token, rb_intern("@token_type"), INT2FIX(token->token_type));
     rb_ivar_set(rb_token, rb_intern("@token_value"), LIB_RUBY_PARSER_Bytes__to_ruby(&(token->token_value)));
     char *token_name = LIB_RUBY_PARSER_token_name(token);
-    rb_ivar_set(rb_token, rb_intern("@token_name"), rb_utf8_str_new_static(token_name, strlen(token_name)));
+    rb_ivar_set(rb_token, rb_intern("@token_name"), rb_str_new(token_name, strlen(token_name)));
+    free(token_name);
     rb_ivar_set(rb_token, rb_intern("@loc"), LIB_RUBY_PARSER_Loc__to_ruby(&(token->loc)));
     rb_ivar_set(rb_token, rb_intern("@lex_state_before"), INT2FIX(token->lex_state_before));
     rb_ivar_set(rb_token, rb_intern("@lex_state_after"), INT2FIX(token->lex_state_after));
