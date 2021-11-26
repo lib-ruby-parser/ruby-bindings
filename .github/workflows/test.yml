@@ -27,7 +27,7 @@ jobs:
             target: x86_64-apple-darwin
 
           - os: windows-latest
-            target: x86_64-pc-windows-msvc
+            target: x86_64-pc-windows-gnu
 
     steps:
       - name: checkout
