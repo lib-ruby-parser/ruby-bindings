@@ -5,21 +5,26 @@ module LibRubyParser
     attr_accessor :begin, :end
 
     def initialize(**options)
-      @begin = options[:begin]
-      @end = options[:end]
+      @begin = options[:begin] || 0
+      @end = options[:end] || 0
     end
   end
 
   class Token
     attr_accessor :token_type, :token_name, :token_value, :lex_state_before, :lex_state_after, :loc
 
-    def initialize(**options)
-      @token_type = options[:token_type]
-      @token_name = options[:token_name]
-      @token_value = options[:token_value]
-      @lex_state_before = options[:lex_state_before]
-      @lex_state_after = options[:lex_state_after]
-      @loc = options[:loc]
+    def initialize(
+      token_type:,
+      token_name:,
+      token_value:,
+      loc:
+    )
+      @token_type = token_type
+      @token_name = token_name
+      @token_value = token_value
+      @lex_state_before = 0
+      @lex_state_after = 0
+      @loc = loc
     end
   end
 
@@ -34,10 +39,11 @@ module LibRubyParser
   end
 
   class Comment
-    attr_accessor :location
+    attr_accessor :location, :kind
 
-    def initialize(**options)
-      @location = options[:location]
+    def initialize(location:, kind:)
+      @location = location
+      @kind = kind
     end
   end
 
@@ -50,22 +56,15 @@ module LibRubyParser
       @value_l = options[:value_l]
     end
   end
+
+  class Node
+  end
+
+  class DiagnosticMessage
+  end
 end
 
 require_relative './lib-ruby-parser/nodes'
+require_relative './lib-ruby-parser/messages'
 
-require 'rbconfig'
-host_os = RbConfig::CONFIG['host_os']
-platform =
-  case host_os
-  when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-    'windows'
-  when /darwin|mac os/
-    'darwin'
-  when /linux/
-    'linux'
-  else
-    raise NotImplementedError, "Unsupported host_os: #{host_os.inspect}"
-  end
-
-require_relative "./lib-ruby-parser/lib_ruby_parser_native_#{platform}"
+require_relative "./lib-ruby-parser/lib_ruby_parser_native"

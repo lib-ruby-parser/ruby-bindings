@@ -1,16 +1,19 @@
+CLEAN =
+
 include scripts/setup.mk
 include c-bindings/build.mk
+include codegen/build.mk
 
-generate-ruby-bindings:
-	cd build-convert && cargo build
+main.$(O): main.c nodes.h messages.h c-bindings/lib-ruby-parser.h
+	$(call compile_o)
+CLEAN += main.$(O)
 
-include src/build.mk
-dylib: $(DYLIB)
+lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB): main.$(O) c-bindings/libruby_parser_c-$(TARGET).$(A)
+	$(call link_dylib)
+CLEAN += lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB)
+
+test: lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB)
+	bundle exec rake spec
 
 clean:
-	rm -rf $(TARGET_DIR)
-	mkdir -p $(TARGET_DIR)
-	rm -f $(DYLIB)
-
-test: $(DYLIB)
-	bundle exec rake spec
+	rm -rf $(CLEAN)

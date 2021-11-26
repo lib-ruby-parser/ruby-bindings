@@ -14,7 +14,7 @@ OS_SPECIFIC_OPTIONS =
         []
     end
 
-puts [
+script = [
     RbConfig::CONFIG['LDSHARED'],
     "-o #{output}",
     *src,
@@ -28,3 +28,11 @@ puts [
     RbConfig::CONFIG['LIBS'],
 
 ].join(' ').gsub('$(DEFFILE)', 'lib_ruby_parser_native-x64-mingw32.def')
+
+if ENV['DRY_RUN']
+    puts script
+else
+    puts script
+    system(script)
+    exit $?.exitstatus
+end
