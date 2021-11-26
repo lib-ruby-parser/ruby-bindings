@@ -1,10 +1,27 @@
 # ignore (false-positive?) leaks in MRI
 leak:ruby_xcalloc_body
-leak:onig_compile_ruby
-leak:onig_region_resize
 leak:objspace_xmalloc0
 leak:Init_heap
 leak:objspace_xrealloc
-leak:onig_new_with_source
 leak:entry_repeat_range
+
+# from onigurama
+leak:onig_compile_ruby
+leak:onig_region_resize
+leak:onig_new_with_source
 leak:onig_bbuf_init
+leak:onig_st_insert_strend
+
+# from regcomp.c
+leak:add_bitset
+leak:add_opcode
+leak:add_rel_addr
+leak:add_mem_num
+leak:add_bytes
+
+# from gc.c
+leak:stack_chunk_alloc
+
+# from regparse.c
+leak:name_add
+leak:strdup_with_null
