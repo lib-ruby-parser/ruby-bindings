@@ -14,7 +14,7 @@
 
 // Ruby -> C
 static LIB_RUBY_PARSER_ParserOptions LIB_RUBY_PARSER_ParserOptions__from_ruby(VALUE rb_options);
-static LIB_RUBY_PARSER_ByteList LIB_RUBY_PARSER_ByteList__from_ruby(VALUE rb_input);
+static LIB_RUBY_PARSER_ByteList LIB_RUBY_PARSER_ByteList__from_ruby(VALUE rb_byte_list);
 static LIB_RUBY_PARSER_String LIB_RUBY_PARSER_String__from_ruby(VALUE rb_s);
 static LIB_RUBY_PARSER_MaybeDecoder LIB_RUBY_PARSER_MaybeDecoder__from_ruby(VALUE rb_maybe_decoder);
 static LIB_RUBY_PARSER_MaybeTokenRewriter LIB_RUBY_PARSER_MaybeTokenRewriter__from_ruby(VALUE rb_maybe_token_rewriter);
@@ -43,6 +43,8 @@ static VALUE LIB_RUBY_PARSER_CommentList__to_ruby(LIB_RUBY_PARSER_CommentList *c
 static VALUE LIB_RUBY_PARSER_MagicCommentKind__to_ruby(LIB_RUBY_PARSER_MagicCommentKind *magic_comment_kind);
 static VALUE LIB_RUBY_PARSER_MagicComment__to_ruby(LIB_RUBY_PARSER_MagicComment *magic_comment);
 static VALUE LIB_RUBY_PARSER_MagicCommentList__to_ruby(LIB_RUBY_PARSER_MagicCommentList *magic_comment_list);
+static VALUE LIB_RUBY_PARSER_SourceLine__to_ruby(LIB_RUBY_PARSER_SourceLine *source_line);
+static VALUE LIB_RUBY_PARSER_SourceLineList__to_ruby(LIB_RUBY_PARSER_SourceLineList *source_line_list);
 static VALUE LIB_RUBY_PARSER_DecodedInput__to_ruby(LIB_RUBY_PARSER_DecodedInput *decoded_input);
 
 static VALUE rb_parse(VALUE self, VALUE rb_input, VALUE rb_options)
@@ -91,11 +93,11 @@ static LIB_RUBY_PARSER_ParserOptions LIB_RUBY_PARSER_ParserOptions__from_ruby(VA
         .record_tokens = record_tokens,
     };
 }
-static LIB_RUBY_PARSER_ByteList LIB_RUBY_PARSER_ByteList__from_ruby(VALUE rb_input)
+static LIB_RUBY_PARSER_ByteList LIB_RUBY_PARSER_ByteList__from_ruby(VALUE rb_byte_list)
 {
-    Check_Type(rb_input, T_STRING);
-    size_t len = rb_str_strlen(rb_input);
-    char *rb_ptr = StringValuePtr(rb_input);
+    Check_Type(rb_byte_list, T_STRING);
+    size_t len = FIX2LONG(rb_funcall(rb_byte_list, rb_intern("bytesize"), 0));
+    char *rb_ptr = StringValuePtr(rb_byte_list);
     char *ptr = malloc(len);
     memcpy(ptr, rb_ptr, len);
     return (LIB_RUBY_PARSER_ByteList){
@@ -106,7 +108,7 @@ static LIB_RUBY_PARSER_ByteList LIB_RUBY_PARSER_ByteList__from_ruby(VALUE rb_inp
 static LIB_RUBY_PARSER_String LIB_RUBY_PARSER_String__from_ruby(VALUE rb_s)
 {
     Check_Type(rb_s, T_STRING);
-    size_t len = rb_str_strlen(rb_s);
+    size_t len = FIX2LONG(rb_funcall(rb_s, rb_intern("bytesize"), 0));
     char *rb_ptr = StringValueCStr(rb_s);
     char *ptr = (char *)malloc(len);
     memcpy(ptr, rb_ptr, len);
@@ -155,9 +157,7 @@ static LIB_RUBY_PARSER_DecoderResult rb_decode(void *state, LIB_RUBY_PARSER_Stri
     if (RTEST(rb_success))
     {
         // rb_output is a String returned from decoder object
-        LIB_RUBY_PARSER_ByteList decoded = LIB_RUBY_PARSER_new_bytes_from_cstr(
-            StringValueCStr(rb_output),
-            rb_str_strlen(rb_output));
+        LIB_RUBY_PARSER_ByteList decoded = LIB_RUBY_PARSER_ByteList__from_ruby(rb_output);
         return (LIB_RUBY_PARSER_DecoderResult){
             .tag = LIB_RUBY_PARSER_DECODER_RESULT_OK,
             .as = {.ok = decoded}};
@@ -414,7 +414,33 @@ static VALUE LIB_RUBY_PARSER_MagicCommentList__to_ruby(LIB_RUBY_PARSER_MagicComm
     return rb_magic_comment_list;
 }
 
+static VALUE LIB_RUBY_PARSER_SourceLine__to_ruby(LIB_RUBY_PARSER_SourceLine *source_line)
+{
+    VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
+    VALUE rb_cSourceLine = rb_const_get(rb_mLibRubyParser, rb_intern("SourceLine"));
+    VALUE rb_source_line = rb_obj_alloc(rb_cSourceLine);
+    rb_ivar_set(rb_source_line, rb_intern("@start"), LONG2FIX(source_line->start));
+    rb_ivar_set(rb_source_line, rb_intern("@end"), LONG2FIX(source_line->end));
+    rb_ivar_set(rb_source_line, rb_intern("@ends_with_eof"), source_line->ends_with_eof ? Qtrue : Qfalse);
+    return rb_source_line;
+}
+static VALUE LIB_RUBY_PARSER_SourceLineList__to_ruby(LIB_RUBY_PARSER_SourceLineList *source_line_list)
+{
+    VALUE rb_source_line_list = rb_ary_new_capa(source_line_list->len);
+    for (size_t i = 0; i < source_line_list->len; i++)
+    {
+        rb_ary_push(rb_source_line_list, LIB_RUBY_PARSER_SourceLine__to_ruby(&(source_line_list->ptr[i])));
+    }
+    return rb_source_line_list;
+}
+
 static VALUE LIB_RUBY_PARSER_DecodedInput__to_ruby(LIB_RUBY_PARSER_DecodedInput *decoded_input)
 {
-    return Qnil;
+    VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
+    VALUE rb_cDecodedInput = rb_const_get(rb_mLibRubyParser, rb_intern("DecodedInput"));
+    VALUE rb_decoded_input = rb_obj_alloc(rb_cDecodedInput);
+    rb_ivar_set(rb_decoded_input, rb_intern("@name"), LIB_RUBY_PARSER_String__to_ruby(&(decoded_input->name)));
+    rb_ivar_set(rb_decoded_input, rb_intern("@lines"), LIB_RUBY_PARSER_SourceLineList__to_ruby(&(decoded_input->lines)));
+    rb_ivar_set(rb_decoded_input, rb_intern("@bytes"), LIB_RUBY_PARSER_ByteList__to_ruby(&(decoded_input->bytes)));
+    return rb_decoded_input;
 }

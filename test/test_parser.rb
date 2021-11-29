@@ -95,10 +95,11 @@ class ParserTest < Minitest::Test
   end
 
   def test_input
-    skip 'still pending'
-
-    input = LibRubyParser.parse('42', {})[:input]
-    expect(input).to eq('42')
+    input = LibRubyParser.parse('42', name: 'foo.rb')[:input]
+    assert_instance_of(LibRubyParser::DecodedInput, input)
+    assert_equal(input.name, '(eval)')
+    assert_equal(input.bytes, '42')
+    assert_equal(input.lines, [LibRubyParser::SourceLine.new(start: 0, end: 2, ends_with_eof: true)])
   end
 
   def test_token_rewriter_empty
@@ -182,11 +183,11 @@ class ParserTest < Minitest::Test
 
     assert_equal(called, true)
 
-    # assert_equal(result[:input].encoding, Encoding::UTF_8)
-    # assert_equal(result[:input], <<~RUBY)
-    #   # encoding: Windows-1251
-    #   "я"
-    # RUBY
+    assert_equal(result[:input].bytes.encoding, Encoding::UTF_8)
+    assert_equal(result[:input].bytes, <<~RUBY)
+      # encoding: Windows-1251
+      "я"
+    RUBY
 
     assert_equal(result[:ast].value.encoding, Encoding::UTF_8)
     assert_equal(result[:ast].value, "я")

@@ -31,10 +31,10 @@ module LibRubyParser
   class Diagnostic
     attr_accessor :level, :message, :loc
 
-    def initialize(**options)
-      @level = options[:level]
-      @message = options[:message]
-      @loc = options[:loc]
+    def initialize(level:, message:, loc:)
+      @level = level
+      @message = message
+      @loc = loc
     end
   end
 
@@ -50,10 +50,10 @@ module LibRubyParser
   class MagicComment
     attr_accessor :kind, :key_l, :value_l
 
-    def initialize(**options)
-      @kind = options[:kind]
-      @key_l = options[:key_l]
-      @value_l = options[:value_l]
+    def initialize(kind:, key_l:, value_l:)
+      @kind = kind
+      @key_l = key_l
+      @value_l = value_l
     end
   end
 
@@ -61,6 +61,26 @@ module LibRubyParser
   end
 
   class DiagnosticMessage
+  end
+
+  class DecodedInput
+    attr_accessor :name, :lines, :bytes
+  end
+
+  class SourceLine
+    attr_accessor :start, :end, :ends_with_eof
+
+    def initialize(**options)
+      @start = options[:start]
+      @end = options[:end]
+      @ends_with_eof = options[:ends_with_eof]
+    end
+
+    def ==(other)
+      start == other.start &&
+        self.end == other.end &&
+        ends_with_eof == other.ends_with_eof
+    end
   end
 end
 
