@@ -119,14 +119,16 @@ class ParserTest < Minitest::Test
   end
 
   def test_token_rewriter_custom
-    skip 'still pending'
-
     token_rewriter = proc do |token, input|
       # rewrite all '2' tokens to '3'
       if token.token_value == '2'
         token.token_value = '3'
       end
-      token
+      {
+        rewritten_token: token,
+        token_action: :keep,
+        lex_state_action: { keep: true }
+      }
     end
 
     result = LibRubyParser.parse('2 + 2', record_tokens: true, token_rewriter: token_rewriter)
