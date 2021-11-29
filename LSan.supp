@@ -27,6 +27,3 @@ leak:gc_grey
 # from regparse.c
 leak:name_add
 leak:strdup_with_null
-
-# This is a real memory leak in the API that nobody needs?
-leak:rb_token_rewrite

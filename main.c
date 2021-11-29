@@ -17,13 +17,6 @@ static LIB_RUBY_PARSER_ParserOptions LIB_RUBY_PARSER_ParserOptions__from_ruby(VA
 static LIB_RUBY_PARSER_ByteList LIB_RUBY_PARSER_ByteList__from_ruby(VALUE rb_byte_list);
 static LIB_RUBY_PARSER_String LIB_RUBY_PARSER_String__from_ruby(VALUE rb_s);
 static LIB_RUBY_PARSER_MaybeDecoder LIB_RUBY_PARSER_MaybeDecoder__from_ruby(VALUE rb_maybe_decoder);
-static LIB_RUBY_PARSER_MaybeTokenRewriter LIB_RUBY_PARSER_MaybeTokenRewriter__from_ruby(VALUE rb_maybe_token_rewriter);
-static LIB_RUBY_PARSER_TokenRewriterResult LIB_RUBY_PARSER_TokenRewriterResult__from_ruby(VALUE rb_token_rewriter_result);
-static LIB_RUBY_PARSER_Token LIB_RUBY_PARSER_Token__from_ruby(VALUE rb_rewritten_token);
-static LIB_RUBY_PARSER_Bytes LIB_RUBY_PARSER_Bytes__from_ruby(VALUE rb_bytes);
-static LIB_RUBY_PARSER_Loc LIB_RUBY_PARSER_Loc__from_ruby(VALUE rb_loc);
-static LIB_RUBY_PARSER_RewriteAction LIB_RUBY_PARSER_RewriteAction__from_ruby(VALUE rb_token_action);
-static LIB_RUBY_PARSER_LexStateAction LIB_RUBY_PARSER_LexStateAction__from_ruby(VALUE rb_lex_state_action);
 
 // C -> Ruby
 static VALUE LIB_RUBY_PARSER_Loc__to_ruby(LIB_RUBY_PARSER_Loc *loc);
@@ -55,6 +48,7 @@ static VALUE LIB_RUBY_PARSER_DecodedInput__to_ruby(LIB_RUBY_PARSER_DecodedInput 
 
 static VALUE rb_parse(VALUE self, VALUE rb_input, VALUE rb_options)
 {
+    (void)self;
     LIB_RUBY_PARSER_ParserOptions options = LIB_RUBY_PARSER_ParserOptions__from_ruby(rb_options);
     LIB_RUBY_PARSER_ByteList input = LIB_RUBY_PARSER_ByteList__from_ruby(rb_input);
     LIB_RUBY_PARSER_ParserResult result = LIB_RUBY_PARSER_parse(input, options);
@@ -86,16 +80,14 @@ static LIB_RUBY_PARSER_ParserOptions LIB_RUBY_PARSER_ParserOptions__from_ruby(VA
     VALUE rb_maybe_decoder = rb_hash_aref(rb_options, CSTR_TO_SYM("decoder"));
     LIB_RUBY_PARSER_MaybeDecoder maybe_decoder = LIB_RUBY_PARSER_MaybeDecoder__from_ruby(rb_maybe_decoder);
 
-    VALUE rb_maybe_token_rewriter = rb_hash_aref(rb_options, CSTR_TO_SYM("token_rewriter"));
-    LIB_RUBY_PARSER_MaybeTokenRewriter maybe_token_rewriter = LIB_RUBY_PARSER_MaybeTokenRewriter__from_ruby(rb_maybe_token_rewriter);
-
     VALUE rb_record_tokens = rb_hash_aref(rb_options, CSTR_TO_SYM("record_tokens"));
     bool record_tokens = RTEST(rb_record_tokens);
 
     return (LIB_RUBY_PARSER_ParserOptions){
         .buffer_name = buffer_name,
         .decoder = maybe_decoder,
-        .token_rewriter = maybe_token_rewriter,
+        .token_rewriter = {
+            .token_rewriter = {.f = NULL, .state = NULL}},
         .record_tokens = record_tokens,
     };
 }
@@ -198,180 +190,6 @@ static LIB_RUBY_PARSER_MaybeDecoder LIB_RUBY_PARSER_MaybeDecoder__from_ruby(VALU
             .decoder = {
                 .f = rb_decode,
                 .state = (void *)rb_maybe_decoder}};
-    }
-}
-
-static LIB_RUBY_PARSER_Bytes LIB_RUBY_PARSER_Bytes__from_ruby(VALUE rb_bytes)
-{
-    LIB_RUBY_PARSER_ByteList byte_list = LIB_RUBY_PARSER_ByteList__from_ruby(rb_bytes);
-    return (LIB_RUBY_PARSER_Bytes){.raw = byte_list};
-}
-static LIB_RUBY_PARSER_Loc LIB_RUBY_PARSER_Loc__from_ruby(VALUE rb_loc)
-{
-    VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
-    VALUE rb_cLoc = rb_const_get(rb_mLibRubyParser, rb_intern("Loc"));
-
-    if (rb_class_of(rb_loc) != rb_cLoc)
-    {
-        rb_raise(
-            rb_eTypeError,
-            "Expected .loc of the token to be Loc, got %s",
-            rb_class2name(rb_class_of(rb_loc)));
-    }
-
-    VALUE rb_begin = rb_ivar_get(rb_loc, rb_intern("@begin"));
-    size_t begin = FIX2ULONG(rb_begin);
-
-    VALUE rb_end = rb_ivar_get(rb_loc, rb_intern("@end"));
-    size_t end = FIX2ULONG(rb_end);
-
-    return (LIB_RUBY_PARSER_Loc){.begin = begin, .end = end};
-}
-static LIB_RUBY_PARSER_TokenRewriterResult LIB_RUBY_PARSER_TokenRewriterResult__from_ruby(VALUE rb_token_rewriter_result)
-{
-    Check_Type(rb_token_rewriter_result, T_HASH);
-
-    VALUE rb_rewritten_token = rb_hash_fetch(rb_token_rewriter_result, CSTR_TO_SYM("rewritten_token"));
-    LIB_RUBY_PARSER_Token token_value = LIB_RUBY_PARSER_Token__from_ruby(rb_rewritten_token);
-    // copy stack -> heap
-    LIB_RUBY_PARSER_Token *token = (LIB_RUBY_PARSER_Token *)malloc(sizeof(LIB_RUBY_PARSER_Token));
-    memcpy(token, &token_value, sizeof(LIB_RUBY_PARSER_Token));
-
-    VALUE rb_token_action = rb_hash_fetch(rb_token_rewriter_result, CSTR_TO_SYM("token_action"));
-    LIB_RUBY_PARSER_RewriteAction token_action = LIB_RUBY_PARSER_RewriteAction__from_ruby(rb_token_action);
-
-    VALUE rb_lex_state_action = rb_hash_fetch(rb_token_rewriter_result, CSTR_TO_SYM("lex_state_action"));
-    LIB_RUBY_PARSER_LexStateAction lex_state_action = LIB_RUBY_PARSER_LexStateAction__from_ruby(rb_lex_state_action);
-
-    return (LIB_RUBY_PARSER_TokenRewriterResult){
-        .rewritten_token = token,
-        .token_action = token_action,
-        .lex_state_action = lex_state_action};
-}
-static LIB_RUBY_PARSER_Token LIB_RUBY_PARSER_Token__from_ruby(VALUE rb_rewritten_token)
-{
-    VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
-    VALUE rb_cToken = rb_const_get(rb_mLibRubyParser, rb_intern("Token"));
-
-    if (rb_class_of(rb_rewritten_token) != rb_cToken)
-    {
-        rb_raise(
-            rb_eTypeError,
-            "Expected :token key to be an instance of Token, got %s",
-            rb_class2name(rb_class_of(rb_rewritten_token)));
-    }
-
-    VALUE rb_token_type = rb_ivar_get(rb_rewritten_token, rb_intern("@token_type"));
-    uint32_t token_type = FIX2UINT(rb_token_type);
-
-    VALUE rb_token_value = rb_ivar_get(rb_rewritten_token, rb_intern("@token_value"));
-    LIB_RUBY_PARSER_Bytes token_value = LIB_RUBY_PARSER_Bytes__from_ruby(rb_token_value);
-
-    VALUE rb_loc = rb_ivar_get(rb_rewritten_token, rb_intern("@loc"));
-    LIB_RUBY_PARSER_Loc loc = LIB_RUBY_PARSER_Loc__from_ruby(rb_loc);
-
-    VALUE rb_lex_state_before = rb_ivar_get(rb_rewritten_token, rb_intern("@lex_state_before"));
-    int32_t lex_state_before = FIX2INT(rb_lex_state_before);
-
-    VALUE rb_lex_state_after = rb_ivar_get(rb_rewritten_token, rb_intern("@lex_state_after"));
-    int32_t lex_state_after = FIX2INT(rb_lex_state_after);
-
-    return (LIB_RUBY_PARSER_Token){
-        .token_type = token_type,
-        .token_value = token_value,
-        .loc = loc,
-        .lex_state_before = lex_state_before,
-        .lex_state_after = lex_state_after};
-}
-static LIB_RUBY_PARSER_RewriteAction LIB_RUBY_PARSER_RewriteAction__from_ruby(VALUE rb_token_action)
-{
-    Check_Type(rb_token_action, T_SYMBOL);
-    if (rb_token_action == CSTR_TO_SYM("keep"))
-    {
-        return LIB_RUBY_PARSER_REWRITE_ACTION_KEEP;
-    }
-    else if (rb_token_action == CSTR_TO_SYM("drop"))
-    {
-        return LIB_RUBY_PARSER_REWRITE_ACTION_DROP;
-    }
-    else
-    {
-        rb_raise(
-            rb_eTypeError,
-            "Expected :token_action key to be either :keep or :drop");
-        return LIB_RUBY_PARSER_REWRITE_ACTION_KEEP;
-    }
-}
-static LIB_RUBY_PARSER_LexStateAction LIB_RUBY_PARSER_LexStateAction__from_ruby(VALUE rb_lex_state_action)
-{
-    Check_Type(rb_lex_state_action, T_HASH);
-    VALUE rb_keep = rb_hash_aref(rb_lex_state_action, CSTR_TO_SYM("keep"));
-    VALUE rb_set = rb_hash_aref(rb_lex_state_action, CSTR_TO_SYM("set"));
-    if (!NIL_P(rb_keep) && !NIL_P(rb_set))
-    {
-        rb_raise(
-            rb_eTypeError,
-            "Only one of :keep or :set keys must be set in :lex_state_action key");
-    }
-    if (rb_keep != Qnil)
-    {
-        if (rb_keep != Qtrue)
-        {
-            rb_raise(rb_eTypeError, ":keep key can only be set to `true`");
-        }
-        return (LIB_RUBY_PARSER_LexStateAction){
-            .tag = LIB_RUBY_PARSER_LEX_STATE_KEEP};
-    }
-    if (rb_set != Qnil)
-    {
-        Check_Type(rb_set, T_FIXNUM);
-        return (LIB_RUBY_PARSER_LexStateAction){
-            .tag = LIB_RUBY_PARSER_LEX_STATE_SET,
-            .as = {.set = FIX2UINT(rb_set)}};
-    }
-    if (NIL_P(rb_keep) && NIL_P(rb_set))
-    {
-        rb_raise(
-            rb_eTypeError,
-            "At least one of :keep or :set key must be set in :lex_state_action key");
-    }
-    return (LIB_RUBY_PARSER_LexStateAction){
-        .tag = LIB_RUBY_PARSER_LEX_STATE_KEEP};
-}
-
-LIB_RUBY_PARSER_TokenRewriterResult rb_token_rewrite(void *state, LIB_RUBY_PARSER_Token *token, LIB_RUBY_PARSER_SharedByteList input)
-{
-    VALUE rb_token_rewriter = (VALUE)state;
-
-    VALUE rb_token = LIB_RUBY_PARSER_Token__to_ruby(token);
-    LIB_RUBY_PARSER_drop_token(token);
-
-    VALUE rb_input = rb_str_new_static(input.ptr, input.len);
-
-    VALUE rb_token_rewriter_result = rb_funcall(
-        rb_token_rewriter,
-        rb_intern("call"),
-        2,
-        rb_token,
-        rb_input);
-
-    return LIB_RUBY_PARSER_TokenRewriterResult__from_ruby(rb_token_rewriter_result);
-}
-static LIB_RUBY_PARSER_MaybeTokenRewriter LIB_RUBY_PARSER_MaybeTokenRewriter__from_ruby(VALUE rb_maybe_token_rewriter)
-{
-    if (NIL_P(rb_maybe_token_rewriter))
-    {
-        return (LIB_RUBY_PARSER_MaybeTokenRewriter){
-            .token_rewriter = {
-                .f = NULL,
-                .state = NULL}};
-    }
-    else
-    {
-        return (LIB_RUBY_PARSER_MaybeTokenRewriter){
-            .token_rewriter = {
-                .f = rb_token_rewrite,
-                .state = (void *)rb_maybe_token_rewriter}};
     }
 }
 

@@ -102,50 +102,6 @@ class ParserTest < Minitest::Test
     assert_equal(input.lines, [LibRubyParser::SourceLine.new(start: 0, end: 2, ends_with_eof: true)])
   end
 
-  def test_token_rewriter_empty
-    result = LibRubyParser.parse('2 + 2', record_tokens: true)
-
-    tokens = result.tokens
-    assert_equal(tokens.length, 4)
-
-    assert_token(tokens[0], 'tINTEGER', 0...1)
-    assert_token(tokens[1], 'tPLUS',    2...3)
-    assert_token(tokens[2], 'tINTEGER', 4...5)
-    assert_token(tokens[3], 'EOF',      5...5)
-
-    assert_instance_of(LibRubyParser::Nodes::Send, result.ast)
-    assert_instance_of(LibRubyParser::Nodes::Int, result.ast.recv)
-    assert_equal(result.ast.recv.value, '2')
-  end
-
-  def test_token_rewriter_custom
-    token_rewriter = proc do |token, input|
-      # rewrite all '2' tokens to '3'
-      if token.token_value == '2'
-        token.token_value = '3'
-      end
-      {
-        rewritten_token: token,
-        token_action: :keep,
-        lex_state_action: { keep: true }
-      }
-    end
-
-    result = LibRubyParser.parse('2 + 2', record_tokens: true, token_rewriter: token_rewriter)
-
-    tokens = result.tokens
-    assert_equal(tokens.length, 4)
-
-    assert_token(tokens[0], 'tINTEGER', 0...1)
-    assert_token(tokens[1], 'tPLUS',    2...3)
-    assert_token(tokens[2], 'tINTEGER', 4...5)
-    assert_token(tokens[3], 'EOF',      5...5)
-
-    assert_instance_of(LibRubyParser::Nodes::Send, result.ast)
-    assert_instance_of(LibRubyParser::Nodes::Int, result.ast.recv)
-    assert_equal(result.ast.recv.value, '3')
-  end
-
   SOURCE_WITH_CUSTOM_ENCODING = <<~RUBY.force_encoding('Windows-1251')
     # encoding: Windows-1251
     "\xFF"
