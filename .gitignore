@@ -8,6 +8,7 @@
 /tmp/
 Gemfile.lock
 
+Cargo.lock
 target/
 lib/lib-ruby-parser/*.bundle
 lib/lib-ruby-parser/*.so
