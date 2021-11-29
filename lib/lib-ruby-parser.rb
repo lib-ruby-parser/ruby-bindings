@@ -82,6 +82,10 @@ module LibRubyParser
         ends_with_eof == other.ends_with_eof
     end
   end
+
+  class ParserResult
+    attr_accessor :ast, :tokens, :diagnostics, :comments, :magic_comments, :input
+  end
 end
 
 require_relative './lib-ruby-parser/nodes'

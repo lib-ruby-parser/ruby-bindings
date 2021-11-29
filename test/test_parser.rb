@@ -39,7 +39,7 @@ class ParserTest < Minitest::Test
   include AssertionHelpers
 
   def test_ast
-    ast = LibRubyParser.parse('42', {})[:ast]
+    ast = LibRubyParser.parse('42', {}).ast
 
     assert_instance_of(LibRubyParser::Nodes::Int, ast)
     assert_equal(ast.value, '42')
@@ -48,12 +48,12 @@ class ParserTest < Minitest::Test
   end
 
   def test_tokens_empty
-    tokens = LibRubyParser.parse('42', record_tokens: false)[:tokens]
+    tokens = LibRubyParser.parse('42', record_tokens: false).tokens
     assert_equal(tokens, [])
   end
 
   def test_tokens_recorded
-    tokens = LibRubyParser.parse('42', record_tokens: true)[:tokens]
+    tokens = LibRubyParser.parse('42', record_tokens: true).tokens
     assert_equal(tokens.length, 2)
 
     assert_token(tokens[0], 'tINTEGER', 0...2)
@@ -61,7 +61,7 @@ class ParserTest < Minitest::Test
   end
 
   def test_diagnostics
-    diagnostics = LibRubyParser.parse('foo+', {})[:diagnostics]
+    diagnostics = LibRubyParser.parse('foo+', {}).diagnostics
     assert_equal(diagnostics.length, 1)
 
     assert_diagnostic(diagnostics[0], :error, LibRubyParser::Messages::UnexpectedToken, 4...4)
@@ -75,7 +75,7 @@ class ParserTest < Minitest::Test
       42
     RUBY
 
-    comments = LibRubyParser.parse(code, {})[:comments]
+    comments = LibRubyParser.parse(code, {}).comments
     assert_equal(comments.length, 2)
 
     assert_comment(comments[0], :inline, 0...6)
@@ -88,14 +88,14 @@ class ParserTest < Minitest::Test
       42
     RUBY
 
-    magic_comments = LibRubyParser.parse(code, {})[:magic_comments]
+    magic_comments = LibRubyParser.parse(code, {}).magic_comments
     assert_equal(magic_comments.length, 1)
 
     assert_magic_comment(magic_comments[0], :frozen_string_literal, 2...23, 25...29)
   end
 
   def test_input
-    input = LibRubyParser.parse('42', name: 'foo.rb')[:input]
+    input = LibRubyParser.parse('42', name: 'foo.rb').input
     assert_instance_of(LibRubyParser::DecodedInput, input)
     assert_equal(input.name, '(eval)')
     assert_equal(input.bytes, '42')
@@ -105,7 +105,7 @@ class ParserTest < Minitest::Test
   def test_token_rewriter_empty
     result = LibRubyParser.parse('2 + 2', record_tokens: true)
 
-    tokens = result[:tokens]
+    tokens = result.tokens
     assert_equal(tokens.length, 4)
 
     assert_token(tokens[0], 'tINTEGER', 0...1)
@@ -113,9 +113,9 @@ class ParserTest < Minitest::Test
     assert_token(tokens[2], 'tINTEGER', 4...5)
     assert_token(tokens[3], 'EOF',      5...5)
 
-    assert_instance_of(LibRubyParser::Nodes::Send, result[:ast])
-    assert_instance_of(LibRubyParser::Nodes::Int, result[:ast].recv)
-    assert_equal(result[:ast].recv.value, '2')
+    assert_instance_of(LibRubyParser::Nodes::Send, result.ast)
+    assert_instance_of(LibRubyParser::Nodes::Int, result.ast.recv)
+    assert_equal(result.ast.recv.value, '2')
   end
 
   def test_token_rewriter_custom
@@ -131,7 +131,7 @@ class ParserTest < Minitest::Test
 
     result = LibRubyParser.parse('2 + 2', record_tokens: true, token_rewriter: token_rewriter)
 
-    tokens = result[:tokens]
+    tokens = result.tokens
     assert_equal(tokens.length, 4)
 
     assert_token(tokens[0], 'tINTEGER', 0...1)
@@ -139,9 +139,9 @@ class ParserTest < Minitest::Test
     assert_token(tokens[2], 'tINTEGER', 4...5)
     assert_token(tokens[3], 'EOF',      5...5)
 
-    assert_instance_of(LibRubyParser::Nodes::Send, result[:ast])
-    assert_instance_of(LibRubyParser::Nodes::Int, result[:ast].recv)
-    assert_equal(result[:ast].recv.value, '3')
+    assert_instance_of(LibRubyParser::Nodes::Send, result.ast)
+    assert_instance_of(LibRubyParser::Nodes::Int, result.ast.recv)
+    assert_equal(result.ast.recv.value, '3')
   end
 
   SOURCE_WITH_CUSTOM_ENCODING = <<~RUBY.force_encoding('Windows-1251')
@@ -156,10 +156,10 @@ class ParserTest < Minitest::Test
     RUBY
     result = LibRubyParser.parse(src, {})
 
-    assert_nil(result[:ast])
+    assert_nil(result.ast)
 
-    assert_equal(result[:diagnostics].length, 1)
-    diagnostic = result[:diagnostics][0]
+    assert_equal(result.diagnostics.length, 1)
+    diagnostic = result.diagnostics[0]
     assert_instance_of(LibRubyParser::Messages::EncodingError, diagnostic.message)
     assert_equal(diagnostic.message.error, 'UnsupportedEncoding("Windows-1251")')
   end
@@ -183,14 +183,14 @@ class ParserTest < Minitest::Test
 
     assert_equal(called, true)
 
-    assert_equal(result[:input].bytes.encoding, Encoding::UTF_8)
-    assert_equal(result[:input].bytes, <<~RUBY)
+    assert_equal(result.input.bytes.encoding, Encoding::UTF_8)
+    assert_equal(result.input.bytes, <<~RUBY)
       # encoding: Windows-1251
       "я"
     RUBY
 
-    assert_equal(result[:ast].value.encoding, Encoding::UTF_8)
-    assert_equal(result[:ast].value, "я")
+    assert_equal(result.ast.value.encoding, Encoding::UTF_8)
+    assert_equal(result.ast.value, "я")
   end
 
   def test_decoder_custom_err
@@ -200,11 +200,11 @@ class ParserTest < Minitest::Test
 
     result = LibRubyParser.parse(SOURCE_WITH_CUSTOM_ENCODING, decoder: decoder)
 
-    assert_nil(result[:ast])
+    assert_nil(result.ast)
 
-    assert_equal(result[:diagnostics].length, 1)
+    assert_equal(result.diagnostics.length, 1)
 
-    diagnostic = result[:diagnostics][0]
+    diagnostic = result.diagnostics[0]
     assert_equal(diagnostic.level, :error)
     assert_loc(diagnostic.loc, 12...24)
     assert_instance_of(LibRubyParser::Messages::EncodingError, diagnostic.message)
@@ -219,6 +219,6 @@ class ParserTest < Minitest::Test
     end
 
     result = LibRubyParser.parse(source, decoder: decoder)
-    refute_nil(result[:ast])
+    refute_nil(result.ast)
   end
 end

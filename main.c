@@ -206,14 +206,15 @@ static LIB_RUBY_PARSER_MaybeTokenRewriter LIB_RUBY_PARSER_MaybeTokenRewriter__fr
 static VALUE LIB_RUBY_PARSER_ParserResult__to_ruby(LIB_RUBY_PARSER_ParserResult result)
 {
     VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
-    VALUE rb_parser_result = rb_hash_new();
+    VALUE rb_cParserResult = rb_const_get(rb_mLibRubyParser, rb_intern("ParserResult"));
+    VALUE rb_parser_result = rb_obj_alloc(rb_cParserResult);
 
-    rb_hash_aset(rb_parser_result, CSTR_TO_SYM("ast"), LIB_RUBY_PARSER_MaybeNode__to_ruby(result.ast));
-    rb_hash_aset(rb_parser_result, CSTR_TO_SYM("tokens"), LIB_RUBY_PARSER_TokenList__to_ruby(&(result.tokens)));
-    rb_hash_aset(rb_parser_result, CSTR_TO_SYM("diagnostics"), LIB_RUBY_PARSER_DiagnosticList__to_ruby(&(result.diagnostics)));
-    rb_hash_aset(rb_parser_result, CSTR_TO_SYM("comments"), LIB_RUBY_PARSER_CommentList__to_ruby(&(result.comments)));
-    rb_hash_aset(rb_parser_result, CSTR_TO_SYM("magic_comments"), LIB_RUBY_PARSER_MagicCommentList__to_ruby(&(result.magic_comments)));
-    rb_hash_aset(rb_parser_result, CSTR_TO_SYM("input"), LIB_RUBY_PARSER_DecodedInput__to_ruby(&(result.input)));
+    rb_ivar_set(rb_parser_result, rb_intern("@ast"), LIB_RUBY_PARSER_MaybeNode__to_ruby(result.ast));
+    rb_ivar_set(rb_parser_result, rb_intern("@tokens"), LIB_RUBY_PARSER_TokenList__to_ruby(&(result.tokens)));
+    rb_ivar_set(rb_parser_result, rb_intern("@diagnostics"), LIB_RUBY_PARSER_DiagnosticList__to_ruby(&(result.diagnostics)));
+    rb_ivar_set(rb_parser_result, rb_intern("@comments"), LIB_RUBY_PARSER_CommentList__to_ruby(&(result.comments)));
+    rb_ivar_set(rb_parser_result, rb_intern("@magic_comments"), LIB_RUBY_PARSER_MagicCommentList__to_ruby(&(result.magic_comments)));
+    rb_ivar_set(rb_parser_result, rb_intern("@input"), LIB_RUBY_PARSER_DecodedInput__to_ruby(&(result.input)));
 
     LIB_RUBY_PARSER_drop_parser_result(&result);
 
