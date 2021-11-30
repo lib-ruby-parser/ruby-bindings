@@ -23,14 +23,20 @@ jobs:
           - name: test
             os: ubuntu-latest
             target: x86_64-unknown-linux-gnu
+            artifact-path: lib/lib-ruby-parser/lib_ruby_parser_native.so
+            artifact-name: x86_64-unknown-linux-gnu.so
 
           - name: test
             os: macos-latest
             target: x86_64-apple-darwin
+            artifact-path: lib/lib-ruby-parser/lib_ruby_parser_native.bundle
+            artifact-name: x86_64-apple-darwin.bundle
 
           - os: windows-latest
             name: test
             target: x86_64-pc-windows-gnu
+            artifact-path: lib/lib-ruby-parser/lib_ruby_parser_native.so
+            artifact-name: x86_64-pc-windows-gnu.so
 
     steps:
       - name: checkout
@@ -52,6 +58,12 @@ jobs:
       - name: run tests
         shell: bash
         run: make test
+
+      - name: upload ${{ matrix.build.artifact-name }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.ruby }}-${{ matrix.build.artifact-name }}
+          path: ${{ matrix.build.artifact-path }}
 
   test-asan:
     name: test-asan (${{ matrix.build.ruby }})
