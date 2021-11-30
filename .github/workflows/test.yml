@@ -55,6 +55,9 @@ jobs:
           toolchain: stable
           override: true
 
+      - name: print build-info
+        run: make build-info
+
       - name: run tests
         shell: bash
         run: make test
