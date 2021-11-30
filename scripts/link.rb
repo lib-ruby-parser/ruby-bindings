@@ -29,7 +29,6 @@ script = [
     RbConfig::CONFIG['DLDFLAGS'],
 
     *OS_SPECIFIC_OPTIONS,
-    RbConfig::CONFIG['LIBRUBYARG'],
     RbConfig::CONFIG['LIBS'],
 
 ].join(' ').gsub('$(DEFFILE)', 'lib_ruby_parser_native-x64-mingw32.def')
