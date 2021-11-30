@@ -108,7 +108,7 @@ module LibRubyParser
     attr_accessor :kind
 
     # @param location [Loc]
-    # @param location [kind]
+    # @param kind [Symbol]
     def initialize(location:, kind:)
       @location = location
       @kind = kind
@@ -155,25 +155,70 @@ module LibRubyParser
     end
   end
 
+  # Base class for all AST nodes
   class Node
   end
 
+  # Base class for all diagnostic messages
   class DiagnosticMessage
   end
 
+  # Input decoded by parser.
+  #
+  # If your code has magic encoding comment LibRubyParser
+  # re-encodes given input and (potentially) operates
+  # on a different byte sequence.
+  #
+  # This is why this input should be used to get source
+  # of all locations.
+  #
+  # Using initial input is wrong as you may get a different
+  # source range in a different byte representation.
   class DecodedInput
-    attr_accessor :name, :lines, :bytes
+    # Name of the initial input
+    #
+    # @return [String]
+    attr_accessor :name
+
+    # Array of source lines
+    #
+    # @return [Array<SourceLine>]
+    attr_accessor :lines
+
+    # Re-encoded input string
+    #
+    # @return [String]
+    attr_accessor :bytes
   end
 
+  # Representation of a source line in a source file
   class SourceLine
-    attr_accessor :start, :end, :ends_with_eof
+    # Start of the line (in bytes)
+    #
+    # @return [Integer]
+    attr_accessor :start
 
+    # End of the line (in bytes)
+    #
+    # @return [Integer]
+    attr_accessor :end
+
+    # +true+ if line ends with EOF char (which is true for the last line in the file)
+    #
+    # @return [true, false]
+    attr_accessor :ends_with_eof
+
+    # @param options [Hash]
+    # @option options [Integer] :start
+    # @option options [Integer] :end
+    # @option options [true, false] :ends_with_eof
     def initialize(**options)
       @start = options[:start]
       @end = options[:end]
       @ends_with_eof = options[:ends_with_eof]
     end
 
+    # Default +==+ comparison
     def ==(other)
       start == other.start &&
         self.end == other.end &&
@@ -181,8 +226,58 @@ module LibRubyParser
     end
   end
 
+  # Combination of all data that +LibRubyParser+ can give you
   class ParserResult
-    attr_accessor :ast, :tokens, :diagnostics, :comments, :magic_comments, :input
+    # Abstract Syntax Tree that was constructed from you code.
+    # +nil+ if the code gives no AST nodes
+    #
+    # @return [Node, nil]
+    attr_accessor :ast
+
+    # List of tokens returned by a Lexer and consumed by a Parser.
+    # Empty unless +:record_tokens+ is set to true.
+    #
+    # @return [Array<Token>]
+    attr_accessor :tokens
+
+    # List of all diagnostics (errors and warings) that
+    # have been recorded during lexing and parsing
+    #
+    # @return [Array<Diagnostic>]
+    attr_accessor :diagnostics
+
+    # List of comments extracted from the source code.
+    #
+    # @return [Array<Comment>]
+    attr_accessor :comments
+
+    # List of magic comments extracted from the source code.
+    #
+    # @return [Array<MagicComment>]
+    attr_accessor :magic_comments
+
+    # Input that was used for parsing.
+    #
+    # Note: this input is not necessary the same byte array that you passed to Parser::parse.
+    # If encoding of the input is not +UTF-8+ or +ASCII-8BIT/BINARY+ Parser invokes decoder
+    # that usually produces a different sequence of bytes.
+    #
+    # Pass this data to +Loc#source+, otherwise you’ll get incorrect source ranges.
+    #
+    # @return [DecodedInput]
+    attr_accessor :input
+  end
+
+  # Parses given input according to given options
+  #
+  # @param [String] input
+  # @param [Hash] options
+  # @option options [String] :buffer_name name of the input file
+  # @option options [#call] :decoder decoder, called with +encoding+ (String) and +input+ (String)
+  # @option options [true, false] :record_tokens When set to true Parser records tokens. When set to false ParserResult::tokens is guaranteed to be empty. If you don’t need tokens better set it to false to speed up parsing.
+  #
+  # @return [ParserResult]
+  def self.parse(input, options)
   end
 end
 

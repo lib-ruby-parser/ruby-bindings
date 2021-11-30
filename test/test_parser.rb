@@ -95,7 +95,15 @@ class ParserTest < Minitest::Test
   end
 
   def test_input
-    input = LibRubyParser.parse('42', name: 'foo.rb').input
+    input = LibRubyParser.parse('42', buffer_name: 'foo.rb').input
+    assert_instance_of(LibRubyParser::DecodedInput, input)
+    assert_equal(input.name, 'foo.rb')
+    assert_equal(input.bytes, '42')
+    assert_equal(input.lines, [LibRubyParser::SourceLine.new(start: 0, end: 2, ends_with_eof: true)])
+  end
+
+  def test_input_default
+    input = LibRubyParser.parse('42', {}).input
     assert_instance_of(LibRubyParser::DecodedInput, input)
     assert_equal(input.name, '(eval)')
     assert_equal(input.bytes, '42')
