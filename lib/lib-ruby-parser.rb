@@ -268,12 +268,19 @@ module LibRubyParser
     attr_accessor :input
   end
 
+  # Default decoder that is used to re-encode input
+  # from non-utf-8 encoding to utf-8
+  DEFAULT_DECODER = proc do |encoding, input|
+    encoding = Encoding.find(encoding)
+    input.force_encoding(encoding).encode('utf-8')
+  end
+
   # Parses given input according to given options
   #
   # @param [String] input
   # @param [Hash] options
   # @option options [String] :buffer_name name of the input file
-  # @option options [#call] :decoder decoder, called with +encoding+ (String) and +input+ (String)
+  # @option options [#call] :decoder (DEFAULT_DECODER) decoder, called with +encoding+ (String) and +input+ (String)
   # @option options [true, false] :record_tokens When set to true Parser records tokens. When set to false ParserResult::tokens is guaranteed to be empty. If you don’t need tokens better set it to false to speed up parsing.
   #
   # @return [ParserResult]

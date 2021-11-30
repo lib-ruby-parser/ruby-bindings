@@ -115,22 +115,24 @@ class ParserTest < Minitest::Test
     "\xFF"
   RUBY
 
-  def test_decoded_empty
+  def test_decoder_default
     src = <<~RUBY.force_encoding('Windows-1251')
       # encoding: Windows-1251
       "\xFF"
     RUBY
     result = LibRubyParser.parse(src, {})
 
-    assert_nil(result.ast)
+    assert_equal(result.input.bytes.encoding, Encoding::UTF_8)
+    assert_equal(result.input.bytes, <<~RUBY)
+      # encoding: Windows-1251
+      "я"
+    RUBY
 
-    assert_equal(result.diagnostics.length, 1)
-    diagnostic = result.diagnostics[0]
-    assert_instance_of(LibRubyParser::Messages::EncodingError, diagnostic.message)
-    assert_equal(diagnostic.message.error, 'UnsupportedEncoding("Windows-1251")')
+    assert_equal(result.ast.value.encoding, Encoding::UTF_8)
+    assert_equal(result.ast.value, "я")
   end
 
-  def test_decoded_custom
+  def test_decoder_custom
     called = false
 
     src = SOURCE_WITH_CUSTOM_ENCODING
@@ -179,12 +181,8 @@ class ParserTest < Minitest::Test
 
   def test_all_nodes
     source = File.read('test/fixtures/all_nodes.rb')
-    decoder = proc do |encoding, input|
-      encoding = Encoding.find(encoding)
-      input.force_encoding(encoding).encode('utf-8')
-    end
 
-    result = LibRubyParser.parse(source, decoder: decoder)
+    result = LibRubyParser.parse(source, {})
     refute_nil(result.ast)
   end
 end

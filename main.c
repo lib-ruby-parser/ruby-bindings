@@ -78,6 +78,11 @@ static LIB_RUBY_PARSER_ParserOptions LIB_RUBY_PARSER_ParserOptions__from_ruby(VA
     LIB_RUBY_PARSER_String buffer_name = LIB_RUBY_PARSER_String__from_ruby(rb_buffer_name);
 
     VALUE rb_maybe_decoder = rb_hash_aref(rb_options, CSTR_TO_SYM("decoder"));
+    if (NIL_P(rb_maybe_decoder))
+    {
+        VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
+        rb_maybe_decoder = rb_const_get(rb_mLibRubyParser, rb_intern("DEFAULT_DECODER"));
+    }
     LIB_RUBY_PARSER_MaybeDecoder maybe_decoder = LIB_RUBY_PARSER_MaybeDecoder__from_ruby(rb_maybe_decoder);
 
     VALUE rb_record_tokens = rb_hash_aref(rb_options, CSTR_TO_SYM("record_tokens"));
