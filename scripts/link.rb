@@ -9,7 +9,7 @@ end
 OS_SPECIFIC_OPTIONS =
     case RbConfig::CONFIG['host_os']
     when /mingw/
-        ['-m64', '-luserenv']
+        ['-m64', '-luserenv', '-Wl,-undefined,dynamic_lookup']
     else
         []
     end
