@@ -22,7 +22,7 @@ script = [
     ENV['EXTRA_CFLAGS'] || '',
     src
 ].join(' ')
-# .gsub('O3', 'O0 -g')
+.gsub('O3', 'O0 -g')
 
 if ENV['DRY_RUN']
     puts script
