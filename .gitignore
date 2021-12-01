@@ -10,10 +10,6 @@ Gemfile.lock
 
 Cargo.lock
 target/
-lib/lib-ruby-parser/*.bundle
-lib/lib-ruby-parser/*.so
-lib/lib-ruby-parser/nodes.rb
-lib/lib-ruby-parser/messages.rb
 c-bindings/lib-ruby-parser.h
 c-bindings/*.a
 c-bindings/*.lib
@@ -29,3 +25,4 @@ benchmark/ruby-parser.rb
 benchmark/repos
 benchmark/filelist
 benchmark/stats
+build/

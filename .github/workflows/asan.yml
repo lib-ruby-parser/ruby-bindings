@@ -1,4 +1,4 @@
-name: test
+name: test-asan
 
 on:
   push:
@@ -62,7 +62,7 @@ jobs:
       - name: compile .so with asan
         env:
           CFLAGS: "-fsanitize=address"
-        run: make lib/lib-ruby-parser/lib_ruby_parser_native.so
+        run: make lib/lib-ruby-parser/native/lib_ruby_parser.so
 
       - name: run tests
         env:

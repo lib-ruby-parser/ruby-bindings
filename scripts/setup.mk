@@ -2,6 +2,8 @@ ifndef TARGET
 $(error TARGET variable is required)
 endif
 
+RUBY_VERSION = $(shell ruby scripts/print-ruby-version.rb)
+
 include scripts/targets/$(TARGET).mk
 
 define download_file
@@ -17,7 +19,7 @@ EXTRA_CFLAGS="$(CFLAGS)" ruby \
 	scripts/link.rb \
 	main.o \
 	c-bindings/libruby_parser_c-$(TARGET).$(A) \
-	lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB)
+	$(LIB_RUBY_PARSER_DYLIB)
 endef
 
 build-info:
@@ -30,5 +32,7 @@ $(info Build configuration:)
 $(info O = $(O))
 $(info A = $(A))
 $(info DYLIB = $(DYLIB))
+$(info RUBY_VERSION = $(RUBY_VERSION))
+$(info LIB_RUBY_PARSER_DYLIB = $(LIB_RUBY_PARSER_DYLIB))
 
 $(info )

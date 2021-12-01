@@ -52,7 +52,7 @@ This repo is **mostly** based on [`c-bindings`](https://github.com/lib-ruby-pars
 5. `scripts` directory:
     1. `scripts/targets` - directory with target- (and in our case OS-) specific configurations
     2. `scripts/compile.rb` - prints code to compile `main.c` to `main.o`
-    3. `scripts/link.rb` - prints code to link `main.o` to `lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB_EXT)`
+    3. `scripts/link.rb` - prints code to link `main.o` to `lib/lib-ruby-parser/native/lib_ruby_parser.$(DYLIB_EXT)`
     4. `scripts/setup.mk` - basic setup, prints debug information, auto-included by root Makefile
 6. `test` directory contains a single minitest test that performs a smoke test
 
@@ -70,12 +70,12 @@ To run it locally:
 We do run ASAN on CI on every commit for this repo too, but enabling it is a bit tricky. Ruby executable is not linked with `libasan.so`, and so if `main.c` is compiled with `-fsanitize=address` loading `lib_ruby_parser.dylib` gives an error at runtime, `malloc` is supposed to "track itself" using `libasan.so` functionality, but it's not available. `LD_PRELOAD` (on Linux) and `DYLD_INSERT_LIBRARIES` (on MacOS) can do the trick.
 
 1. On Linux:
-    + Pass `CFLAGS="-fsanitize=address"` to `make test` to get `lib/lib-ruby-parser/lib_ruby_parser_native.so` compiled with ASAN
+    + Pass `CFLAGS="-fsanitize=address"` to `make test` to get `lib/lib-ruby-parser/native/lib_ruby_parser.so` compiled with ASAN
     + Get path to `libasan.so` by running `gcc -print-file-name=libasan.so`
     + Pass it to `make test` with `LD_PRELOAD=$(gcc -print-file-name=libasan.so) make test`
 2. On MacOS:
     + Make sure to have `clang` installed with Homebrew, default `clang` that ships with MacOS doesn't have it.
-    + Pass `CC=clang CFLAGS="-fsanitize=address"` to `make test` to get `lib/lib-ruby-parser/lib_ruby_parser_native.so` compiled with ASAN
+    + Pass `CC=clang CFLAGS="-fsanitize=address"` to `make test` to get `lib/lib-ruby-parser/native/lib_ruby_parser.bundle` compiled with ASAN
     + Get path to `libclang_rt.asan_osx_dynamic.dylib` by running `clang --print-file-name=libclang_rt.asan_osx_dynamic.dylib`
     + Pass it to `make test` with `DYLD_INSERT_LIBRARIES=$(clang --print-file-name=libclang_rt.asan_osx_dynamic.dylib) make test`
 

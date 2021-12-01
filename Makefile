@@ -9,12 +9,14 @@ main.$(O): main.c nodes.h messages.h c-bindings/lib-ruby-parser.h
 	$(call compile_o)
 CLEAN += main.$(O)
 
-lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB): main.$(O) c-bindings/libruby_parser_c-$(TARGET).$(A)
+$(LIB_RUBY_PARSER_DYLIB): main.$(O) c-bindings/libruby_parser_c-$(TARGET).$(A)
 	$(call link_dylib)
-CLEAN += lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB)
+CLEAN += $(LIB_RUBY_PARSER_DYLIB)
 
-test: lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB)
+test: $(LIB_RUBY_PARSER_DYLIB)
 	ruby test/test_parser.rb
 
 clean:
 	rm -rf $(CLEAN)
+
+include package/build.mk

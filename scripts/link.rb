@@ -32,7 +32,7 @@ script = [
     RbConfig::CONFIG['LIBRUBYARG'],
     RbConfig::CONFIG['LIBS'],
 
-].join(' ').gsub('$(DEFFILE)', 'lib_ruby_parser_native-x64-mingw32.def')
+].join(' ').gsub('$(DEFFILE)', 'lib_ruby_parser-x64-mingw32.def')
 
 if ENV['DRY_RUN']
     puts script
