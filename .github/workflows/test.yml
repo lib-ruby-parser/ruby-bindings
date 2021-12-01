@@ -13,11 +13,11 @@ defaults:
 jobs:
   # outputs ${{ needs.get-gem-version.outputs.gem-version }}
   get-gem-version:
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/get-gem-version.yml@extract-common-ci-steps-to-shared-actions
+    uses: lib-ruby-parser/ruby-bindings/.github/workflows/get-gem-version.yml@master
 
   # Build .so/.bundle files, test and upload them as build artifacts
   compile-and-test-mac:
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@extract-common-ci-steps-to-shared-actions
+    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@master
     with:
       runs-on: macos-latest
       target: x86_64-apple-darwin
@@ -25,7 +25,7 @@ jobs:
       file-to-upload: lib/lib-ruby-parser/native/lib_ruby_parser.bundle
 
   compile-and-test-linux:
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@extract-common-ci-steps-to-shared-actions
+    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@master
     with:
       runs-on: ubuntu-latest
       target: x86_64-unknown-linux-gnu
@@ -33,7 +33,7 @@ jobs:
       file-to-upload: lib/lib-ruby-parser/native/lib_ruby_parser.so
 
   compile-and-test-windows-old:
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@extract-common-ci-steps-to-shared-actions
+    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@master
     with:
       runs-on: windows-latest
       target: x86_64-pc-windows-gnu
@@ -41,7 +41,7 @@ jobs:
       file-to-upload: lib/lib-ruby-parser/native/2.6/lib_ruby_parser.so
 
   compile-and-test-windows:
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@extract-common-ci-steps-to-shared-actions
+    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@master
     with:
       runs-on: windows-latest
       target: x86_64-pc-windows-gnu
@@ -49,7 +49,7 @@ jobs:
       file-to-upload: lib/lib-ruby-parser/native/2.7/lib_ruby_parser.so
 
   compile-and-test-windows-new:
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@extract-common-ci-steps-to-shared-actions
+    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@master
     with:
       runs-on: windows-latest
       target: x86_64-pc-windows-gnu
@@ -61,7 +61,7 @@ jobs:
     needs:
       - get-gem-version
       - compile-and-test-mac
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/build-gem.yml@extract-common-ci-steps-to-shared-actions
+    uses: lib-ruby-parser/ruby-bindings/.github/workflows/build-gem.yml@master
     with:
       runs-on: macos-latest
       make-target: x86_64-apple-darwin
@@ -74,7 +74,7 @@ jobs:
     needs:
       - get-gem-version
       - compile-and-test-linux
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/build-gem.yml@extract-common-ci-steps-to-shared-actions
+    uses: lib-ruby-parser/ruby-bindings/.github/workflows/build-gem.yml@master
     with:
       runs-on: ubuntu-latest
       make-target: x86_64-unknown-linux-gnu
@@ -89,7 +89,7 @@ jobs:
       - compile-and-test-windows-old
       - compile-and-test-windows
       - compile-and-test-windows-new
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/build-gem.yml@extract-common-ci-steps-to-shared-actions
+    uses: lib-ruby-parser/ruby-bindings/.github/workflows/build-gem.yml@master
     with:
       runs-on: windows-latest
       make-target: x86_64-pc-windows-gnu
