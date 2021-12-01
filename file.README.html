@@ -124,7 +124,7 @@ end
 </li><li>
 <p><code>scripts/compile.rb</code> - prints code to compile <code>main.c</code> to <code>main.o</code></p>
 </li><li>
-<p><code>scripts/link.rb</code> - prints code to link <code>main.o</code> to <code>lib/lib-ruby-parser/lib_ruby_parser_native.$(DYLIB_EXT)</code></p>
+<p><code>scripts/link.rb</code> - prints code to link <code>main.o</code> to <code>lib/lib-ruby-parser/native/lib_ruby_parser.$(DYLIB_EXT)</code></p>
 </li><li>
 <p><code>scripts/setup.mk</code> - basic setup, prints debug information, auto-included by root Makefile</p>
 </li></ol>
@@ -151,7 +151,7 @@ end
 <ol><li>
 <p>On Linux:</p>
 <ul><li>
-<p>Pass <code>CFLAGS=&quot;-fsanitize=address&quot;</code> to <code>make test</code> to get <code>lib/lib-ruby-parser/lib_ruby_parser_native.so</code> compiled with ASAN</p>
+<p>Pass <code>CFLAGS=&quot;-fsanitize=address&quot;</code> to <code>make test</code> to get <code>lib/lib-ruby-parser/native/lib_ruby_parser.so</code> compiled with ASAN</p>
 </li><li>
 <p>Get path to <code>libasan.so</code> by running <code>gcc -print-file-name=libasan.so</code></p>
 </li><li>
@@ -162,7 +162,7 @@ end
 <ul><li>
 <p>Make sure to have <code>clang</code> installed with Homebrew, default <code>clang</code> that ships with MacOS doesn&#39;t have it.</p>
 </li><li>
-<p>Pass <code>CC=clang CFLAGS=&quot;-fsanitize=address&quot;</code> to <code>make test</code> to get <code>lib/lib-ruby-parser/lib_ruby_parser_native.so</code> compiled with ASAN</p>
+<p>Pass <code>CC=clang CFLAGS=&quot;-fsanitize=address&quot;</code> to <code>make test</code> to get <code>lib/lib-ruby-parser/native/lib_ruby_parser.bundle</code> compiled with ASAN</p>
 </li><li>
 <p>Get path to <code>libclang_rt.asan_osx_dynamic.dylib</code> by running <code>clang --print-file-name=libclang_rt.asan_osx_dynamic.dylib</code></p>
 </li><li>
@@ -212,7 +212,7 @@ Direct leak of 48 byte(s) in 1 object(s) allocated from:
 </div></div>
 
       <div id="footer">
-  Generated on Wed Dec  1 14:46:07 2021 by
+  Generated on Wed Dec  1 16:18:10 2021 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>
