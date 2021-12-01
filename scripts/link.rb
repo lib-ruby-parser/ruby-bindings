@@ -6,9 +6,11 @@ def link_dir(dir)
     "-L#{dir}"
 end
 
+win = false
 OS_SPECIFIC_OPTIONS =
     case RbConfig::CONFIG['host_os']
     when /mingw/
+        win = true
         ['-m64', '-luserenv']
     else
         []
@@ -29,7 +31,7 @@ script = [
     RbConfig::CONFIG['DLDFLAGS'],
 
     *OS_SPECIFIC_OPTIONS,
-    RbConfig::CONFIG['LIBRUBYARG'],
+    win ? RbConfig::CONFIG['LIBRUBYARG'] : '',
     RbConfig::CONFIG['LIBS'],
 
 ].join(' ').gsub('$(DEFFILE)', 'lib_ruby_parser-x64-mingw32.def')
