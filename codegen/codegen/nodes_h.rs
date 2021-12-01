@@ -25,7 +25,7 @@ static VALUE uint8_t__to_ruby(uint8_t *n);
 {{ each node }}<dnl>
 static VALUE LIB_RUBY_PARSER_{{ helper node-camelcase-name }}__to_ruby(LIB_RUBY_PARSER_{{ helper node-camelcase-name }} *variant)
 {
-    VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern(\"LibRubyParser\"));
+    VALUE rb_mLibRubyParser = rb_define_module(\"LibRubyParser\");
     VALUE rb_mNodes = rb_const_get(rb_mLibRubyParser, rb_intern(\"Nodes\"));
     VALUE rb_c{{ helper node-camelcase-name }} = rb_const_get(rb_mNodes, rb_intern(\"{{ helper node-camelcase-name }}\"));
     VALUE rb_result = rb_obj_alloc(rb_c{{ helper node-camelcase-name }});

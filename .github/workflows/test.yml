@@ -16,21 +16,21 @@ jobs:
       fail-fast: false
       matrix:
         ruby:
-          - '2.6'
-          - '2.7'
-          - '3.0'
+          # - '2.6'
+          # - '2.7'
+          - '3.0.3'
         build:
-          - name: test
-            os: ubuntu-latest
-            target: x86_64-unknown-linux-gnu
-            artifact-path: lib/lib-ruby-parser/lib_ruby_parser_native.so
-            artifact-name: x86_64-unknown-linux-gnu.so
+          # - name: test
+          #   os: ubuntu-latest
+          #   target: x86_64-unknown-linux-gnu
+          #   artifact-path: lib/lib-ruby-parser/lib_ruby_parser_native.so
+          #   artifact-name: x86_64-unknown-linux-gnu.so
 
-          - name: test
-            os: macos-latest
-            target: x86_64-apple-darwin
-            artifact-path: lib/lib-ruby-parser/lib_ruby_parser_native.bundle
-            artifact-name: x86_64-apple-darwin.bundle
+          # - name: test
+          #   os: macos-latest
+          #   target: x86_64-apple-darwin
+          #   artifact-path: lib/lib-ruby-parser/lib_ruby_parser_native.bundle
+          #   artifact-name: x86_64-apple-darwin.bundle
 
           - os: windows-latest
             name: test
@@ -58,6 +58,12 @@ jobs:
       - name: print build-info
         run: make build-info
 
+      - name: make sure libruby-static.a is valid
+        run: |
+          make libruby-static.a
+          objdump -t libruby-static.a | grep rb_cObject
+          objdump -t libruby-static.a | grep imp_
+
       - name: run tests
         shell: bash
         run: make test
@@ -68,65 +74,65 @@ jobs:
           name: ${{ matrix.ruby }}-${{ matrix.build.artifact-name }}
           path: ${{ matrix.build.artifact-path }}
 
-  test-asan:
-    name: test-asan (${{ matrix.build.ruby }})
-    runs-on: ubuntu-latest
-    env:
-      TARGET: x86_64-unknown-linux-gnu
-    strategy:
-      fail-fast: false
-      matrix:
-        build:
-          - ruby: '2.6'
-            check-ruby: ruby -e 'p 42'
+  # test-asan:
+  #   name: test-asan (${{ matrix.build.ruby }})
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     TARGET: x86_64-unknown-linux-gnu
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       build:
+  #         - ruby: '2.6'
+  #           check-ruby: ruby -e 'p 42'
 
-          - ruby: '2.7'
-            check-ruby: ruby -e 'p 42'
+  #         - ruby: '2.7'
+  #           check-ruby: ruby -e 'p 42'
 
-          - ruby: '3.0'
-            check-ruby: ruby test/fixtures/all_nodes.rb
+  #         - ruby: '3.0'
+  #           check-ruby: ruby test/fixtures/all_nodes.rb
 
-    steps:
-      - name: checkout
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: checkout
+  #       uses: actions/checkout@v2
 
-      - name: install ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: ${{ matrix.build.ruby }}
-          bundler-cache: true
+  #     - name: install ruby
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         ruby-version: ${{ matrix.build.ruby }}
+  #         bundler-cache: true
 
-      - name: install rust
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
+  #     - name: install rust
+  #       uses: actions-rs/toolchain@v1
+  #       with:
+  #         profile: minimal
+  #         toolchain: stable
+  #         override: true
 
-      - name: make sure asan is available
-        run: |
-          # just to be sure, also print what executables are linked to
-          # when compiled with asan
-          echo 'int main() { return 0; }' > asan-test.c
-          gcc -fsanitize=address asan-test.c -o asan-test
-          ldd asan-test
+  #     - name: make sure asan is available
+  #       run: |
+  #         # just to be sure, also print what executables are linked to
+  #         # when compiled with asan
+  #         echo 'int main() { return 0; }' > asan-test.c
+  #         gcc -fsanitize=address asan-test.c -o asan-test
+  #         ldd asan-test
 
-      - name: find libasan
-        run: echo "LIBASAN=$(gcc -print-file-name=libasan.so)" >> $GITHUB_ENV
+  #     - name: find libasan
+  #       run: echo "LIBASAN=$(gcc -print-file-name=libasan.so)" >> $GITHUB_ENV
 
-      - name: check our leaksan suppression list
-        env:
-          LSAN_OPTIONS: suppressions=LSan.supp
-          ASAN_OPTIONS: detect_leaks=1
-        run: LD_PRELOAD=$LIBASAN ${{ matrix.build.check-ruby }}
+  #     - name: check our leaksan suppression list
+  #       env:
+  #         LSAN_OPTIONS: suppressions=LSan.supp
+  #         ASAN_OPTIONS: detect_leaks=1
+  #       run: LD_PRELOAD=$LIBASAN ${{ matrix.build.check-ruby }}
 
-      - name: compile .so with asan
-        env:
-          CFLAGS: "-fsanitize=address"
-        run: make lib/lib-ruby-parser/lib_ruby_parser_native.so
+  #     - name: compile .so with asan
+  #       env:
+  #         CFLAGS: "-fsanitize=address"
+  #       run: make lib/lib-ruby-parser/lib_ruby_parser_native.so
 
-      - name: run tests
-        env:
-          LSAN_OPTIONS: suppressions=LSan.supp
-          ASAN_OPTIONS: detect_leaks=1
-        run: LD_PRELOAD=$LIBASAN make test
+  #     - name: run tests
+  #       env:
+  #         LSAN_OPTIONS: suppressions=LSan.supp
+  #         ASAN_OPTIONS: detect_leaks=1
+  #       run: LD_PRELOAD=$LIBASAN make test

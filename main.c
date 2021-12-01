@@ -57,7 +57,7 @@ static VALUE rb_parse(VALUE self, VALUE rb_input, VALUE rb_options)
 
 void Init_lib_ruby_parser_native()
 {
-    VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
+    VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
     rb_define_singleton_method(rb_mLibRubyParser, "parse", rb_parse, 2);
 }
 
@@ -80,7 +80,7 @@ static LIB_RUBY_PARSER_ParserOptions LIB_RUBY_PARSER_ParserOptions__from_ruby(VA
     VALUE rb_maybe_decoder = rb_hash_aref(rb_options, CSTR_TO_SYM("decoder"));
     if (NIL_P(rb_maybe_decoder))
     {
-        VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
+        VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
         rb_maybe_decoder = rb_const_get(rb_mLibRubyParser, rb_intern("DEFAULT_DECODER"));
     }
     LIB_RUBY_PARSER_MaybeDecoder maybe_decoder = LIB_RUBY_PARSER_MaybeDecoder__from_ruby(rb_maybe_decoder);
@@ -149,6 +149,8 @@ static LIB_RUBY_PARSER_DecoderResult rb_decode(void *state, LIB_RUBY_PARSER_Stri
 
     VALUE rb_success = Qtrue;
     VALUE rb_decoder_call_args = rb_ary_new_from_args(3, rb_decoder, rb_encoding, rb_input);
+    VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
+    VALUE rb_eException = rb_const_get(rb_mLibRubyParser, rb_intern("Exception"));
     VALUE rb_output = rb_rescue2(
         rb_call_decoder,
         rb_decoder_call_args,
@@ -201,7 +203,7 @@ static LIB_RUBY_PARSER_MaybeDecoder LIB_RUBY_PARSER_MaybeDecoder__from_ruby(VALU
 // __to_ruby
 static VALUE LIB_RUBY_PARSER_ParserResult__to_ruby(LIB_RUBY_PARSER_ParserResult result)
 {
-    VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
+    VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
     VALUE rb_cParserResult = rb_const_get(rb_mLibRubyParser, rb_intern("ParserResult"));
     VALUE rb_parser_result = rb_obj_alloc(rb_cParserResult);
 
@@ -219,7 +221,7 @@ static VALUE LIB_RUBY_PARSER_ParserResult__to_ruby(LIB_RUBY_PARSER_ParserResult 
 
 static VALUE LIB_RUBY_PARSER_Loc__to_ruby(LIB_RUBY_PARSER_Loc *loc)
 {
-    VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
+    VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
     VALUE rb_cLoc = rb_const_get(rb_mLibRubyParser, rb_intern("Loc"));
     VALUE rb_loc = rb_obj_alloc(rb_cLoc);
     rb_ivar_set(rb_loc, rb_intern("@begin"), LONG2FIX(loc->begin));
@@ -293,7 +295,7 @@ static VALUE LIB_RUBY_PARSER_ByteList__to_ruby(LIB_RUBY_PARSER_ByteList *byte_li
 
 static VALUE LIB_RUBY_PARSER_Token__to_ruby(LIB_RUBY_PARSER_Token *token)
 {
-    VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
+    VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
     VALUE rb_cToken = rb_const_get(rb_mLibRubyParser, rb_intern("Token"));
     VALUE rb_token = rb_obj_alloc(rb_cToken);
     rb_ivar_set(rb_token, rb_intern("@token_type"), INT2FIX(token->token_type));
@@ -328,7 +330,7 @@ static VALUE LIB_RUBY_PARSER_ErrorLevel__to_ruby(LIB_RUBY_PARSER_ErrorLevel *lev
 }
 static VALUE LIB_RUBY_PARSER_Diagnostic__to_ruby(LIB_RUBY_PARSER_Diagnostic *diagnostic)
 {
-    VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
+    VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
     VALUE rb_cDiagnostic = rb_const_get(rb_mLibRubyParser, rb_intern("Diagnostic"));
     VALUE rb_diagnostic = rb_obj_alloc(rb_cDiagnostic);
     rb_ivar_set(rb_diagnostic, rb_intern("@level"), LIB_RUBY_PARSER_ErrorLevel__to_ruby(&(diagnostic->level)));
@@ -360,7 +362,7 @@ static VALUE LIB_RUBY_PARSER_CommentType__to_ruby(LIB_RUBY_PARSER_CommentType *c
 }
 static VALUE LIB_RUBY_PARSER_Comment__to_ruby(LIB_RUBY_PARSER_Comment *comment)
 {
-    VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
+    VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
     VALUE rb_cComment = rb_const_get(rb_mLibRubyParser, rb_intern("Comment"));
     VALUE rb_comment = rb_obj_alloc(rb_cComment);
     rb_ivar_set(rb_comment, rb_intern("@location"), LIB_RUBY_PARSER_Loc__to_ruby(&(comment->location)));
@@ -393,7 +395,7 @@ static VALUE LIB_RUBY_PARSER_MagicCommentKind__to_ruby(LIB_RUBY_PARSER_MagicComm
 }
 static VALUE LIB_RUBY_PARSER_MagicComment__to_ruby(LIB_RUBY_PARSER_MagicComment *magic_comment)
 {
-    VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
+    VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
     VALUE rb_cMagicComment = rb_const_get(rb_mLibRubyParser, rb_intern("MagicComment"));
     VALUE rb_magic_comment = rb_obj_alloc(rb_cMagicComment);
     rb_ivar_set(rb_magic_comment, rb_intern("@kind"), LIB_RUBY_PARSER_MagicCommentKind__to_ruby(&(magic_comment->kind)));
@@ -413,7 +415,7 @@ static VALUE LIB_RUBY_PARSER_MagicCommentList__to_ruby(LIB_RUBY_PARSER_MagicComm
 
 static VALUE LIB_RUBY_PARSER_SourceLine__to_ruby(LIB_RUBY_PARSER_SourceLine *source_line)
 {
-    VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
+    VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
     VALUE rb_cSourceLine = rb_const_get(rb_mLibRubyParser, rb_intern("SourceLine"));
     VALUE rb_source_line = rb_obj_alloc(rb_cSourceLine);
     rb_ivar_set(rb_source_line, rb_intern("@start"), LONG2FIX(source_line->start));
@@ -433,7 +435,7 @@ static VALUE LIB_RUBY_PARSER_SourceLineList__to_ruby(LIB_RUBY_PARSER_SourceLineL
 
 static VALUE LIB_RUBY_PARSER_DecodedInput__to_ruby(LIB_RUBY_PARSER_DecodedInput *decoded_input)
 {
-    VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
+    VALUE rb_mLibRubyParser = rb_define_module("LibRubyParser");
     VALUE rb_cDecodedInput = rb_const_get(rb_mLibRubyParser, rb_intern("DecodedInput"));
     VALUE rb_decoded_input = rb_obj_alloc(rb_cDecodedInput);
     rb_ivar_set(rb_decoded_input, rb_intern("@name"), LIB_RUBY_PARSER_String__to_ruby(&(decoded_input->name)));
