@@ -292,19 +292,20 @@ require_relative './lib-ruby-parser/nodes'
 require_relative './lib-ruby-parser/messages'
 
 require 'rbconfig'
+
 os = RbConfig::CONFIG['host_os']
 ruby_version = Gem::Version.new(RUBY_VERSION).segments.first(2).join('.')
+
+case ruby_version
+when '3.0', '2.7', '2.6'
+  # ok
+else
+  warn "[lib-ruby-parser] You are running on windows/mingw with Ruby #{ruby_version}."
+  warn '[lib-ruby-parser] This version has not been tested, so it may crash.'
+end
+
 case os
 when /mingw/
-  # windows/mingw
-  case ruby_version
-  when '3.0', '2.7', '2.6'
-    # ok
-  else
-    warn "[lib-ruby-parser] You are running on windows/mingw with Ruby #{ruby_version}."
-    warn '[lib-ruby-parser] This version has not been tested, so it may crash.'
-  end
-
   require_relative "./lib-ruby-parser/native/#{ruby_version}/lib_ruby_parser"
 when /darwin/, /linux/
   require_relative './lib-ruby-parser/native/lib_ruby_parser'

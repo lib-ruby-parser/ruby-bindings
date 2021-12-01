@@ -1,0 +1,36 @@
+# This is a shared workflow
+
+name: get gem version
+
+on:
+  workflow_call:
+    outputs:
+      gem-version:
+        description: gem version
+        value: ${{ jobs.get-gem-version.outputs.gem-version }}
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  get-gem-version:
+    name: get version defined in version.rb
+    runs-on: ubuntu-latest
+    outputs:
+      gem-version: ${{ steps.get-version.outputs.gem-version }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: install ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+
+      - name: get version
+        id: get-version
+        run: |
+          GEM_VERSION="$(ruby -I. -rlib/lib-ruby-parser/version -e 'puts LibRubyParser::VERSION')"
+          echo "GEM_VERSION = $GEM_VERSION"
+          echo ::set-output name=gem-version::$GEM_VERSION
