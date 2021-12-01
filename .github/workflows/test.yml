@@ -12,7 +12,7 @@ defaults:
 
 jobs:
   # Build .so/.bundle files, test and upload them as build artifacts
-  build-and-test:
+  compile-and-test:
     name: build and test on ${{ matrix.build.ruby }} / ${{ matrix.build.os }}
     runs-on: ${{ matrix.build.os }}
     env:
@@ -69,12 +69,12 @@ jobs:
       - name: upload dylib
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ matrix.build.artifact }}
+          name: dylib-${{ matrix.build.target }}-${{ matrix.build.ruby }}
           path: ${{ matrix.build.artifact }}
 
   # Download .so/.bundle artifacts, pack .gem files and upload them as artifacts
   build-gem:
-    needs: ['test']
+    needs: ['compile-and-test']
     name: build gem on ${{ matrix.build.os }}
     runs-on: ${{ matrix.build.os }}
     env:
@@ -85,15 +85,15 @@ jobs:
         build:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-gnu
-            artifact: build/lib-ruby-parser-0.0.1-x86_64-linux.gem
+            artifact: lib-ruby-parser-0.0.1-x86_64-linux.gem
 
           - os: macos-latest
             target: x86_64-apple-darwin
-            artifact: build/lib-ruby-parser-0.0.1-x86_64-darwin.gem
+            artifact: lib-ruby-parser-0.0.1-x86_64-darwin.gem
 
           - os: windows-latest
             target: x86_64-pc-windows-gnu
-            artifact: build/lib-ruby-parser-0.0.1-x86_64-mingw32.gem
+            artifact: lib-ruby-parser-0.0.1-x86_64-mingw32.gem
 
     steps:
       - name: checkout
@@ -104,37 +104,60 @@ jobs:
         with:
           ruby-version: '3.0'
 
-      # linux dylib
+      # download common 3.0 dylib artifact
       - uses: actions/download-artifact@v2
-        with: { name: lib/lib-ruby-parser/native/lib_ruby_parser.so }
+        with:
+          name: dylib-${{ matrix.build.target }}-3.0
+
+      # move 3.0 linux dylib
+      - name: move 3.0 .so to lib/lib-ruby-parser/native
+        run: mv lib_ruby_parser.so lib/lib-ruby-parser/native/lib_ruby_parser.so
         if: runner.os == 'Linux'
 
-      # mac dylib
-      - uses: actions/download-artifact@v2
-        with: { name: lib/lib-ruby-parser/native/lib_ruby_parser.bundle }
+      # move 3.0 macos dylib
+      - name: move 3.0 .bundle to lib/lib-ruby-parser/native
+        run: mv lib_ruby_parser.bundle lib/lib-ruby-parser/native/lib_ruby_parser.bundle
         if: runner.os == 'macOS'
 
-      # windows dylibs
-      - uses: actions/download-artifact@v2
-        with: { name: lib/lib-ruby-parser/native/2.6/lib_ruby_parser.so }
+      # move 3.0 windows dylib
+      - name: move 3.0 .so to lib/lib-ruby-parser/native/3.0/
+        run: mv lib_ruby_parser.so lib/lib-ruby-parser/native/3.0/lib_ruby_parser.so
         if: runner.os == 'Windows'
 
+      # download and move 2.7 windows dylib artifact
       - uses: actions/download-artifact@v2
-        with: { name: lib/lib-ruby-parser/native/2.7/lib_ruby_parser.so }
+        with:
+          name: dylib-${{ matrix.build.target }}-2.7
         if: runner.os == 'Windows'
 
+      - name: move 2.7 .so to lib/lib-ruby-parser/native/2.7/
+        run: mv lib_ruby_parser.so lib/lib-ruby-parser/native/2.7/lib_ruby_parser.so
+        if: runner.os == 'Windows'
+
+      # download and move 2.6 windows dylib artifact
       - uses: actions/download-artifact@v2
-        with: { name: lib/lib-ruby-parser/native/3.0/lib_ruby_parser.so }
+        with:
+          name: dylib-${{ matrix.build.target }}-2.6
+        if: runner.os == 'Windows'
+
+      - name: move 2.6 .so to lib/lib-ruby-parser/native/2.6/
+        run: mv lib_ruby_parser.so lib/lib-ruby-parser/native/2.6/lib_ruby_parser.so
         if: runner.os == 'Windows'
 
       - name: build .gem file
-        run: make build-package
+        run: |
+          ls -l
+          ls -l lib/lib-ruby-parser/native/
+          ls -l lib/lib-ruby-parser/native/2.6/
+          ls -l lib/lib-ruby-parser/native/2.7/
+          ls -l lib/lib-ruby-parser/native/3.0/
+          make build-package
 
       - name: upload .gem
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.build.artifact }}
-          path: ${{ matrix.build.artifact }}
+          path: build/${{ matrix.build.artifact }}
 
   # download .gem artifacts, "gem install" them and run very naive smoke test
   test-gem:
@@ -146,9 +169,9 @@ jobs:
       matrix:
         ruby: ['2.6', '2.7', '3.0']
         os:
-          - { name: 'ubuntu-latest',  artifact: build/lib-ruby-parser-0.0.1-x86_64-linux.gem }
-          - { name: 'macos-latest',   artifact: build/lib-ruby-parser-0.0.1-x86_64-darwin.gem }
-          - { name: 'windows-latest', artifact: build/lib-ruby-parser-0.0.1-x86_64-mingw32.gem }
+          - { name: 'ubuntu-latest',  artifact: lib-ruby-parser-0.0.1-x86_64-linux.gem }
+          - { name: 'macos-latest',   artifact: lib-ruby-parser-0.0.1-x86_64-darwin.gem }
+          - { name: 'windows-latest', artifact: lib-ruby-parser-0.0.1-x86_64-mingw32.gem }
 
     steps:
       - name: checkout
@@ -157,10 +180,7 @@ jobs:
       - name: install ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.build.ruby }}
-
-      - name: create build directory
-        run: mkdir build
+          ruby-version: ${{ matrix.ruby }}
 
       - name: download .gem artifact
         uses: actions/download-artifact@v2
@@ -171,4 +191,4 @@ jobs:
         run: gem install ${{ matrix.os.artifact }}
 
       - name: run smoke test
-        run: ruby -rlib-ruby-parser -e "pp LibRubyParser.parse('42', {})""
+        run: ruby -rlib-ruby-parser -e "pp LibRubyParser.parse('42', {})"
