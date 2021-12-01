@@ -55,7 +55,7 @@ static VALUE rb_parse(VALUE self, VALUE rb_input, VALUE rb_options)
     return LIB_RUBY_PARSER_ParserResult__to_ruby(result);
 }
 
-void Init_lib_ruby_parser_native()
+void Init_lib_ruby_parser()
 {
     VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
     rb_define_singleton_method(rb_mLibRubyParser, "parse", rb_parse, 2);
