@@ -1,10 +1,9 @@
-name: test
+name: release
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    tags:
+      - 'v*'
 
 defaults:
   run:
@@ -144,3 +143,43 @@ jobs:
       - name: run smoke test
         shell: bash
         run: ruby -rlib-ruby-parser -e "pp LibRubyParser.parse('42', {})"
+
+  publish-gems:
+    needs:
+      - build-mac-gem
+      - build-linux-gem
+      - build-windows-gem
+      - test-gems
+    name: publish all gems
+    runs-on: ubuntu-latest
+    env:
+      GEM_HOST_API_KEY: ${{ secrets.RUBYGEMS_API_TOKEN }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: install ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'
+
+      - name: download mac .gem artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ needs.build-mac-gem.outputs.gem-artifact-name }}
+
+      - name: download linux .gem artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ needs.build-linux-gem.outputs.gem-artifact-name }}
+
+      - name: download windows .gem artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ${{ needs.build-windows-gem.outputs.gem-artifact-name }}
+
+      - name: push gems
+        run: |
+          gem push ${{ needs.build-mac-gem.outputs.gem-artifact-name }}
+          gem push ${{ needs.build-linux-gem.outputs.gem-artifact-name }}
+          gem push ${{ needs.build-windows-gem.outputs.gem-artifact-name }}

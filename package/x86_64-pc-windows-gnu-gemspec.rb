@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/lib-ruby-parser/ruby-bindings'
 
   spec.required_ruby_version = Gem::Requirement.new('>= 2.6.0')
-  spec.platform              = 'x86_64-mingw32'
+  spec.platform              = 'x64-mingw32'
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/lib-ruby-parser/ruby-bindings'
