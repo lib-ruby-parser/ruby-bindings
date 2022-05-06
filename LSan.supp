@@ -23,6 +23,7 @@ leak:rb_reg_initialize
 # from gc.c
 leak:stack_chunk_alloc
 leak:gc_grey
+leak:heap_page_allocate
 
 # from regparse.c
 leak:name_add

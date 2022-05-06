@@ -6,6 +6,6 @@ build-package:
 	cp -r lib build/lib
 	cp README.md build/README.md
 
-	cd build && gem build
+	cd build && gem build --output lib-ruby-parser.gem
 
 .PHONY: build-package
