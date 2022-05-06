@@ -7,3 +7,5 @@ build-package:
 	cp README.md build/README.md
 
 	cd build && gem build
+
+.PHONY: build-package
