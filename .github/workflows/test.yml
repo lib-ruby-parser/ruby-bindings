@@ -11,121 +11,133 @@ defaults:
     shell: bash
 
 jobs:
-  # outputs ${{ needs.get-gem-version.outputs.gem-version }}
-  get-gem-version:
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/get-gem-version.yml@master
+  compile-and-test:
+    name: build and test ${{ matrix.build.os }} / ${{ matrix.build.ruby }}
+    runs-on: ${{ matrix.build.os }}
+    env:
+      TARGET: ${{ matrix.build.target }}
+    strategy:
+      fail-fast: false
+      matrix:
+        build:
+          - os: ubuntu-latest
+            ruby: '3.1'
+            target: x86_64-unknown-linux-gnu
+            lib-file: lib/lib-ruby-parser/native/lib_ruby_parser.so
 
-  # Build .so/.bundle files, test and upload them as build artifacts
-  compile-and-test-mac:
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@master
-    with:
-      runs-on: macos-latest
-      target: x86_64-apple-darwin
-      ruby: '3.0'
-      file-to-upload: lib/lib-ruby-parser/native/lib_ruby_parser.bundle
+          - os: macos-latest
+            ruby: '3.1'
+            target: x86_64-apple-darwin
+            lib-file: lib/lib-ruby-parser/native/lib_ruby_parser.bundle
 
-  compile-and-test-linux:
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@master
-    with:
-      runs-on: ubuntu-latest
-      target: x86_64-unknown-linux-gnu
-      ruby: '3.0'
-      file-to-upload: lib/lib-ruby-parser/native/lib_ruby_parser.so
+          - os: windows-latest
+            ruby: '3.1'
+            target: x86_64-pc-windows-gnu
+            lib-file: lib/lib-ruby-parser/native/3.1/lib_ruby_parser.so
 
-  compile-and-test-windows-old:
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@master
-    with:
-      runs-on: windows-latest
-      target: x86_64-pc-windows-gnu
-      ruby: '2.6'
-      file-to-upload: lib/lib-ruby-parser/native/2.6/lib_ruby_parser.so
+          - os: windows-latest
+            ruby: '3.0'
+            target: x86_64-pc-windows-gnu
+            lib-file: lib/lib-ruby-parser/native/3.0/lib_ruby_parser.so
 
-  compile-and-test-windows:
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@master
-    with:
-      runs-on: windows-latest
-      target: x86_64-pc-windows-gnu
-      ruby: '2.7'
-      file-to-upload: lib/lib-ruby-parser/native/2.7/lib_ruby_parser.so
+          - os: windows-latest
+            ruby: '2.7'
+            target: x86_64-pc-windows-gnu
+            lib-file: lib/lib-ruby-parser/native/2.7/lib_ruby_parser.so
 
-  compile-and-test-windows-new:
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/compile-and-test-one.yml@master
-    with:
-      runs-on: windows-latest
-      target: x86_64-pc-windows-gnu
-      ruby: '3.0'
-      file-to-upload: lib/lib-ruby-parser/native/3.0/lib_ruby_parser.so
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
 
-  # Download .so/.bundle artifacts, pack .gem files and upload them as artifacts
-  build-mac-gem:
-    needs:
-      - get-gem-version
-      - compile-and-test-mac
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/build-gem.yml@master
-    with:
-      runs-on: macos-latest
-      make-target: x86_64-apple-darwin
-      ruby-platform: x86_64-darwin
-      gem-version: ${{ needs.get-gem-version.outputs.gem-version }}
-      artifact1-name: ${{ needs.compile-and-test-mac.outputs.artifact-name }}
-      artifact1-path: lib/lib-ruby-parser/native/lib_ruby_parser.bundle
+      - name: install ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.build.ruby }}
+          bundler-cache: true
 
-  build-linux-gem:
-    needs:
-      - get-gem-version
-      - compile-and-test-linux
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/build-gem.yml@master
-    with:
-      runs-on: ubuntu-latest
-      make-target: x86_64-unknown-linux-gnu
-      ruby-platform: x86_64-linux
-      gem-version: ${{ needs.get-gem-version.outputs.gem-version }}
-      artifact1-name: ${{ needs.compile-and-test-linux.outputs.artifact-name }}
-      artifact1-path: lib/lib-ruby-parser/native/lib_ruby_parser.so
+      - name: compile and test
+        run: make test
 
-  build-windows-gem:
-    needs:
-      - get-gem-version
-      - compile-and-test-windows-old
-      - compile-and-test-windows
-      - compile-and-test-windows-new
-    uses: lib-ruby-parser/ruby-bindings/.github/workflows/build-gem.yml@master
-    with:
-      runs-on: windows-latest
-      make-target: x86_64-pc-windows-gnu
-      ruby-platform: x64-mingw32
-      gem-version: ${{ needs.get-gem-version.outputs.gem-version }}
-      artifact1-name: ${{ needs.compile-and-test-windows-old.outputs.artifact-name }}
-      artifact1-path: lib/lib-ruby-parser/native/2.6/lib_ruby_parser.so
-      artifact2-name: ${{ needs.compile-and-test-windows.outputs.artifact-name }}
-      artifact2-path: lib/lib-ruby-parser/native/2.7/lib_ruby_parser.so
-      artifact3-name: ${{ needs.compile-and-test-windows-new.outputs.artifact-name }}
-      artifact3-path: lib/lib-ruby-parser/native/3.0/lib_ruby_parser.so
+      - name: upload dylib
+        uses: actions/upload-artifact@v2
+        with:
+          path: ${{ matrix.build.lib-file }}
+          name: ${{ matrix.build.target }}-${{ matrix.build.ruby }}.dylib
 
-  # download .gem artifacts, "gem install" them and run very naive smoke test
-  test-gems:
-    needs:
-      - build-mac-gem
-      - build-linux-gem
-      - build-windows-gem
-    name: test gem on ${{ matrix.ruby }} / ${{ matrix.build.os }}
+  build-gem:
+    needs: ['compile-and-test']
+    name: build per-platform gems
+    runs-on: ${{ matrix.build.os }}
+    env:
+      TARGET: ${{ matrix.build.target }}
+    strategy:
+      fail-fast: false
+      matrix:
+        build:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
+
+          - os: macos-latest
+            target: x86_64-apple-darwin
+
+          - os: windows-latest
+            target: x86_64-pc-windows-gnu
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: install ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: download all dylib artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: '.'
+
+      - name: put all artifacts back to their directories
+        run: |
+          mv x86_64-unknown-linux-gnu-3.1.dylib/lib_ruby_parser.so lib/lib-ruby-parser/native/lib_ruby_parser.so
+          mv x86_64-apple-darwin-3.1.dylib/lib_ruby_parser.bundle lib/lib-ruby-parser/native/lib_ruby_parser.bundle
+          mv x86_64-pc-windows-gnu-3.1.dylib/lib_ruby_parser.so lib/lib-ruby-parser/native/3.1/lib_ruby_parser.so
+          mv x86_64-pc-windows-gnu-3.0.dylib/lib_ruby_parser.so lib/lib-ruby-parser/native/3.0/lib_ruby_parser.so
+          mv x86_64-pc-windows-gnu-2.7.dylib/lib_ruby_parser.so lib/lib-ruby-parser/native/2.7/lib_ruby_parser.so
+
+      - name: run codegen
+        run: make do-codegen
+
+      - name: pack .gem file
+        run: make build-package
+
+      - name: upload .gem file
+        uses: actions/upload-artifact@v2
+        with:
+          path: build/lib-ruby-parser.gem
+          name: ${{ matrix.build.target }}-gem
+
+  test-gem:
+    needs: ['build-gem']
+    name: test per-platform gems
     runs-on: ${{ matrix.build.os }}
     strategy:
       fail-fast: false
       matrix:
-        ruby: ['2.6', '2.7', '3.0']
+        ruby: ['2.7', '3.0', '3.1']
         build:
-          - os: 'macos-latest'
-            gem-artifact-name: ${{ needs.build-mac-gem.outputs.gem-artifact-name }}
-
           - os: 'ubuntu-latest'
-            gem-artifact-name: ${{ needs.build-linux-gem.outputs.gem-artifact-name }}
+            gem-artifact-name: x86_64-unknown-linux-gnu-gem
+
+          - os: 'macos-latest'
+            gem-artifact-name: x86_64-apple-darwin-gem
 
           - os: 'windows-latest'
-            gem-artifact-name: ${{ needs.build-windows-gem.outputs.gem-artifact-name }}
+            gem-artifact-name: x86_64-pc-windows-gnu-gem
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: install ruby
         uses: ruby/setup-ruby@v1
@@ -136,11 +148,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: ${{ matrix.build.gem-artifact-name }}
+          path: gem-artifact
 
       - name: install gem
-        shell: bash
-        run: gem install ${{ matrix.build.gem-artifact-name }}
+        run: gem install gem-artifact/lib-ruby-parser.gem
 
       - name: run smoke test
-        shell: bash
         run: ruby -rlib-ruby-parser -e "pp LibRubyParser.parse('42', {})"

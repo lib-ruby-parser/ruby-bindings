@@ -16,13 +16,13 @@ jobs:
       fail-fast: false
       matrix:
         build:
-          - ruby: '2.6'
-            check-ruby: ruby -e 'p 42'
-
           - ruby: '2.7'
             check-ruby: ruby -e 'p 42'
 
           - ruby: '3.0'
+            check-ruby: ruby test/fixtures/all_nodes.rb
+
+          - ruby: '3.1'
             check-ruby: ruby test/fixtures/all_nodes.rb
 
     steps:

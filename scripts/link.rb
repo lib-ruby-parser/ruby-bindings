@@ -11,7 +11,7 @@ OS_SPECIFIC_OPTIONS =
     case RbConfig::CONFIG['host_os']
     when /mingw/
         win = true
-        ['-m64', '-luserenv']
+        ['-m64', '-luserenv', '-lbcrypt']
     else
         []
     end
