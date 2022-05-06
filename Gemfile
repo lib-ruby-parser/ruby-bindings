@@ -7,3 +7,4 @@ gemspec
 
 gem 'rake', '~> 13.0'
 gem 'yard'
+gem 'redcarpet'
