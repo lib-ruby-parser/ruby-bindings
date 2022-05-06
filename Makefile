@@ -19,4 +19,8 @@ test: $(LIB_RUBY_PARSER_DYLIB)
 clean:
 	rm -rf $(CLEAN)
 
+doc: $(CODEGEN_FILES)
+	bundle exec yard
+.PHONY: doc
+
 include package/build.mk
