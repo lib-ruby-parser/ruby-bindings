@@ -26,3 +26,6 @@ benchmark/repos
 benchmark/filelist
 benchmark/stats
 build/
+codegen/codegen
+lib/lib-ruby-parser/messages.rb
+lib/lib-ruby-parser/nodes.rb
