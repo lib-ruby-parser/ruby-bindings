@@ -103,10 +103,9 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a plain symbol literal (i.e. <code>:foo</code>)</p>
+    <p>Represents a plain symbol literal (i.e. <code>:foo</code>)</p>
 
-<p>Note that <code>:</code> in <tt>{ foo: bar }</tt> belongs to a <code>pair</code> node.</p>
+<p>Note that <code>:</code> in <code>{ foo: bar }</code> belongs to a <code>pair</code> node.</p>
 
 
   </div>
@@ -143,8 +142,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the symbol begin.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the symbol begin.</p>
 </div></span>
   
 </li>
@@ -172,8 +170,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the symbol end.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the symbol end.</p>
 </div></span>
   
 </li>
@@ -201,8 +198,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -230,8 +226,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Value of the symbol literal.</p>
+    <span class="summary_desc"><div class='inline'><p>Value of the symbol literal.</p>
 </div></span>
   
 </li>
@@ -265,25 +260,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the symbol begin</p>
+    <p>Location of the symbol begin</p>
 
-<p><code>None</code> if symbol is a label (+{ foo: 1 }+) or a part of the symbols array (+%i[foo bar baz]+)</p>
+<pre class="code text"><code class="text">:foo
+~
+</code></pre>
+
+<p><code>None</code> if symbol is a label (<code>{ foo: 1 }</code>) or a part of the symbols array (<code>%i[foo bar baz]</code>)</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>:foo
-~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -304,12 +293,12 @@
       <pre class="lines">
 
 
-4356
-4357
-4358</pre>
+3977
+3978
+3979</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4356</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3977</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -332,25 +321,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the symbol end</p>
+    <p>Location of the symbol end</p>
 
-<p><code>None</code> if symbol is *<strong>not</strong>* a string label (<code>:foo</code>) or a part of the symbols array (+%i[foo bar baz]+)</p>
+<pre class="code text"><code class="text">{ &#39;foo&#39;: 1 }
+       ~
+</code></pre>
+
+<p><code>None</code> if symbol is <strong>not</strong> a string label (<code>:foo</code>) or a part of the symbols array (<code>%i[foo bar baz]</code>)</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>{ &#39;foo&#39;: 1 }
-       ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -371,12 +354,12 @@
       <pre class="lines">
 
 
-4367
-4368
-4369</pre>
+3988
+3989
+3990</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4367</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3988</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -399,29 +382,24 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">:foo
+</code></pre>
+
+<p>{ foo: 1 }</p>
+
+<pre class="code ruby"><code class="ruby">
+<span class='qsymbols_beg'>%i[</span><span class='tstring_content'>foo</span><span class='tstring_end'>]</span></span>
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>:foo
-~~~~
-
-{ foo: 1 }
-  ~~~~
-
-%i[foo]
-   ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -442,12 +420,12 @@
       <pre class="lines">
 
 
-4383
-4384
-4385</pre>
+4003
+4004
+4005</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4383</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4003</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -470,12 +448,14 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Value of the symbol literal</p>
+    <p>Value of the symbol literal</p>
 
-<p>Note that it&#39;s a <code>StringValue</code>, not a <code>String</code>. The reason is that you can get UTF-8 incompatible strings from a valid UTF-8 source using escape sequences like <tt>“xFF”</tt></p>
+<p>Note that it&#39;s a <code>StringValue</code>, not a <code>String</code>.
+The reason is that you can get UTF-8 incompatible strings
+from a valid UTF-8 source using escape sequences like <code>&quot;\xFF&quot;</code></p>
 
-<p>These “&quot;, ”x“, ”F“, ”F“ chars are valid separately, but together they construct a char with code = 255 that is invalid for UTF-8.</p>
+<p>These &quot;\&quot;, &quot;x&quot;, &quot;F&quot;, &quot;F&quot; chars are valid separately, but together
+they construct a char with code = 255 that is invalid for UTF-8.</p>
 
 <p>You can use <code>to_string_lossy</code> or <code>to_string</code> methods to get a raw symbol value.</p>
 
@@ -504,12 +484,12 @@
       <pre class="lines">
 
 
-4345
-4346
-4347</pre>
+3966
+3967
+3968</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4345</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3966</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -525,7 +505,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

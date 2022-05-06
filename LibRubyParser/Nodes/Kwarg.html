@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents required keyword argument (i.e. <code>foo</code> in <tt>def m(foo:); end</tt>)</p>
+    <p>Represents required keyword argument (i.e. <code>foo</code> in <code>def m(foo:); end</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of the keyword argument.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of the keyword argument.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the name.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the name.</p>
 </div></span>
   
 </li>
@@ -234,23 +230,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">def foo(bar:); end
+        ~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def foo(bar:); end
-        ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -271,12 +261,12 @@
       <pre class="lines">
 
 
-2489
-2490
-2491</pre>
+2275
+2276
+2277</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2489</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2275</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -299,8 +289,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Name of the keyword argument</p>
+    <p>Name of the keyword argument</p>
 
 
   </div>
@@ -327,12 +316,12 @@
       <pre class="lines">
 
 
-2469
-2470
-2471</pre>
+2257
+2258
+2259</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2469</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2257</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -355,23 +344,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the name</p>
+    <p>Location of the name</p>
+
+<pre class="code text"><code class="text">def foo(bar:); end
+        ~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def foo(bar:); end
-        ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -392,12 +375,12 @@
       <pre class="lines">
 
 
-2479
-2480
-2481</pre>
+2266
+2267
+2268</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2479</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2266</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name_l'>name_l</span>
   <span class='ivar'>@name_l</span>
@@ -413,7 +396,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

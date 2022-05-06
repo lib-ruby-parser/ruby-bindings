@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a <code>case</code> statement (for pattern matching see <code>CaseMatch</code> node)</p>
+    <p>Represents a <code>case</code> statement (for pattern matching see <code>CaseMatch</code> node)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of the <code>else</code> branch, <code>None</code> if there&#39;s no <code>else</code> branch.</p>
+    <span class="summary_desc"><div class='inline'><p>Body of the <code>else</code> branch, <code>None</code> if there&#39;s no <code>else</code> branch.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>else</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>else</code> keyword.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>end</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>end</code> keyword.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Expression given to <code>case</code>, <tt>Int(“1”)</tt> for <tt>case 1; end</tt> <code>None</code> for code like.</p>
+    <span class="summary_desc"><div class='inline'><p>Expression given to <code>case</code>, <code>Int(&quot;1&quot;)</code> for <code>case 1; end</code> <code>None</code> for code like.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>case</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>case</code> keyword.</p>
 </div></span>
   
 </li>
@@ -315,8 +308,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of <code>When</code> nodes (each has <code>patterns</code> and <code>body</code>).</p>
+    <span class="summary_desc"><div class='inline'><p>A list of <code>When</code> nodes (each has <code>patterns</code> and <code>body</code>).</p>
 </div></span>
   
 </li>
@@ -350,8 +342,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of the <code>else</code> branch, <code>None</code> if there&#39;s no <code>else</code> branch</p>
+    <p>Body of the <code>else</code> branch, <code>None</code> if there&#39;s no <code>else</code> branch</p>
 
 
   </div>
@@ -378,12 +369,12 @@
       <pre class="lines">
 
 
-558
-559
-560</pre>
+512
+513
+514</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 558</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 512</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_else_body'>else_body</span>
   <span class='ivar'>@else_body</span>
@@ -406,8 +397,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>else</code> keyword</p>
+    <p>Location of the <code>else</code> keyword</p>
+
+<pre class="code text"><code class="text">case 1; else; end
+        ~~~~
+</code></pre>
 
 <p><code>None</code> if there&#39;s no <code>else</code> branch</p>
 
@@ -416,15 +410,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case 1; else; end
-        ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -445,12 +430,12 @@
       <pre class="lines">
 
 
-579
-580
-581</pre>
+532
+533
+534</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 579</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 532</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_else_l'>else_l</span>
   <span class='ivar'>@else_l</span>
@@ -473,23 +458,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>end</code> keyword</p>
+    <p>Location of the <code>end</code> keyword</p>
+
+<pre class="code text"><code class="text">case 1; end
+        ~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case 1; end
-        ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -510,12 +489,12 @@
       <pre class="lines">
 
 
-589
-590
-591</pre>
+541
+542
+543</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 589</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 541</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -538,24 +517,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Expression given to <code>case</code>, <tt>Int(“1”)</tt> for <tt>case 1; end</tt> <code>None</code> for code like</p>
+    <p>Expression given to <code>case</code>, <code>Int(&quot;1&quot;)</code> for <code>case 1; end</code>
+<code>None</code> for code like</p>
+
+<pre class="code text"><code class="text">case
+when pattern
+end
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code><span class='kw'>case</span>
-<span class='kw'>when</span> <span class='id identifier rubyid_pattern'>pattern</span>
-<span class='kw'>end</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -576,12 +550,12 @@
       <pre class="lines">
 
 
-548
-549
-550</pre>
+504
+505
+506</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 548</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 504</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expr'>expr</span>
   <span class='ivar'>@expr</span>
@@ -604,23 +578,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">case 1; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case 1; end
-~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -641,12 +610,12 @@
       <pre class="lines">
 
 
-599
-600
-601</pre>
+550
+551
+552</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 599</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 550</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -669,23 +638,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>case</code> keyword</p>
+    <p>Location of the <code>case</code> keyword</p>
+
+<pre class="code text"><code class="text">case 1; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case 1; end
-~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -706,12 +670,12 @@
       <pre class="lines">
 
 
-568
-569
-570</pre>
+521
+522
+523</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 568</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 521</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -734,8 +698,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of <code>When</code> nodes (each has <code>patterns</code> and <code>body</code>)</p>
+    <p>A list of <code>When</code> nodes (each has <code>patterns</code> and <code>body</code>)</p>
 
 
   </div>
@@ -762,12 +725,12 @@
       <pre class="lines">
 
 
-553
-554
-555</pre>
+508
+509
+510</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 553</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 508</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_when_bodies'>when_bodies</span>
   <span class='ivar'>@when_bodies</span>
@@ -783,7 +746,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

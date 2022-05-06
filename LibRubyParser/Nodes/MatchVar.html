@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents matching with assignment into a local variable (i.e. <tt>pattern =&gt; var</tt>)</p>
+    <p>Represents matching with assignment into a local variable (i.e. <code>pattern =&gt; var</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of the variable that is assigned if matching succeeds.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of the variable that is assigned if matching succeeds.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the name.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the name.</p>
 </div></span>
   
 </li>
@@ -234,29 +230,23 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
 
-<p>*<strong>Note</strong>* it can also be produced by a hash pattern</p>
+<pre class="code text"><code class="text">case foo; in pattern =&gt; bar; end
+                        ~~~
+</code></pre>
+
+<p><strong>Note</strong> it can also be produced by a hash pattern</p>
+
+<pre class="code text"><code class="text">case foo; in { a: }; end
+               ~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; in pattern =&gt; bar; end
-                        ~~~</code></pre>
-    
-      
-      <pre class="example code"><code>case foo; in { a: }; end
-               ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -277,12 +267,12 @@
       <pre class="lines">
 
 
-3103
-3104
-3105</pre>
+2833
+2834
+2835</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3103</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2833</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -305,8 +295,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Name of the variable that is assigned if matching succeeds</p>
+    <p>Name of the variable that is assigned if matching succeeds</p>
 
 
   </div>
@@ -333,12 +322,12 @@
       <pre class="lines">
 
 
-3071
-3072
-3073</pre>
+2801
+2802
+2803</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3071</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2801</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -361,29 +350,23 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the name</p>
+    <p>Location of the name</p>
 
-<p>*<strong>Note</strong>* it can also be produced by a hash pattern</p>
+<pre class="code text"><code class="text">case foo; in pattern =&gt; bar; end
+                        ~~~
+</code></pre>
+
+<p><strong>Note</strong> it can also be produced by a hash pattern</p>
+
+<pre class="code text"><code class="text">case foo; in { a: }; end
+               ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; in pattern =&gt; bar; end
-                        ~~~</code></pre>
-    
-      
-      <pre class="example code"><code>case foo; in { a: }; end
-               ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -404,12 +387,12 @@
       <pre class="lines">
 
 
-3087
-3088
-3089</pre>
+2817
+2818
+2819</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3087</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2817</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name_l'>name_l</span>
   <span class='ivar'>@name_l</span>
@@ -425,7 +408,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

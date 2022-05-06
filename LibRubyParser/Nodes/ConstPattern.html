@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Const pattern used in pattern matching (e.g. <tt>in A(1, 2)</tt>)</p>
+    <p>Const pattern used in pattern matching (e.g. <code>in A(1, 2)</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the open parenthesis.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the open parenthesis.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Constant that is used, <tt>Const(“Foo”)</tt> for <tt>in For(42)</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Constant that is used, <code>Const(&quot;Foo&quot;)</code> for <code>in For(42)</code>.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the closing parenthesis.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the closing parenthesis.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Inner part of the constant pattern.</p>
+    <span class="summary_desc"><div class='inline'><p>Inner part of the constant pattern.</p>
 </div></span>
   
 </li>
@@ -292,23 +286,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the open parenthesis</p>
+    <p>Location of the open parenthesis</p>
+
+<pre class="code text"><code class="text">case 1; in Foo(42); end
+              ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case 1; in Foo(42); end
-              ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -329,12 +317,12 @@
       <pre class="lines">
 
 
-917
-918
-919</pre>
+839
+840
+841</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 917</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 839</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -357,8 +345,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Constant that is used, <tt>Const(“Foo”)</tt> for <tt>in For(42)</tt></p>
+    <p>Constant that is used, <code>Const(&quot;Foo&quot;)</code> for <code>in For(42)</code></p>
 
 
   </div>
@@ -385,12 +372,12 @@
       <pre class="lines">
 
 
-900
-901
-902</pre>
+824
+825
+826</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 900</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 824</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_const'>const</span>
   <span class='ivar'>@const</span>
@@ -413,23 +400,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the closing parenthesis</p>
+    <p>Location of the closing parenthesis</p>
+
+<pre class="code text"><code class="text">case 1; in Foo(42); end
+                 ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case 1; in Foo(42); end
-                 ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -450,12 +431,12 @@
       <pre class="lines">
 
 
-927
-928
-929</pre>
+848
+849
+850</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 927</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 848</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -478,23 +459,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">case 1; in Foo(42); end
+           ~~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case 1; in Foo(42); end
-           ~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -515,12 +490,12 @@
       <pre class="lines">
 
 
-937
-938
-939</pre>
+857
+858
+859</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 937</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 857</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -543,10 +518,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Inner part of the constant pattern</p>
+    <p>Inner part of the constant pattern</p>
 
-<p><tt>ArrayPattern(vec![ Int(“1”) ])</tt> for <tt>Foo(1)</tt></p>
+<p><code>ArrayPattern(vec![ Int(&quot;1&quot;) ])</code> for <code>Foo(1)</code></p>
 
 
   </div>
@@ -573,12 +547,12 @@
       <pre class="lines">
 
 
-907
-908
-909</pre>
+830
+831
+832</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 907</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 830</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pattern'>pattern</span>
   <span class='ivar'>@pattern</span>
@@ -594,7 +568,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

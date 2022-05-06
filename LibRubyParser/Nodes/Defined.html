@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a <tt>defined?(foo)</tt> expression</p>
+    <p>Represents a <code>defined?(foo)</code> expression</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the open parenthesis.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the open parenthesis.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the closing parenthesis.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the closing parenthesis.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>defined?</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>defined?</code> keyword.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Value given to <code>defined?</code>.</p>
+    <span class="summary_desc"><div class='inline'><p>Value given to <code>defined?</code>.</p>
 </div></span>
   
 </li>
@@ -292,8 +286,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the open parenthesis</p>
+    <p>Location of the open parenthesis</p>
+
+<pre class="code text"><code class="text">defined?(foo)
+        ~
+</code></pre>
 
 <p><code>None</code> if there are no parentheses</p>
 
@@ -302,15 +299,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>defined?(foo)
-        ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -331,12 +319,12 @@
       <pre class="lines">
 
 
-1192
-1193
-1194</pre>
+1092
+1093
+1094</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1192</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1092</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -359,8 +347,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the closing parenthesis</p>
+    <p>Location of the closing parenthesis</p>
+
+<pre class="code text"><code class="text">defined?(foo)
+            ~
+</code></pre>
 
 <p><code>None</code> if there are no parentheses</p>
 
@@ -369,15 +360,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>defined?(foo)
-            ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -398,12 +380,12 @@
       <pre class="lines">
 
 
-1203
-1204
-1205</pre>
+1103
+1104
+1105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1203</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1103</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -426,23 +408,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">defined?(foo)
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>defined?(foo)
-~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -463,12 +440,12 @@
       <pre class="lines">
 
 
-1213
-1214
-1215</pre>
+1112
+1113
+1114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1213</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -491,23 +468,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>defined?</code> keyword</p>
+    <p>Location of the <code>defined?</code> keyword</p>
+
+<pre class="code text"><code class="text">defined?(foo)
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>defined?(foo)
-~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -528,12 +500,12 @@
       <pre class="lines">
 
 
-1181
-1182
-1183</pre>
+1081
+1082
+1083</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1181</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1081</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -556,8 +528,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Value given to <code>defined?</code></p>
+    <p>Value given to <code>defined?</code></p>
 
 
   </div>
@@ -584,12 +555,12 @@
       <pre class="lines">
 
 
-1171
-1172
-1173</pre>
+1072
+1073
+1074</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1171</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1072</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -605,7 +576,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

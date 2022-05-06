@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents an executable string (i.e. + <tt>sh #{script_name}</tt> +)</p>
+    <p>Represents an executable string (i.e. <code>`sh #{script_name}`</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the string begin.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the string begin.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the string end.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the string end.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of string parts (static literals and interpolated expressions).</p>
+    <span class="summary_desc"><div class='inline'><p>A list of string parts (static literals and interpolated expressions).</p>
 </div></span>
   
 </li>
@@ -263,26 +258,21 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the string begin</p>
+    <p>Location of the string begin</p>
+
+<pre class="code text"><code class="text">`#{foo}`
+~
+
+%X{#{foo}}
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>`#{foo}`
-~
-
-%X{#{foo}}
-~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -303,12 +293,12 @@
       <pre class="lines">
 
 
-4773
-4774
-4775</pre>
+4361
+4362
+4363</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4773</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4361</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -331,26 +321,20 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the string end</p>
+    <p>Location of the string end</p>
+
+<pre class="code text"><code class="text">`#{foo}`
+       ~
+
+%X{#{foo}}
+         ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>`#{foo}`
-       ~
-
-%X{#{foo}}
-         ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -371,12 +355,12 @@
       <pre class="lines">
 
 
-4786
-4787
-4788</pre>
+4373
+4374
+4375</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4786</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4373</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -399,26 +383,20 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">`#{foo}`
+</code></pre>
+
+<p>%X#{foo}</p>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>`#{foo}`
-~~~~~~~~
-
-%X{#{foo}}
-~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -439,12 +417,12 @@
       <pre class="lines">
 
 
-4799
-4800
-4801</pre>
+4385
+4386
+4387</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4799</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4385</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -467,8 +445,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of string parts (static literals and interpolated expressions)</p>
+    <p>A list of string parts (static literals and interpolated expressions)</p>
 
 
   </div>
@@ -495,12 +472,12 @@
       <pre class="lines">
 
 
-4760
-4761
-4762</pre>
+4349
+4350
+4351</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4760</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4349</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parts'>parts</span>
   <span class='ivar'>@parts</span>
@@ -516,7 +493,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

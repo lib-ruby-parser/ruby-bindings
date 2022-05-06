@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a block of code with <code>ensure</code> (i.e. <tt>begin; ensure; end</tt>)</p>
+    <p>Represents a block of code with <code>ensure</code> (i.e. <code>begin; ensure; end</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Block of code that is wrapped into <code>ensure</code> *<strong>Note</strong>*: that&#39;s the body of the <code>ensure</code> block.</p>
+    <span class="summary_desc"><div class='inline'><p>Block of code that is wrapped into <code>ensure</code> <strong>Note</strong>: that&#39;s the body of the <code>ensure</code> block.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of the <code>ensure</code> block.</p>
+    <span class="summary_desc"><div class='inline'><p>Body of the <code>ensure</code> block.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>ensure</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>ensure</code> keyword.</p>
 </div></span>
   
 </li>
@@ -263,10 +258,10 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Block of code that is wrapped into <code>ensure</code> *<strong>Note</strong>*: that&#39;s the body of the <code>ensure</code> block</p>
+    <p>Block of code that is wrapped into <code>ensure</code>
+<strong>Note</strong>: that&#39;s the body of the <code>ensure</code> block</p>
 
-<p><tt>Int(“1”)</tt> for <tt>begin; 1; ensure; 2; end</tt></p>
+<p><code>Int(&quot;1&quot;)</code> for <code>begin; 1; ensure; 2; end</code></p>
 
 
   </div>
@@ -293,12 +288,12 @@
       <pre class="lines">
 
 
-1477
-1478
-1479</pre>
+1355
+1356
+1357</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1477</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1355</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -321,10 +316,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of the <code>ensure</code> block</p>
+    <p>Body of the <code>ensure</code> block</p>
 
-<p><tt>Int(“2”)</tt> for <tt>begin; 1; ensure; 2; end</tt></p>
+<p><code>Int(&quot;2&quot;)</code> for <code>begin; 1; ensure; 2; end</code></p>
 
 
   </div>
@@ -351,12 +345,12 @@
       <pre class="lines">
 
 
-1484
-1485
-1486</pre>
+1361
+1362
+1363</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1484</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1361</span>
 
 <span class='kw'>def</span> <span class='kw'>ensure</span>
   <span class='ivar'>@ensure</span>
@@ -379,25 +373,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
 
-<p>*<strong>Note</strong>*: begin/end belong to <code>KwBegin</code> node.</p>
+<pre class="code text"><code class="text">begin; 1; rescue; 2; else; 3; ensure; 4; end
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</code></pre>
+
+<p><strong>Note</strong>: begin/end belong to <code>KwBegin</code> node.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; 1; rescue; 2; else; 3; ensure; 4; end
-       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -418,12 +406,12 @@
       <pre class="lines">
 
 
-1505
-1506
-1507</pre>
+1381
+1382
+1383</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1505</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1381</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -446,23 +434,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>ensure</code> keyword</p>
+    <p>Location of the <code>ensure</code> keyword</p>
+
+<pre class="code text"><code class="text">begin; ensure; end
+       ~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; ensure; end
-       ~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -483,12 +465,12 @@
       <pre class="lines">
 
 
-1494
-1495
-1496</pre>
+1370
+1371
+1372</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1494</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1370</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -504,7 +486,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

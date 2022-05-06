@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a key/value pair (e.g. a part of the <code>Hash</code> node)</p>
+    <p>Represents a key/value pair (e.g. a part of the <code>Hash</code> node)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Key of the pair.</p>
+    <span class="summary_desc"><div class='inline'><p>Key of the pair.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>:</code> or <tt>=&gt;</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>:</code> or <code>=&gt;</code> operator.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Value of the pair.</p>
+    <span class="summary_desc"><div class='inline'><p>Value of the pair.</p>
 </div></span>
   
 </li>
@@ -263,26 +258,20 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">{ foo: bar }
+</code></pre>
+
+<p>{ :foo =&gt; bar }</p>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>{ foo: bar }
-  ~~~~~~~~
-
-{ :foo =&gt; bar }
-  ~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -303,12 +292,12 @@
       <pre class="lines">
 
 
-3539
-3540
-3541</pre>
+3224
+3225
+3226</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3539</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3224</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -331,8 +320,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Key of the pair</p>
+    <p>Key of the pair</p>
 
 
   </div>
@@ -359,12 +347,12 @@
       <pre class="lines">
 
 
-3508
-3509
-3510</pre>
+3196
+3197
+3198</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3508</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3196</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_key'>key</span>
   <span class='ivar'>@key</span>
@@ -387,26 +375,20 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>:</code> or <tt>=&gt;</tt> operator</p>
+    <p>Location of the <code>:</code> or <code>=&gt;</code> operator</p>
+
+<pre class="code text"><code class="text">{ foo: bar }
+     ~
+
+{ :foo =&gt; bar }
+       ~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>{ foo: bar }
-     ~
-
-{ :foo =&gt; bar }
-       ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -427,12 +409,12 @@
       <pre class="lines">
 
 
-3526
-3527
-3528</pre>
+3212
+3213
+3214</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3526</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3212</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -455,8 +437,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Value of the pair</p>
+    <p>Value of the pair</p>
 
 
   </div>
@@ -483,12 +464,12 @@
       <pre class="lines">
 
 
-3513
-3514
-3515</pre>
+3200
+3201
+3202</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3513</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3200</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -504,7 +485,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

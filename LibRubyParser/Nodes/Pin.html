@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a pattern based on a “pinned” variable (e.g. <tt>^foo</tt>)</p>
+    <p>Represents a pattern based on a &quot;pinned&quot; variable (e.g. <code>^foo</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>^</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>^</code> operator.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Variable that is pinned.</p>
+    <span class="summary_desc"><div class='inline'><p>Variable that is pinned.</p>
 </div></span>
   
 </li>
@@ -234,23 +230,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">case foo; in ^bar; end
+             ~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; in ^bar; end
-             ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -271,12 +261,12 @@
       <pre class="lines">
 
 
-3568
-3569
-3570</pre>
+3250
+3251
+3252</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3568</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3250</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -299,23 +289,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>^</tt> operator</p>
+    <p>Location of the <code>^</code> operator</p>
+
+<pre class="code text"><code class="text">case foo; in ^bar; end
+             ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; in ^bar; end
-             ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -336,12 +320,12 @@
       <pre class="lines">
 
 
-3558
-3559
-3560</pre>
+3241
+3242
+3243</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3558</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3241</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_selector_l'>selector_l</span>
   <span class='ivar'>@selector_l</span>
@@ -364,8 +348,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Variable that is pinned</p>
+    <p>Variable that is pinned</p>
 
 
   </div>
@@ -392,12 +375,12 @@
       <pre class="lines">
 
 
-3548
-3549
-3550</pre>
+3232
+3233
+3234</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3548</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3232</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_var'>var</span>
   <span class='ivar'>@var</span>
@@ -413,7 +396,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

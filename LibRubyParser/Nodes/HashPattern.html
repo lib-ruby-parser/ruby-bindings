@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a hash pattern used in pattern matching (i.e. <tt>in { a: 1 }</tt>)</p>
+    <p>Represents a hash pattern used in pattern matching (i.e. <code>in { a: 1 }</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the open parenthesis.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the open parenthesis.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of inner patterns.</p>
+    <span class="summary_desc"><div class='inline'><p>A list of inner patterns.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the open parenthesis.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the open parenthesis.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -263,8 +258,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the open parenthesis</p>
+    <p>Location of the open parenthesis</p>
+
+<pre class="code text"><code class="text">case foo; in { a: 1 }; end
+             ~
+</code></pre>
 
 <p><code>None</code> if there are no parentheses</p>
 
@@ -273,15 +271,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; in { a: 1 }; end
-             ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -302,12 +291,12 @@
       <pre class="lines">
 
 
-1866
-1867
-1868</pre>
+1713
+1714
+1715</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1866</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1713</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -330,8 +319,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of inner patterns</p>
+    <p>A list of inner patterns</p>
 
 
   </div>
@@ -358,12 +346,12 @@
       <pre class="lines">
 
 
-1855
-1856
-1857</pre>
+1702
+1703
+1704</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1855</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1702</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_elements'>elements</span>
   <span class='ivar'>@elements</span>
@@ -386,8 +374,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the open parenthesis</p>
+    <p>Location of the open parenthesis</p>
+
+<pre class="code text"><code class="text">case foo; in { a: 1 }; end
+                    ~
+</code></pre>
 
 <p><code>None</code> if there are no parentheses</p>
 
@@ -396,15 +387,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; in { a: 1 }; end
-                    ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -425,12 +407,12 @@
       <pre class="lines">
 
 
-1877
-1878
-1879</pre>
+1724
+1725
+1726</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1877</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1724</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -453,23 +435,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">case foo; in { a: 1 }; end
+             ~~~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; in { a: 1 }; end
-             ~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -490,12 +466,12 @@
       <pre class="lines">
 
 
-1887
-1888
-1889</pre>
+1733
+1734
+1735</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1887</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1733</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -511,7 +487,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

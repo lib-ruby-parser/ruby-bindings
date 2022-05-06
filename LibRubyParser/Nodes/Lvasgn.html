@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents local variable assignment (i.e. <tt>foo = 42</tt>)</p>
+    <p>Represents local variable assignment (i.e. <code>foo = 42</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of the local variable.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of the local variable.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the local variable name.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the local variable name.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>=</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>=</code> operator.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Value that is assigned to a local variable.</p>
+    <span class="summary_desc"><div class='inline'><p>Value that is assigned to a local variable.</p>
 </div></span>
   
 </li>
@@ -292,23 +286,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">foo = 42
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo = 42
-~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -329,12 +318,12 @@
       <pre class="lines">
 
 
-2785
-2786
-2787</pre>
+2544
+2545
+2546</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2785</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2544</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -357,8 +346,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Name of the local variable</p>
+    <p>Name of the local variable</p>
 
 
   </div>
@@ -385,12 +373,12 @@
       <pre class="lines">
 
 
-2748
-2749
-2750</pre>
+2510
+2511
+2512</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2748</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2510</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -413,23 +401,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the local variable name</p>
+    <p>Location of the local variable name</p>
+
+<pre class="code text"><code class="text">foo = 42
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo = 42
-~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -450,12 +433,12 @@
       <pre class="lines">
 
 
-2763
-2764
-2765</pre>
+2523
+2524
+2525</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2763</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2523</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name_l'>name_l</span>
   <span class='ivar'>@name_l</span>
@@ -478,25 +461,20 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>=</tt> operator</p>
+    <p>Location of the <code>=</code> operator</p>
 
-<p><code>None</code> if local variable assignment is a part of the multi-assignment. In such case <code>value</code> is a part of the <code>Masgn</code> node.</p>
+<pre class="code text"><code class="text">foo = 42
+    ~
+</code></pre>
+
+<p><code>None</code> if local variable assignment is a part of the multi-assignment.
+In such case <code>value</code> is a part of the <code>Masgn</code> node.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo = 42
-    ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -517,12 +495,12 @@
       <pre class="lines">
 
 
-2775
-2776
-2777</pre>
+2535
+2536
+2537</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2775</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2535</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -545,8 +523,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Value that is assigned to a local variable</p>
+    <p>Value that is assigned to a local variable</p>
 
 
   </div>
@@ -573,12 +550,12 @@
       <pre class="lines">
 
 
-2753
-2754
-2755</pre>
+2514
+2515
+2516</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2753</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2514</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -594,7 +571,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

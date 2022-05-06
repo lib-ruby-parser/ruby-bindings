@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents matching with renaming into specified local variable (i.e. <tt>case 1; in Integer =&gt; a; end</tt>)</p>
+    <p>Represents matching with renaming into specified local variable (i.e. <code>case 1; in Integer =&gt; a; end</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Variable that is assigned if matched (see <code>MatchVar</code> node).</p>
+    <span class="summary_desc"><div class='inline'><p>Variable that is assigned if matched (see <code>MatchVar</code> node).</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>=&gt;</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>=&gt;</code> operator.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Pattern that is used for matching.</p>
+    <span class="summary_desc"><div class='inline'><p>Pattern that is used for matching.</p>
 </div></span>
   
 </li>
@@ -263,8 +258,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Variable that is assigned if matched (see <code>MatchVar</code> node)</p>
+    <p>Variable that is assigned if matched (see <code>MatchVar</code> node)</p>
 
 
   </div>
@@ -291,12 +285,12 @@
       <pre class="lines">
 
 
-2867
-2868
-2869</pre>
+2616
+2617
+2618</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2867</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2616</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_as'>as</span>
   <span class='ivar'>@as</span>
@@ -319,23 +313,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">case 1; in Integer =&gt; a; end
+           ~~~~~~~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case 1; in Integer =&gt; a; end
-           ~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -356,12 +344,12 @@
       <pre class="lines">
 
 
-2887
-2888
-2889</pre>
+2634
+2635
+2636</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2887</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2634</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -384,23 +372,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>=&gt;</tt> operator</p>
+    <p>Location of the <code>=&gt;</code> operator</p>
+
+<pre class="code text"><code class="text">case 1; in Integer =&gt; a; end
+                   ~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case 1; in Integer =&gt; a; end
-                   ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -421,12 +403,12 @@
       <pre class="lines">
 
 
-2877
-2878
-2879</pre>
+2625
+2626
+2627</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2877</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2625</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -449,8 +431,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Pattern that is used for matching</p>
+    <p>Pattern that is used for matching</p>
 
 
   </div>
@@ -477,12 +458,12 @@
       <pre class="lines">
 
 
-2862
-2863
-2864</pre>
+2612
+2613
+2614</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2862</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2612</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -498,7 +479,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

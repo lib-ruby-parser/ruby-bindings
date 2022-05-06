@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents pattern matching using one of the given patterns (i.e. <tt>foo in 1 | 2</tt>)</p>
+    <p>Represents pattern matching using one of the given patterns (i.e. <code>foo in 1 | 2</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Left pattern.</p>
+    <span class="summary_desc"><div class='inline'><p>Left pattern.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>|</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>|</code> operator.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Right pattern.</p>
+    <span class="summary_desc"><div class='inline'><p>Right pattern.</p>
 </div></span>
   
 </li>
@@ -263,23 +258,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">foo in 1 | 2
+       ~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo in 1 | 2
-       ~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -300,12 +289,12 @@
       <pre class="lines">
 
 
-2853
-2854
-2855</pre>
+2604
+2605
+2606</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2853</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2604</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -328,8 +317,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Left pattern</p>
+    <p>Left pattern</p>
 
 
   </div>
@@ -356,12 +344,12 @@
       <pre class="lines">
 
 
-2828
-2829
-2830</pre>
+2582
+2583
+2584</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2828</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2582</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lhs'>lhs</span>
   <span class='ivar'>@lhs</span>
@@ -384,23 +372,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>|</tt> operator</p>
+    <p>Location of the <code>|</code> operator</p>
+
+<pre class="code text"><code class="text">foo in 1 | 2
+         ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo in 1 | 2
-         ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -421,12 +403,12 @@
       <pre class="lines">
 
 
-2843
-2844
-2845</pre>
+2595
+2596
+2597</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2843</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2595</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -449,8 +431,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Right pattern</p>
+    <p>Right pattern</p>
 
 
   </div>
@@ -477,12 +458,12 @@
       <pre class="lines">
 
 
-2833
-2834
-2835</pre>
+2586
+2587
+2588</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2833</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2586</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rhs'>rhs</span>
   <span class='ivar'>@rhs</span>
@@ -498,7 +479,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

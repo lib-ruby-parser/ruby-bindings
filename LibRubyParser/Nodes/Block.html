@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a Ruby block that is passed to a method (+proc { |foo| bar }+)</p>
+    <p>Represents a Ruby block that is passed to a method (<code>proc { |foo| bar }</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of argument that block takes.</p>
+    <span class="summary_desc"><div class='inline'><p>A list of argument that block takes.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the open brace.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the open brace.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Block body, <code>None</code> if block has no body.</p>
+    <span class="summary_desc"><div class='inline'><p>Block body, <code>None</code> if block has no body.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Method call that takes a block.</p>
+    <span class="summary_desc"><div class='inline'><p>Method call that takes a block.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the closing brace.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the closing brace.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -321,10 +314,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of argument that block takes</p>
+    <p>A list of argument that block takes</p>
 
-<p><tt>vec![ Arg(“a”), Optarg(“b”, Int(“1”)) ]</tt> for <tt>proc { |a, b = 1| }</tt></p>
+<p><code>vec![ Arg(&quot;a&quot;), Optarg(&quot;b&quot;, Int(&quot;1&quot;)) ]</code> for <code>proc { |a, b = 1| }</code></p>
 
 <p><code>None</code> if the block takes no arguments</p>
 
@@ -353,12 +345,12 @@
       <pre class="lines">
 
 
-398
-399
-400</pre>
+369
+370
+371</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 398</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 369</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_args'>args</span>
   <span class='ivar'>@args</span>
@@ -381,23 +373,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the open brace</p>
+    <p>Location of the open brace</p>
+
+<pre class="code text"><code class="text">proc { }
+     ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>proc { }
-     ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -418,12 +404,12 @@
       <pre class="lines">
 
 
-413
-414
-415</pre>
+382
+383
+384</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 413</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 382</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -446,8 +432,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Block body, <code>None</code> if block has no body.</p>
+    <p>Block body, <code>None</code> if block has no body.</p>
 
 
   </div>
@@ -474,12 +459,12 @@
       <pre class="lines">
 
 
-403
-404
-405</pre>
+373
+374
+375</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 403</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 373</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -502,10 +487,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Method call that takes a block</p>
+    <p>Method call that takes a block</p>
 
-<p><tt>Send(“foo”)</tt> in <tt>foo {}</tt></p>
+<p><code>Send(&quot;foo&quot;)</code> in <code>foo {}</code></p>
 
 
   </div>
@@ -532,12 +516,12 @@
       <pre class="lines">
 
 
-389
-390
-391</pre>
+361
+362
+363</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 389</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 361</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span>
   <span class='ivar'>@call</span>
@@ -560,23 +544,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the closing brace</p>
+    <p>Location of the closing brace</p>
+
+<pre class="code text"><code class="text">proc { }
+       ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>proc { }
-       ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -597,12 +575,12 @@
       <pre class="lines">
 
 
-423
-424
-425</pre>
+391
+392
+393</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 423</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 391</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -625,23 +603,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">proc { }
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>proc { }
-~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -662,12 +635,12 @@
       <pre class="lines">
 
 
-433
-434
-435</pre>
+400
+401
+402</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 433</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 400</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -683,7 +656,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:46 2021 by
+  Generated on Fri May  6 23:53:59 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

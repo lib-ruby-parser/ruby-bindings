@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a wildcard pattern used in pattern matching (i.e. <tt>in *foo</tt>)</p>
+    <p>Represents a wildcard pattern used in pattern matching (i.e. <code>in *foo</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>*</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>*</code> operator.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of the variable name.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of the variable name.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>*</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>*</code> operator.</p>
 </div></span>
   
 </li>
@@ -234,23 +230,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>*</tt> operator</p>
+    <p>Location of the <code>*</code> operator</p>
+
+<pre class="code text"><code class="text">case foo; in *bar; end
+             ~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; in *bar; end
-             ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -271,12 +261,12 @@
       <pre class="lines">
 
 
-3062
-3063
-3064</pre>
+2793
+2794
+2795</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3062</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2793</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -299,10 +289,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Name of the variable name</p>
+    <p>Name of the variable name</p>
 
-<p><code>None</code> if there&#39;s no name (i.e. <tt>in *</tt>)</p>
+<p><code>None</code> if there&#39;s no name (i.e. <code>in *</code>)</p>
 
 
   </div>
@@ -329,12 +318,12 @@
       <pre class="lines">
 
 
-3042
-3043
-3044</pre>
+2775
+2776
+2777</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3042</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2775</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -357,23 +346,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>*</tt> operator</p>
+    <p>Location of the <code>*</code> operator</p>
+
+<pre class="code text"><code class="text">case foo; in *bar; end
+             ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; in *bar; end
-             ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -394,12 +377,12 @@
       <pre class="lines">
 
 
-3052
-3053
-3054</pre>
+2784
+2785
+2786</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3052</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2784</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -415,7 +398,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

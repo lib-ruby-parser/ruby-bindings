@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents method definition using <code>def</code> keyword (not on a singleton, see <code>Defs</code> node).</p>
+    <p>Represents method definition using <code>def</code> keyword (not on a singleton, see <code>Defs</code> node).</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Arguments of a method, <code>None</code> if there&#39;s no arguments.</p>
+    <span class="summary_desc"><div class='inline'><p>Arguments of a method, <code>None</code> if there&#39;s no arguments.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>=</tt> operator for endless method definition.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>=</code> operator for endless method definition.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of a method, <code>None</code> if there&#39;s no body.</p>
+    <span class="summary_desc"><div class='inline'><p>Body of a method, <code>None</code> if there&#39;s no body.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>end</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>end</code> keyword.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>def</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>def</code> keyword.</p>
 </div></span>
   
 </li>
@@ -315,8 +308,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of the method, <tt>String(“foo”)</tt> for <tt>def foo; end</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of the method, <code>String(&quot;foo&quot;)</code> for <code>def foo; end</code>.</p>
 </div></span>
   
 </li>
@@ -344,8 +336,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the method name.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the method name.</p>
 </div></span>
   
 </li>
@@ -379,8 +370,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Arguments of a method, <code>None</code> if there&#39;s no arguments.</p>
+    <p>Arguments of a method, <code>None</code> if there&#39;s no arguments.</p>
 
 <p>All information about parentheses around arguments is stored in this node.</p>
 
@@ -409,12 +399,12 @@
       <pre class="lines">
 
 
-1105
-1106
-1107</pre>
+1011
+1012
+1013</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1105</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1011</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_args'>args</span>
   <span class='ivar'>@args</span>
@@ -437,8 +427,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>=</tt> operator for endless method definition</p>
+    <p>Location of the <code>=</code> operator for endless method definition</p>
+
+<pre class="code text"><code class="text">def m() = 1
+        ~
+</code></pre>
 
 <p><code>None</code> for regular method definition</p>
 
@@ -447,15 +440,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def m() = 1
-        ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -476,12 +460,12 @@
       <pre class="lines">
 
 
-1152
-1153
-1154</pre>
+1055
+1056
+1057</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1152</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1055</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assignment_l'>assignment_l</span>
   <span class='ivar'>@assignment_l</span>
@@ -504,8 +488,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of a method, <code>None</code> if there&#39;s no body.</p>
+    <p>Body of a method, <code>None</code> if there&#39;s no body.</p>
 
 
   </div>
@@ -532,12 +515,12 @@
       <pre class="lines">
 
 
-1110
-1111
-1112</pre>
+1015
+1016
+1017</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1110</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1015</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -560,8 +543,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>end</code> keyword.</p>
+    <p>Location of the <code>end</code> keyword.</p>
+
+<pre class="code text"><code class="text">def foo; end
+         ~~~
+</code></pre>
 
 <p><code>None</code> for endless method definition</p>
 
@@ -570,15 +556,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def foo; end
-         ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -599,12 +576,12 @@
       <pre class="lines">
 
 
-1141
-1142
-1143</pre>
+1044
+1045
+1046</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1141</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1044</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -627,23 +604,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">def m(a); foo; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def m(a); foo; end
-~~~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -664,12 +636,12 @@
       <pre class="lines">
 
 
-1162
-1163
-1164</pre>
+1064
+1065
+1066</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1162</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1064</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -692,23 +664,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>def</code> keyword.</p>
+    <p>Location of the <code>def</code> keyword.</p>
+
+<pre class="code text"><code class="text">def foo; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def foo; end
-~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -729,12 +696,12 @@
       <pre class="lines">
 
 
-1120
-1121
-1122</pre>
+1024
+1025
+1026</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1120</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1024</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -757,8 +724,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Name of the method, <tt>String(“foo”)</tt> for <tt>def foo; end</tt></p>
+    <p>Name of the method, <code>String(&quot;foo&quot;)</code> for <code>def foo; end</code></p>
 
 
   </div>
@@ -785,12 +751,12 @@
       <pre class="lines">
 
 
-1098
-1099
-1100</pre>
+1005
+1006
+1007</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1098</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1005</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -813,23 +779,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the method name.</p>
+    <p>Location of the method name.</p>
+
+<pre class="code text"><code class="text">def foo; end
+    ~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def foo; end
-    ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -850,12 +810,12 @@
       <pre class="lines">
 
 
-1130
-1131
-1132</pre>
+1033
+1034
+1035</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1130</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1033</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name_l'>name_l</span>
   <span class='ivar'>@name_l</span>
@@ -871,7 +831,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents ternary <code>if</code> statement (i.e. <tt>cond ? if_true : if_false</tt>)</p>
+    <p>Represents ternary <code>if</code> statement (i.e. <code>cond ? if_true : if_false</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>:</code> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>:</code> operator.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Condition of the <code>if</code> statement.</p>
+    <span class="summary_desc"><div class='inline'><p>Condition of the <code>if</code> statement.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>True-branch.</p>
+    <span class="summary_desc"><div class='inline'><p>True-branch.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>True-branch.</p>
+    <span class="summary_desc"><div class='inline'><p>True-branch.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>?</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>?</code> operator.</p>
 </div></span>
   
 </li>
@@ -321,23 +314,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>:</code> operator</p>
+    <p>Location of the <code>:</code> operator</p>
+
+<pre class="code text"><code class="text">cond ? if_true : if_false
+               ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>cond ? if_true : if_false
-               ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -358,12 +345,12 @@
       <pre class="lines">
 
 
-2160
-2161
-2162</pre>
+1980
+1981
+1982</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2160</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1980</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_colon_l'>colon_l</span>
   <span class='ivar'>@colon_l</span>
@@ -386,8 +373,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Condition of the <code>if</code> statement</p>
+    <p>Condition of the <code>if</code> statement</p>
 
 
   </div>
@@ -414,12 +400,12 @@
       <pre class="lines">
 
 
-2130
-2131
-2132</pre>
+1954
+1955
+1956</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2130</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1954</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cond'>cond</span>
   <span class='ivar'>@cond</span>
@@ -442,23 +428,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">cond ? if_true : if_false
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>cond ? if_true : if_false
-~~~~~~~~~~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -479,12 +460,12 @@
       <pre class="lines">
 
 
-2170
-2171
-2172</pre>
+1989
+1990
+1991</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2170</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1989</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -507,8 +488,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>True-branch</p>
+    <p>True-branch</p>
 
 
   </div>
@@ -535,12 +515,12 @@
       <pre class="lines">
 
 
-2140
-2141
-2142</pre>
+1962
+1963
+1964</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2140</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1962</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_if_false'>if_false</span>
   <span class='ivar'>@if_false</span>
@@ -563,8 +543,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>True-branch</p>
+    <p>True-branch</p>
 
 
   </div>
@@ -591,12 +570,12 @@
       <pre class="lines">
 
 
-2135
-2136
-2137</pre>
+1958
+1959
+1960</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2135</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1958</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_if_true'>if_true</span>
   <span class='ivar'>@if_true</span>
@@ -619,23 +598,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>?</tt> operator</p>
+    <p>Location of the <code>?</code> operator</p>
+
+<pre class="code text"><code class="text">cond ? if_true : if_false
+     ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>cond ? if_true : if_false
-     ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -656,12 +629,12 @@
       <pre class="lines">
 
 
-2150
-2151
-2152</pre>
+1971
+1972
+1973</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2150</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1971</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_question_l'>question_l</span>
   <span class='ivar'>@question_l</span>
@@ -677,7 +650,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

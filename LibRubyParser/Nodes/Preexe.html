@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents <tt>BEGIN { … }</tt> statement</p>
+    <p>Represents <code>BEGIN { ... }</code> statement</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the open parenthesis.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the open parenthesis.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of the block.</p>
+    <span class="summary_desc"><div class='inline'><p>Body of the block.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the closing parenthesis.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the closing parenthesis.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>BEGIN</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>BEGIN</code> keyword.</p>
 </div></span>
   
 </li>
@@ -292,23 +286,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the open parenthesis</p>
+    <p>Location of the open parenthesis</p>
+
+<pre class="code text"><code class="text">BEGIN { 42 }
+      ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>BEGIN { 42 }
-      ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -329,12 +317,12 @@
       <pre class="lines">
 
 
-3646
-3647
-3648</pre>
+3320
+3321
+3322</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3646</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3320</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -357,8 +345,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of the block</p>
+    <p>Body of the block</p>
 
 
   </div>
@@ -385,12 +372,12 @@
       <pre class="lines">
 
 
-3626
-3627
-3628</pre>
+3302
+3303
+3304</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3626</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3302</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -413,23 +400,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the closing parenthesis</p>
+    <p>Location of the closing parenthesis</p>
+
+<pre class="code text"><code class="text">BEGIN { 42 }
+           ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>BEGIN { 42 }
-           ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -450,12 +431,12 @@
       <pre class="lines">
 
 
-3656
-3657
-3658</pre>
+3329
+3330
+3331</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3656</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3329</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -478,23 +459,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">BEGIN { 42 }
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>BEGIN { 42 }
-~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -515,12 +491,12 @@
       <pre class="lines">
 
 
-3666
-3667
-3668</pre>
+3338
+3339
+3340</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3666</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3338</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -543,23 +519,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>BEGIN</code> keyword</p>
+    <p>Location of the <code>BEGIN</code> keyword</p>
+
+<pre class="code text"><code class="text">BEGIN { 42 }
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>BEGIN { 42 }
-~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -580,12 +551,12 @@
       <pre class="lines">
 
 
-3636
-3637
-3638</pre>
+3311
+3312
+3313</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3636</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3311</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -601,7 +572,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

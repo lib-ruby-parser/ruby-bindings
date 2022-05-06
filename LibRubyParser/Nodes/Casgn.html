@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a constant assignment (i.e. <tt>A = 1</tt>)</p>
+    <p>Represents a constant assignment (i.e. <code>A = 1</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>::</code> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>::</code> operator.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of the constant, <tt>String(“A”)</tt> for <tt>A = 1</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of the constant, <code>String(&quot;A&quot;)</code> for <code>A = 1</code>.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the constant name.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the constant name.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>=</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>=</code> operator.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Scope where the constant is defined: 1.</p>
+    <span class="summary_desc"><div class='inline'><p>Scope where the constant is defined: 1.</p>
 </div></span>
   
 </li>
@@ -315,8 +308,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Value that is assigned to a constant, <tt>Int(“1”)</tt> for <tt>A = 1</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Value that is assigned to a constant, <code>Int(&quot;1&quot;)</code> for <code>A = 1</code>.</p>
 </div></span>
   
 </li>
@@ -350,8 +342,14 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>::</code> operator</p>
+    <p>Location of the <code>::</code> operator</p>
+
+<pre class="code text"><code class="text">A::B = 1
+ ~~
+
+::A = 1
+~~
+</code></pre>
 
 <p><code>None</code> if the constant is defined in the current scope</p>
 
@@ -360,18 +358,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>A::B = 1
- ~~
-
-::A = 1
-~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -392,12 +378,12 @@
       <pre class="lines">
 
 
-705
-706
-707</pre>
+647
+648
+649</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 705</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 647</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_double_colon_l'>double_colon_l</span>
   <span class='ivar'>@double_colon_l</span>
@@ -420,23 +406,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">A = 1
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>A = 1
-~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -457,12 +438,12 @@
       <pre class="lines">
 
 
-737
-738
-739</pre>
+677
+678
+679</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 737</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 677</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -485,8 +466,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Name of the constant, <tt>String(“A”)</tt> for <tt>A = 1</tt></p>
+    <p>Name of the constant, <code>String(&quot;A&quot;)</code> for <code>A = 1</code></p>
 
 
   </div>
@@ -513,12 +493,12 @@
       <pre class="lines">
 
 
-683
-684
-685</pre>
+626
+627
+628</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 683</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 626</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -541,23 +521,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the constant name</p>
+    <p>Location of the constant name</p>
+
+<pre class="code text"><code class="text">A::CONST = 1
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>A::CONST = 1
-   ~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -578,12 +553,12 @@
       <pre class="lines">
 
 
-715
-716
-717</pre>
+656
+657
+658</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 715</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 656</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name_l'>name_l</span>
   <span class='ivar'>@name_l</span>
@@ -606,25 +581,20 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>=</tt> operator</p>
+    <p>Location of the <code>=</code> operator</p>
 
-<p><code>None</code> if constant assignment is a part of the multi-assignment. In such case <tt>=</tt> belongs to a <code>Masgn</code> node</p>
+<pre class="code text"><code class="text">A = 1
+  ~
+</code></pre>
+
+<p><code>None</code> if constant assignment is a part of the multi-assignment.
+In such case <code>=</code> belongs to a <code>Masgn</code> node</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>A = 1
-  ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -645,12 +615,12 @@
       <pre class="lines">
 
 
-727
-728
-729</pre>
+668
+669
+670</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 727</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 668</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -673,15 +643,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Scope where the constant is defined:</p>
-<ol><li>
-<p><tt>Some(Const(“A”))</tt> for <tt>A::B = 1</tt></p>
-</li><li>
-<p><code>None</code> if it&#39;s defined in the current scope (i.e. <tt>A = 1</tt>)</p>
-</li><li>
-<p><tt>Some(Cbase)</tt> if it&#39;s defined in the global scope (i.e. <tt>::A = 1</tt>)</p>
-</li></ol>
+    <p>Scope where the constant is defined:</p>
+
+<ol>
+<li><code>Some(Const(&quot;A&quot;))</code> for <code>A::B = 1</code></li>
+<li><code>None</code> if it&#39;s defined in the current scope (i.e. <code>A = 1</code>)</li>
+<li><code>Some(Cbase)</code> if it&#39;s defined in the global scope (i.e. <code>::A = 1</code>)</li>
+</ol>
 
 
   </div>
@@ -708,12 +676,12 @@
       <pre class="lines">
 
 
-678
-679
-680</pre>
+622
+623
+624</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 678</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 622</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_scope'>scope</span>
   <span class='ivar'>@scope</span>
@@ -736,10 +704,10 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Value that is assigned to a constant, <tt>Int(“1”)</tt> for <tt>A = 1</tt>.</p>
+    <p>Value that is assigned to a constant, <code>Int(&quot;1&quot;)</code> for <code>A = 1</code>.</p>
 
-<p>*<strong>Note</strong>*: <code>None</code> if constant assignment is a part of the multi-assignment. In such case <code>value</code> belongs to <code>Masgn</code> node of the multi-assignment.</p>
+<p><strong>Note</strong>: <code>None</code> if constant assignment is a part of the multi-assignment.
+In such case <code>value</code> belongs to <code>Masgn</code> node of the multi-assignment.</p>
 
 
   </div>
@@ -766,12 +734,12 @@
       <pre class="lines">
 
 
-691
-692
-693</pre>
+633
+634
+635</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 691</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 633</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -787,7 +755,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

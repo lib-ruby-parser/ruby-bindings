@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents positional rest argument (i.e. <tt>*foo</tt> in <tt>def m(*foo); end</tt>)</p>
+    <p>Represents positional rest argument (i.e. <code>*foo</code> in <code>def m(*foo); end</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of the argument.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of the argument.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the argument name.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the argument name.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>*</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>*</code> operator.</p>
 </div></span>
   
 </li>
@@ -263,23 +258,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">def m(*foo); end
+      ~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def m(*foo); end
-      ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -300,12 +289,12 @@
       <pre class="lines">
 
 
-3977
-3978
-3979</pre>
+3624
+3625
+3626</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3977</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3624</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -328,10 +317,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Name of the argument.</p>
+    <p>Name of the argument.</p>
 
-<p><code>None</code> if argument has no name (i.e. <tt>def m(*); end</tt>)</p>
+<p><code>None</code> if argument has no name (i.e. <code>def m(*); end</code>)</p>
 
 
   </div>
@@ -358,12 +346,12 @@
       <pre class="lines">
 
 
-3947
-3948
-3949</pre>
+3597
+3598
+3599</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3947</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3597</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -386,23 +374,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the argument name</p>
+    <p>Location of the argument name</p>
+
+<pre class="code text"><code class="text">def m(*foo); end
+       ~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def m(*foo); end
-       ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -423,12 +405,12 @@
       <pre class="lines">
 
 
-3967
-3968
-3969</pre>
+3615
+3616
+3617</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3967</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3615</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name_l'>name_l</span>
   <span class='ivar'>@name_l</span>
@@ -451,23 +433,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>*</tt> operator</p>
+    <p>Location of the <code>*</code> operator</p>
+
+<pre class="code text"><code class="text">def m(*foo); end
+      ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def m(*foo); end
-      ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -488,12 +464,12 @@
       <pre class="lines">
 
 
-3957
-3958
-3959</pre>
+3606
+3607
+3608</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3957</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3606</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -509,7 +485,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

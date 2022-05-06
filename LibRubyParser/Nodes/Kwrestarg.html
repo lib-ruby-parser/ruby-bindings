@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a keyword rest argument (i.e. <code>foo</code> in <tt>def m(**foo); end</tt>)</p>
+    <p>Represents a keyword rest argument (i.e. <code>foo</code> in <code>def m(**foo); end</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of the keyword rest argument, <tt>String(“foo”)</tt> in <tt>def m(**foo); end</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of the keyword rest argument, <code>String(&quot;foo&quot;)</code> in <code>def m(**foo); end</code>.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the argument name.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the argument name.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>**</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>**</code> operator.</p>
 </div></span>
   
 </li>
@@ -263,23 +258,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">def m(**foo); end
+      ~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def m(**foo); end
-      ~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -300,12 +289,12 @@
       <pre class="lines">
 
 
-2654
-2655
-2656</pre>
+2424
+2425
+2426</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2654</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2424</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -328,10 +317,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Name of the keyword rest argument, <tt>String(“foo”)</tt> in <tt>def m(**foo); end</tt>.</p>
+    <p>Name of the keyword rest argument, <code>String(&quot;foo&quot;)</code> in <code>def m(**foo); end</code>.</p>
 
-<p><code>None</code> if argument has no name (+def m(**); end+)</p>
+<p><code>None</code> if argument has no name (<code>def m(**); end</code>)</p>
 
 
   </div>
@@ -358,12 +346,12 @@
       <pre class="lines">
 
 
-2623
-2624
-2625</pre>
+2395
+2396
+2397</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2623</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2395</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -386,25 +374,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the argument name</p>
+    <p>Location of the argument name</p>
 
-<p><code>None</code> if argument has no name (+def m(**); end+)</p>
+<pre class="code text"><code class="text">def m(**foo); end
+        ~~~
+</code></pre>
+
+<p><code>None</code> if argument has no name (<code>def m(**); end</code>)</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def m(**foo); end
-        ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -425,12 +407,12 @@
       <pre class="lines">
 
 
-2644
-2645
-2646</pre>
+2415
+2416
+2417</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2644</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2415</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name_l'>name_l</span>
   <span class='ivar'>@name_l</span>
@@ -453,23 +435,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>**</tt> operator</p>
+    <p>Location of the <code>**</code> operator</p>
+
+<pre class="code text"><code class="text">def m(**foo); end
+      ~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>def m(**foo); end
-      ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -490,12 +466,12 @@
       <pre class="lines">
 
 
-2633
-2634
-2635</pre>
+2404
+2405
+2406</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2633</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2404</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -511,7 +487,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

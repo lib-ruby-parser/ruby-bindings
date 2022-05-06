@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents range literal with excluded <code>end</code> (i.e. <code>1...3</code>)</p>
+    <p>Represents range literal with excluded <code>end</code> (i.e. <code>1...3</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Begin of the range, <code>None</code> if range has no begin (i.e <code>...42</code>).</p>
+    <span class="summary_desc"><div class='inline'><p>Begin of the range, <code>None</code> if range has no begin (i.e <code>...42</code>).</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>...</code> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>...</code> operator.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>End of the range, <code>None</code> if range has no end (i.e <code>42...</code>).</p>
+    <span class="summary_desc"><div class='inline'><p>End of the range, <code>None</code> if range has no end (i.e <code>42...</code>).</p>
 </div></span>
   
 </li>
@@ -263,23 +258,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">1...3
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>1...3
-~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -300,12 +290,12 @@
       <pre class="lines">
 
 
-1539
-1540
-1541</pre>
+1411
+1412
+1413</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1539</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1411</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -328,8 +318,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Begin of the range, <code>None</code> if range has no begin (i.e <code>...42</code>)</p>
+    <p>Begin of the range, <code>None</code> if range has no begin (i.e <code>...42</code>)</p>
 
 
   </div>
@@ -356,12 +345,12 @@
       <pre class="lines">
 
 
-1514
-1515
-1516</pre>
+1389
+1390
+1391</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1514</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1389</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left'>left</span>
   <span class='ivar'>@left</span>
@@ -384,23 +373,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>...</code> operator</p>
+    <p>Location of the <code>...</code> operator</p>
+
+<pre class="code text"><code class="text">1...3
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>1...3
- ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -421,12 +405,12 @@
       <pre class="lines">
 
 
-1529
-1530
-1531</pre>
+1402
+1403
+1404</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1529</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1402</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -449,8 +433,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>End of the range, <code>None</code> if range has no end (i.e <code>42...</code>)</p>
+    <p>End of the range, <code>None</code> if range has no end (i.e <code>42...</code>)</p>
 
 
   </div>
@@ -477,12 +460,12 @@
       <pre class="lines">
 
 
-1519
-1520
-1521</pre>
+1393
+1394
+1395</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1519</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1393</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right'>right</span>
   <span class='ivar'>@right</span>
@@ -498,7 +481,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

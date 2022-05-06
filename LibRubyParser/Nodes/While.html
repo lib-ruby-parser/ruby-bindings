@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents <code>while</code> loop</p>
+    <p>Represents <code>while</code> loop</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>do</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>do</code> keyword.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of the loop.</p>
+    <span class="summary_desc"><div class='inline'><p>Body of the loop.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Condition of the loop.</p>
+    <span class="summary_desc"><div class='inline'><p>Condition of the loop.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>end</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>end</code> keyword.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>while</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>while</code> keyword.</p>
 </div></span>
   
 </li>
@@ -321,8 +314,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>do</code> keyword</p>
+    <p>Location of the <code>do</code> keyword</p>
+
+<pre class="code text"><code class="text">while cond do; foo; end
+           ~~
+</code></pre>
 
 <p><code>do</code> is optional, and so <code>begin_l</code> can be <code>None</code></p>
 
@@ -331,15 +327,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>while cond do; foo; end
-           ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -360,12 +347,12 @@
       <pre class="lines">
 
 
-4638
-4639
-4640</pre>
+4236
+4237
+4238</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4638</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4236</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -388,8 +375,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of the loop.</p>
+    <p>Body of the loop.</p>
 
 <p><code>None</code> if body is empty</p>
 
@@ -418,12 +404,12 @@
       <pre class="lines">
 
 
-4617
-4618
-4619</pre>
+4216
+4217
+4218</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4617</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4216</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -446,8 +432,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Condition of the loop</p>
+    <p>Condition of the loop</p>
 
 
   </div>
@@ -474,12 +459,12 @@
       <pre class="lines">
 
 
-4610
-4611
-4612</pre>
+4210
+4211
+4212</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4610</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4210</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cond'>cond</span>
   <span class='ivar'>@cond</span>
@@ -502,25 +487,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>end</code> keyword</p>
+    <p>Location of the <code>end</code> keyword</p>
 
-<p><code>None</code> if loop is a modifier (i.e. <tt>foo while bar</tt>)</p>
+<pre class="code text"><code class="text">while cond do; foo; end
+                    ~~~
+</code></pre>
+
+<p><code>None</code> if loop is a modifier (i.e. <code>foo while bar</code>)</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>while cond do; foo; end
-                    ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -541,12 +520,12 @@
       <pre class="lines">
 
 
-4649
-4650
-4651</pre>
+4247
+4248
+4249</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4649</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4247</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -569,26 +548,20 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">while cond do; foo; end
+</code></pre>
+
+<p>foo while bar</p>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>while cond do; foo; end
-~~~~~~~~~~~~~~~~~~~~~~~
-
-foo while bar
-~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -609,12 +582,12 @@ foo while bar
       <pre class="lines">
 
 
-4662
-4663
-4664</pre>
+4259
+4260
+4261</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4662</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4259</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -637,23 +610,18 @@ foo while bar
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>while</code> keyword</p>
+    <p>Location of the <code>while</code> keyword</p>
+
+<pre class="code text"><code class="text">while cond do; foo; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>while cond do; foo; end
-~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -674,12 +642,12 @@ foo while bar
       <pre class="lines">
 
 
-4627
-4628
-4629</pre>
+4225
+4226
+4227</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4627</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4225</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -695,7 +663,7 @@ foo while bar
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

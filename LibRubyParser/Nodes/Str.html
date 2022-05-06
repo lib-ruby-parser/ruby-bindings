@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a plain non-interpolated string literal (e.g. <tt>“foo”</tt>)</p>
+    <p>Represents a plain non-interpolated string literal (e.g. <code>&quot;foo&quot;</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the string begin.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the string begin.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the string begin.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the string begin.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Value of the string literal.</p>
+    <span class="summary_desc"><div class='inline'><p>Value of the string literal.</p>
 </div></span>
   
 </li>
@@ -263,25 +258,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the string begin</p>
+    <p>Location of the string begin</p>
 
-<p><code>None</code> if string literal is a part of the words array (like <tt>%w[foo bar baz]</tt>)</p>
+<pre class="code text"><code class="text">&quot;foo&quot;
+~
+</code></pre>
+
+<p><code>None</code> if string literal is a part of the words array (like <code>%w[foo bar baz]</code>)</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>&quot;foo&quot;
-~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -302,12 +291,12 @@
       <pre class="lines">
 
 
-4253
-4254
-4255</pre>
+3879
+3880
+3881</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4253</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3879</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -330,25 +319,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the string begin</p>
+    <p>Location of the string begin</p>
 
-<p><code>None</code> if string literal is a part of the words array (like <tt>%w[foo bar baz]</tt>)</p>
+<pre class="code text"><code class="text">&quot;foo&quot;
+    ~
+</code></pre>
+
+<p><code>None</code> if string literal is a part of the words array (like <code>%w[foo bar baz]</code>)</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>&quot;foo&quot;
-    ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -369,12 +352,12 @@
       <pre class="lines">
 
 
-4264
-4265
-4266</pre>
+3890
+3891
+3892</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4264</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3890</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -397,23 +380,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">&quot;foo&quot;
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>&quot;foo&quot;
-~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -434,12 +412,12 @@
       <pre class="lines">
 
 
-4274
-4275
-4276</pre>
+3899
+3900
+3901</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4274</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3899</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -462,12 +440,14 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Value of the string literal</p>
+    <p>Value of the string literal</p>
 
-<p>Note that it&#39;s a <code>StringValue</code>, not a <code>String</code>. The reason is that you can get UTF-8 incompatible strings from a valid UTF-8 source using escape sequences like <tt>“xFF”</tt></p>
+<p>Note that it&#39;s a <code>StringValue</code>, not a <code>String</code>.
+The reason is that you can get UTF-8 incompatible strings
+from a valid UTF-8 source using escape sequences like <code>&quot;\xFF&quot;</code></p>
 
-<p>These “&quot;, ”x“, ”F“, ”F“ chars are valid separately, but together they construct a char with code = 255 that is invalid for UTF-8.</p>
+<p>These &quot;\&quot;, &quot;x&quot;, &quot;F&quot;, &quot;F&quot; chars are valid separately, but together
+they construct a char with code = 255 that is invalid for UTF-8.</p>
 
 <p>You can use <code>to_string_lossy</code> or <code>to_string</code> methods to get a raw string value.</p>
 
@@ -496,12 +476,12 @@
       <pre class="lines">
 
 
-4242
-4243
-4244</pre>
+3868
+3869
+3870</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4242</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3868</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -517,7 +497,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

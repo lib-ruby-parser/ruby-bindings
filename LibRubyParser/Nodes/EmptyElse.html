@@ -103,10 +103,10 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a special empty else that is a part of the pattern matching.</p>
+    <p>Represents a special empty else that is a part of the pattern matching.</p>
 
-<p>Usually empty else (e.g. part of the <code>if</code> statement) doesn&#39;t mean anything, however in pattern matching it prevents raising a <code>NoPatternError</code>.</p>
+<p>Usually empty else (e.g. part of the <code>if</code> statement) doesn&#39;t mean anything,
+however in pattern matching it prevents raising a <code>NoPatternError</code>.</p>
 
 <p>Throwing away this <code>else</code> may affect your code.</p>
 
@@ -145,8 +145,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>else</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>else</code> keyword.</p>
 </div></span>
   
 </li>
@@ -180,23 +179,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>else</code> keyword</p>
+    <p>Location of the <code>else</code> keyword</p>
+
+<pre class="code text"><code class="text">case foo; in 1; else; end
+                ~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; in 1; else; end
-                ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -217,12 +210,12 @@
       <pre class="lines">
 
 
-1451
-1452
-1453</pre>
+1331
+1332
+1333</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1451</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1331</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -238,7 +231,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

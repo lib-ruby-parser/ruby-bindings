@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a <code>rescue</code> block</p>
+    <p>Represents a <code>rescue</code> block</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of the block that is wrapped into <code>rescue</code> (i.e. the part that may throw an error).</p>
+    <span class="summary_desc"><div class='inline'><p>Body of the block that is wrapped into <code>rescue</code> (i.e. the part that may throw an error).</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Else branch.</p>
+    <span class="summary_desc"><div class='inline'><p>Else branch.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>else</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>else</code> keyword.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of <code>rescue</code> handlers (see <code>RescueBody</code> node).</p>
+    <span class="summary_desc"><div class='inline'><p>A list of <code>rescue</code> handlers (see <code>RescueBody</code> node).</p>
 </div></span>
   
 </li>
@@ -292,8 +286,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of the block that is wrapped into <code>rescue</code> (i.e. the part that may throw an error)</p>
+    <p>Body of the block that is wrapped into <code>rescue</code> (i.e. the part that may throw an error)</p>
 
 
   </div>
@@ -320,12 +313,12 @@
       <pre class="lines">
 
 
-3837
-3838
-3839</pre>
+3495
+3496
+3497</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3837</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3495</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -348,8 +341,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Else branch.</p>
+    <p>Else branch.</p>
 
 <p><code>None</code> if there&#39;s no <code>else</code> branch</p>
 
@@ -378,12 +370,12 @@
       <pre class="lines">
 
 
-3849
-3850
-3851</pre>
+3505
+3506
+3507</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3849</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3505</span>
 
 <span class='kw'>def</span> <span class='kw'>else</span>
   <span class='ivar'>@else</span>
@@ -406,8 +398,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>else</code> keyword</p>
+    <p>Location of the <code>else</code> keyword</p>
+
+<pre class="code text"><code class="text">begin; 1; rescue StandardError =&gt; e; 2; else; 3; end
+                                        ~~~~
+</code></pre>
 
 <p><code>None</code> if there&#39;s no <code>else</code> branch</p>
 
@@ -416,15 +411,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; 1; rescue StandardError =&gt; e; 2; else; 3; end
-                                        ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -445,12 +431,12 @@
       <pre class="lines">
 
 
-3860
-3861
-3862</pre>
+3516
+3517
+3518</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3860</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3516</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_else_l'>else_l</span>
   <span class='ivar'>@else_l</span>
@@ -473,25 +459,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
 
-<p>*<strong>Note</strong>*: <code>begin/end</code> keywords belong to <code>KwBegin</code> node</p>
+<pre class="code text"><code class="text">begin; 1; rescue StandardError =&gt; e; 2; else; 3; end
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</code></pre>
+
+<p><strong>Note</strong>: <code>begin/end</code> keywords belong to <code>KwBegin</code> node</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; 1; rescue StandardError =&gt; e; 2; else; 3; end
-       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -512,12 +492,12 @@
       <pre class="lines">
 
 
-3871
-3872
-3873</pre>
+3527
+3528
+3529</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3871</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3527</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -540,8 +520,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of <code>rescue</code> handlers (see <code>RescueBody</code> node)</p>
+    <p>A list of <code>rescue</code> handlers (see <code>RescueBody</code> node)</p>
 
 
   </div>
@@ -568,12 +547,12 @@
       <pre class="lines">
 
 
-3842
-3843
-3844</pre>
+3499
+3500
+3501</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3842</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3499</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rescue_bodies'>rescue_bodies</span>
   <span class='ivar'>@rescue_bodies</span>
@@ -589,7 +568,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

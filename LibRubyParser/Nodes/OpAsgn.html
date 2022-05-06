@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents an operation with assignment (e.g. <tt>a </tt>= 1+)</p>
+    <p>Represents an operation with assignment (e.g. <code>a += 1</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the operator.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Operator, can be one of: 1.</p>
+    <span class="summary_desc"><div class='inline'><p>Operator, can be one of: 1.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the operator.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Left hand statement of the assignment.</p>
+    <span class="summary_desc"><div class='inline'><p>Left hand statement of the assignment.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Right hand statement of the assignment.</p>
+    <span class="summary_desc"><div class='inline'><p>Right hand statement of the assignment.</p>
 </div></span>
   
 </li>
@@ -292,23 +286,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the operator</p>
+    <p>Location of the operator</p>
+
+<pre class="code text"><code class="text">a.b &lt;&lt;= c
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>a.b &lt;&lt;= c
-~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -329,12 +318,12 @@
       <pre class="lines">
 
 
-3387
-3388
-3389</pre>
+3089
+3090
+3091</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3387</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3089</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -357,31 +346,21 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Operator, can be one of:</p>
-<ol><li>
-<p>++=+</p>
-</li><li>
-<p><code>-=</code></p>
-</li><li>
-<p><tt>*=</tt></p>
-</li><li>
-<p><code>/=</code></p>
-</li><li>
-<p><tt>|=</tt></p>
-</li><li>
-<p><tt>&amp;=</tt></p>
-</li><li>
-<p><tt>&gt;&gt;=</tt></p>
-</li><li>
-<p><tt>&lt;&lt;=</tt></p>
-</li><li>
-<p><tt>%=</tt></p>
-</li><li>
-<p><tt>^=</tt></p>
-</li><li>
-<p><tt>**=</tt></p>
-</li></ol>
+    <p>Operator, can be one of:</p>
+
+<ol>
+<li><code>+=</code></li>
+<li><code>-=</code></li>
+<li><code>*=</code></li>
+<li><code>/=</code></li>
+<li><code>|=</code></li>
+<li><code>&amp;=</code></li>
+<li><code>&gt;&gt;=</code></li>
+<li><code>&lt;&lt;=</code></li>
+<li><code>%=</code></li>
+<li><code>^=</code></li>
+<li><code>**=</code></li>
+</ol>
 
 
   </div>
@@ -408,12 +387,12 @@
       <pre class="lines">
 
 
-3362
-3363
-3364</pre>
+3067
+3068
+3069</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3362</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3067</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator'>operator</span>
   <span class='ivar'>@operator</span>
@@ -436,23 +415,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the operator</p>
+    <p>Location of the operator</p>
+
+<pre class="code text"><code class="text">a.b &lt;&lt;= c
+    ~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>a.b &lt;&lt;= c
-    ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -473,12 +446,12 @@
       <pre class="lines">
 
 
-3377
-3378
-3379</pre>
+3080
+3081
+3082</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3377</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3080</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -501,8 +474,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Left hand statement of the assignment</p>
+    <p>Left hand statement of the assignment</p>
 
 
   </div>
@@ -529,12 +501,12 @@
       <pre class="lines">
 
 
-3346
-3347
-3348</pre>
+3052
+3053
+3054</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3346</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3052</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_recv'>recv</span>
   <span class='ivar'>@recv</span>
@@ -557,8 +529,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Right hand statement of the assignment</p>
+    <p>Right hand statement of the assignment</p>
 
 
   </div>
@@ -585,12 +556,12 @@
       <pre class="lines">
 
 
-3367
-3368
-3369</pre>
+3071
+3072
+3073</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3367</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3071</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -606,7 +577,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

@@ -103,24 +103,18 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a post-until loop</p>
+    <p>Represents a post-until loop</p>
+
+<pre class="code text"><code class="text">begin
+foo
+end until bar
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code><span class='kw'>begin</span>
-<span class='id identifier rubyid_foo'>foo</span>
-<span class='kw'>end</span> <span class='kw'>until</span> <span class='id identifier rubyid_bar'>bar</span></code></pre>
-    
-  </div>
-
 
 </div>
 
@@ -151,8 +145,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of the loop.</p>
+    <span class="summary_desc"><div class='inline'><p>Body of the loop.</p>
 </div></span>
   
 </li>
@@ -180,8 +173,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Condition of the loop.</p>
+    <span class="summary_desc"><div class='inline'><p>Condition of the loop.</p>
 </div></span>
   
 </li>
@@ -209,8 +201,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>until</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>until</code> keyword.</p>
 </div></span>
   
 </li>
@@ -238,8 +229,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>until</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>until</code> keyword.</p>
 </div></span>
   
 </li>
@@ -273,8 +263,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of the loop</p>
+    <p>Body of the loop</p>
 
 
   </div>
@@ -301,12 +290,12 @@
       <pre class="lines">
 
 
-4536
-4537
-4538</pre>
+4143
+4144
+4145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4536</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4143</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -329,8 +318,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Condition of the loop</p>
+    <p>Condition of the loop</p>
 
 
   </div>
@@ -357,12 +345,12 @@
       <pre class="lines">
 
 
-4531
-4532
-4533</pre>
+4139
+4140
+4141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4531</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4139</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cond'>cond</span>
   <span class='ivar'>@cond</span>
@@ -385,23 +373,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>until</code> keyword</p>
+    <p>Location of the <code>until</code> keyword</p>
+
+<pre class="code text"><code class="text">begin; foo; end until bar
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; foo; end until bar
-~~~~~~~~~~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -422,12 +405,12 @@
       <pre class="lines">
 
 
-4556
-4557
-4558</pre>
+4161
+4162
+4163</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4556</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4161</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -450,23 +433,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>until</code> keyword</p>
+    <p>Location of the <code>until</code> keyword</p>
+
+<pre class="code text"><code class="text">begin; foo; end until bar
+                ~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; foo; end until bar
-                ~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -487,12 +464,12 @@
       <pre class="lines">
 
 
-4546
-4547
-4548</pre>
+4152
+4153
+4154</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4546</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4152</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -508,7 +485,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

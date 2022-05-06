@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a single <code>rescue</code> handler (i.e. <tt>rescue E =&gt; e …</tt>)</p>
+    <p>Represents a single <code>rescue</code> handler (i.e. <code>rescue E =&gt; e ...</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>=&gt;</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>=&gt;</code> operator.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>then</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>then</code> keyword.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of the handler.</p>
+    <span class="summary_desc"><div class='inline'><p>Body of the handler.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of exception classes.</p>
+    <span class="summary_desc"><div class='inline'><p>A list of exception classes.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Variable that captures exception.</p>
+    <span class="summary_desc"><div class='inline'><p>Variable that captures exception.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -315,8 +308,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>rescue</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>rescue</code> keyword.</p>
 </div></span>
   
 </li>
@@ -350,8 +342,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>=&gt;</tt> operator</p>
+    <p>Location of the <code>=&gt;</code> operator</p>
+
+<pre class="code text"><code class="text">begin; 1; rescue E =&gt; e; 2; end
+                   ~~
+</code></pre>
 
 <p><code>None</code> if exception is not captured.</p>
 
@@ -360,15 +355,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; 1; rescue E =&gt; e; 2; end
-                   ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -389,12 +375,12 @@
       <pre class="lines">
 
 
-3915
-3916
-3917</pre>
+3567
+3568
+3569</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3915</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3567</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assoc_l'>assoc_l</span>
   <span class='ivar'>@assoc_l</span>
@@ -417,8 +403,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>then</code> keyword</p>
+    <p>Location of the <code>then</code> keyword</p>
+
+<pre class="code text"><code class="text">begin; 1; rescue E =&gt; e then; 2; end
+                        ~~~~
+</code></pre>
 
 <p><code>then</code> is optional, so <code>begin_l</code> can be <code>None</code></p>
 
@@ -427,15 +416,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; 1; rescue E =&gt; e then; 2; end
-                        ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -456,12 +436,12 @@
       <pre class="lines">
 
 
-3926
-3927
-3928</pre>
+3578
+3579
+3580</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3926</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3578</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -484,8 +464,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of the handler</p>
+    <p>Body of the handler</p>
 
 
   </div>
@@ -512,12 +491,12 @@
       <pre class="lines">
 
 
-3894
-3895
-3896</pre>
+3547
+3548
+3549</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3894</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3547</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -540,10 +519,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of exception classes</p>
+    <p>A list of exception classes</p>
 
-<p><code>None</code> if no classes specified (i.e. <tt>rescue =&gt; e; …</tt> or just <tt>rescue; …</tt>)</p>
+<p><code>None</code> if no classes specified (i.e. <code>rescue =&gt; e; ...</code> or just <code>rescue; ...</code>)</p>
 
 
   </div>
@@ -570,12 +548,12 @@
       <pre class="lines">
 
 
-3882
-3883
-3884</pre>
+3537
+3538
+3539</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3882</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3537</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_exc_list'>exc_list</span>
   <span class='ivar'>@exc_list</span>
@@ -598,10 +576,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Variable that captures exception</p>
+    <p>Variable that captures exception</p>
 
-<p><code>None</code> if no variable specified (i.e. <tt>rescue E; …</tt> or just <tt>rescue; … </tt>)</p>
+<p><code>None</code> if no variable specified (i.e. <code>rescue E; ...</code> or just <code>rescue; ...</code>)</p>
 
 
   </div>
@@ -628,12 +605,12 @@
       <pre class="lines">
 
 
-3889
-3890
-3891</pre>
+3543
+3544
+3545</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3889</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3543</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_exc_var'>exc_var</span>
   <span class='ivar'>@exc_var</span>
@@ -656,23 +633,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">begin; 1; rescue E =&gt; e then; 2; end
+          ~~~~~~~~~~~~~~~~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; 1; rescue E =&gt; e then; 2; end
-          ~~~~~~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -693,12 +664,12 @@
       <pre class="lines">
 
 
-3936
-3937
-3938</pre>
+3587
+3588
+3589</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3936</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3587</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -721,23 +692,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>rescue</code> keyword</p>
+    <p>Location of the <code>rescue</code> keyword</p>
+
+<pre class="code text"><code class="text">begin; 1; rescue E =&gt; e; 2; end
+          ~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; 1; rescue E =&gt; e; 2; end
-          ~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -758,12 +723,12 @@
       <pre class="lines">
 
 
-3904
-3905
-3906</pre>
+3556
+3557
+3558</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3904</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3556</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -779,7 +744,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

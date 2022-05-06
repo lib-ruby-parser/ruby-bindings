@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents an array pattern used in pattern matching</p>
+    <p>Represents an array pattern used in pattern matching</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the open bracket.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the open bracket.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of elements.</p>
+    <span class="summary_desc"><div class='inline'><p>A list of elements.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the closing bracket.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the closing bracket.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -263,25 +258,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the open bracket</p>
+    <p>Location of the open bracket</p>
 
-<p><code>None</code> for pattern like <tt>1, 2</tt> without brackets</p>
+<pre class="code text"><code class="text">[1, ^a, 3 =&gt; foo]
+~
+</code></pre>
+
+<p><code>None</code> for pattern like <code>1, 2</code> without brackets</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>[1, ^a, 3 =&gt; foo]
-~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -302,12 +291,12 @@
       <pre class="lines">
 
 
-240
-241
-242</pre>
+220
+221
+222</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 240</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 220</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -330,8 +319,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of elements</p>
+    <p>A list of elements</p>
 
 
   </div>
@@ -358,12 +346,12 @@
       <pre class="lines">
 
 
-229
-230
-231</pre>
+209
+210
+211</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 229</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 209</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_elements'>elements</span>
   <span class='ivar'>@elements</span>
@@ -386,25 +374,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the closing bracket</p>
+    <p>Location of the closing bracket</p>
 
-<p><code>None</code> for pattern like <tt>1, 2</tt> without brackets</p>
+<pre class="code text"><code class="text">[1, ^a, 3 =&gt; foo]
+                ~
+</code></pre>
+
+<p><code>None</code> for pattern like <code>1, 2</code> without brackets</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>[1, ^a, 3 =&gt; foo]
-                ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -425,12 +407,12 @@
       <pre class="lines">
 
 
-251
-252
-253</pre>
+231
+232
+233</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 251</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 231</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -453,23 +435,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">[1, ^a, 3 =&gt; foo]
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>[1, ^a, 3 =&gt; foo]
-~~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -490,12 +467,12 @@
       <pre class="lines">
 
 
-261
-262
-263</pre>
+240
+241
+242</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 261</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 240</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -511,7 +488,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:46 2021 by
+  Generated on Fri May  6 23:53:59 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a symbol with interpolation (i.e. <tt>:“#{foo}”</tt>)</p>
+    <p>Represents a symbol with interpolation (i.e. <code>:&quot;#{foo}&quot;</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the symbol begin.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the symbol begin.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the symbol begin.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the symbol begin.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of symbol parts (static literals and interpolated expressions).</p>
+    <span class="summary_desc"><div class='inline'><p>A list of symbol parts (static literals and interpolated expressions).</p>
 </div></span>
   
 </li>
@@ -263,28 +258,22 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the symbol begin</p>
+    <p>Location of the symbol begin</p>
+
+<pre class="code text"><code class="text">:&quot;#{foo}&quot;
+~~
+</code></pre>
 
 <p><code>None</code> if <code>Dsym</code> is a part of the interpolated symbol array:</p>
+
+<pre class="code text"><code class="text">%I[#{bar}]
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>:&quot;#{foo}&quot;
-~~</code></pre>
-    
-      
-      <pre class="example code"><code><span class='symbols_beg'>%I[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bar'>bar</span><span class='embexpr_end'>}</span><span class='tstring_end'>]</span></span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -305,12 +294,12 @@
       <pre class="lines">
 
 
-1373
-1374
-1375</pre>
+1259
+1260
+1261</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1373</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1259</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -333,28 +322,22 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the symbol begin</p>
+    <p>Location of the symbol begin</p>
+
+<pre class="code text"><code class="text">:&quot;#{foo}&quot;
+        ~
+</code></pre>
 
 <p><code>None</code> if <code>Dsym</code> is a part of the interpolated symbol array:</p>
+
+<pre class="code text"><code class="text">%I[#{bar}]
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>:&quot;#{foo}&quot;
-        ~</code></pre>
-    
-      
-      <pre class="example code"><code><span class='symbols_beg'>%I[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_bar'>bar</span><span class='embexpr_end'>}</span><span class='tstring_end'>]</span></span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -375,12 +358,12 @@
       <pre class="lines">
 
 
-1388
-1389
-1390</pre>
+1274
+1275
+1276</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1388</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1274</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -403,23 +386,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">:&quot;#{foo}&quot;
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>:&quot;#{foo}&quot;
-~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -440,12 +418,12 @@
       <pre class="lines">
 
 
-1398
-1399
-1400</pre>
+1283
+1284
+1285</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1398</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1283</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -468,8 +446,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of symbol parts (static literals and interpolated expressions)</p>
+    <p>A list of symbol parts (static literals and interpolated expressions)</p>
 
 
   </div>
@@ -496,12 +473,12 @@
       <pre class="lines">
 
 
-1358
-1359
-1360</pre>
+1244
+1245
+1246</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1358</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1244</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parts'>parts</span>
   <span class='ivar'>@parts</span>
@@ -517,7 +494,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

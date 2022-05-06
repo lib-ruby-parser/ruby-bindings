@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents constant access (i.e. <code>Foo::Bar</code>)</p>
+    <p>Represents constant access (i.e. <code>Foo::Bar</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>::</code> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>::</code> operator.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of the constant, <tt>String(“Foo”)</tt> for <code>Foo</code>.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of the constant, <code>String(&quot;Foo&quot;)</code> for <code>Foo</code>.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the constant name.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the constant name.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Scope where the constant is taken from: 1.</p>
+    <span class="summary_desc"><div class='inline'><p>Scope where the constant is taken from: 1.</p>
 </div></span>
   
 </li>
@@ -292,23 +286,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>::</code> operator. <code>None</code> if constant is taken from the current scope.</p>
+    <p>Location of the <code>::</code> operator. <code>None</code> if constant is taken from the current scope.</p>
+
+<pre class="code text"><code class="text">A::B
+ ~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>A::B
- ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -329,12 +317,12 @@
       <pre class="lines">
 
 
-871
-872
-873</pre>
+798
+799
+800</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 871</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 798</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_double_colon_l'>double_colon_l</span>
   <span class='ivar'>@double_colon_l</span>
@@ -357,23 +345,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">Foo::Bar
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>Foo::Bar
-~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -394,12 +377,12 @@
       <pre class="lines">
 
 
-891
-892
-893</pre>
+816
+817
+818</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 891</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 816</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -422,8 +405,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Name of the constant, <tt>String(“Foo”)</tt> for <code>Foo</code></p>
+    <p>Name of the constant, <code>String(&quot;Foo&quot;)</code> for <code>Foo</code></p>
 
 
   </div>
@@ -450,12 +432,12 @@
       <pre class="lines">
 
 
-861
-862
-863</pre>
+789
+790
+791</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 861</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 789</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -478,23 +460,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the constant name</p>
+    <p>Location of the constant name</p>
+
+<pre class="code text"><code class="text">Foo::Bar
+     ~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>Foo::Bar
-     ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -515,12 +491,12 @@
       <pre class="lines">
 
 
-881
-882
-883</pre>
+807
+808
+809</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 881</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 807</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name_l'>name_l</span>
   <span class='ivar'>@name_l</span>
@@ -543,15 +519,13 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Scope where the constant is taken from:</p>
-<ol><li>
-<p><tt>Some(Const(“A”))</tt> for <code>A::B</code></p>
-</li><li>
-<p><code>None</code> if it&#39;s taken from the current scope (i.e. <code>A</code>)</p>
-</li><li>
-<p><tt>Some(Cbase)</tt> if it&#39;s taken from the global scope (i.e. <code>::A</code>)</p>
-</li></ol>
+    <p>Scope where the constant is taken from:</p>
+
+<ol>
+<li><code>Some(Const(&quot;A&quot;))</code> for <code>A::B</code></li>
+<li><code>None</code> if it&#39;s taken from the current scope (i.e. <code>A</code>)</li>
+<li><code>Some(Cbase)</code> if it&#39;s taken from the global scope (i.e. <code>::A</code>)</li>
+</ol>
 
 
   </div>
@@ -578,12 +552,12 @@
       <pre class="lines">
 
 
-856
-857
-858</pre>
+785
+786
+787</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 856</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 785</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_scope'>scope</span>
   <span class='ivar'>@scope</span>
@@ -599,7 +573,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

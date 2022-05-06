@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents regex literal (e.g. <code>/foo/</code>)</p>
+    <p>Represents regex literal (e.g. <code>/foo/</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the regex begin.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the regex begin.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the regex end.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the regex end.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Regex options.</p>
+    <span class="summary_desc"><div class='inline'><p>Regex options.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of static and dynamic regex parts.</p>
+    <span class="summary_desc"><div class='inline'><p>A list of static and dynamic regex parts.</p>
 </div></span>
   
 </li>
@@ -292,26 +286,20 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the regex begin</p>
+    <p>Location of the regex begin</p>
+
+<pre class="code text"><code class="text">/foo/
+~
+
+%r{foo}
+~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>/foo/
-~
-
-%r{foo}
-~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -332,12 +320,12 @@
       <pre class="lines">
 
 
-3786
-3787
-3788</pre>
+3449
+3450
+3451</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3786</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3449</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -360,26 +348,20 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the regex end</p>
+    <p>Location of the regex end</p>
+
+<pre class="code text"><code class="text">/foo/
+    ~
+
+%r{foo}
+      ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>/foo/
-    ~
-
-%r{foo}
-      ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -400,12 +382,12 @@
       <pre class="lines">
 
 
-3799
-3800
-3801</pre>
+3461
+3462
+3463</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3799</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3461</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -428,23 +410,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">/foo/mix
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>/foo/mix
-~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -465,12 +442,12 @@
       <pre class="lines">
 
 
-3809
-3810
-3811</pre>
+3470
+3471
+3472</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3809</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3470</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -493,8 +470,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Regex options.</p>
+    <p>Regex options.</p>
 
 <p><code>None</code> if regex has no explicit flags</p>
 
@@ -523,12 +499,12 @@
       <pre class="lines">
 
 
-3773
-3774
-3775</pre>
+3437
+3438
+3439</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3773</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3437</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_options'>options</span>
   <span class='ivar'>@options</span>
@@ -551,8 +527,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of static and dynamic regex parts</p>
+    <p>A list of static and dynamic regex parts</p>
 
 
   </div>
@@ -579,12 +554,12 @@
       <pre class="lines">
 
 
-3766
-3767
-3768</pre>
+3431
+3432
+3433</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3766</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3431</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parts'>parts</span>
   <span class='ivar'>@parts</span>
@@ -600,7 +575,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

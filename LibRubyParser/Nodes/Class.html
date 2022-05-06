@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a class definition (using a <code>class</code> keyword, <code>Class.new</code> is just a method call)</p>
+    <p>Represents a class definition (using a <code>class</code> keyword, <code>Class.new</code> is just a method call)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of the method, <code>None</code> if there&#39;s no body.</p>
+    <span class="summary_desc"><div class='inline'><p>Body of the method, <code>None</code> if there&#39;s no body.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>end</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>end</code> keyword.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>class</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>class</code> keyword.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of the class, <tt>String(“Foo”)</tt> for <tt>class Foo; end</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of the class, <code>String(&quot;Foo&quot;)</code> for <code>class Foo; end</code>.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>&lt;</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>&lt;</code> operator.</p>
 </div></span>
   
 </li>
@@ -315,8 +308,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Superclass.</p>
+    <span class="summary_desc"><div class='inline'><p>Superclass.</p>
 </div></span>
   
 </li>
@@ -350,8 +342,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of the method, <code>None</code> if there&#39;s no body.</p>
+    <p>Body of the method, <code>None</code> if there&#39;s no body.</p>
 
 
   </div>
@@ -378,12 +369,12 @@
       <pre class="lines">
 
 
-772
-773
-774</pre>
+708
+709
+710</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 772</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 708</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -406,23 +397,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>end</code> keyword.</p>
+    <p>Location of the <code>end</code> keyword.</p>
+
+<pre class="code text"><code class="text">class Foo; end
+           ~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>class Foo; end
-           ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -443,12 +428,12 @@
       <pre class="lines">
 
 
-803
-804
-805</pre>
+737
+738
+739</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 803</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 737</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -471,23 +456,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">class Foo; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>class Foo; end
-~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -508,12 +488,12 @@
       <pre class="lines">
 
 
-813
-814
-815</pre>
+746
+747
+748</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 813</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 746</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -536,23 +516,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>class</code> keyword.</p>
+    <p>Location of the <code>class</code> keyword.</p>
+
+<pre class="code text"><code class="text">class Foo; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>class Foo; end
-~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -573,12 +548,12 @@
       <pre class="lines">
 
 
-782
-783
-784</pre>
+717
+718
+719</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 782</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 717</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -601,8 +576,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Name of the class, <tt>String(“Foo”)</tt> for <tt>class Foo; end</tt></p>
+    <p>Name of the class, <code>String(&quot;Foo&quot;)</code> for <code>class Foo; end</code></p>
 
 
   </div>
@@ -629,12 +603,12 @@
       <pre class="lines">
 
 
-760
-761
-762</pre>
+698
+699
+700</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 760</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 698</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -657,8 +631,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>&lt;</tt> operator</p>
+    <p>Location of the <code>&lt;</code> operator</p>
+
+<pre class="code text"><code class="text">class A &lt; B; end
+        ~
+</code></pre>
 
 <p><code>None</code> if there&#39;s no explicit superclass given.</p>
 
@@ -667,15 +644,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>class A &lt; B; end
-        ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -696,12 +664,12 @@
       <pre class="lines">
 
 
-793
-794
-795</pre>
+728
+729
+730</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 793</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 728</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -724,10 +692,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Superclass. Can be an expression in cases like <tt>class A &lt; (obj.foo </tt> 1); end+</p>
+    <p>Superclass. Can be an expression in cases like <code>class A &lt; (obj.foo + 1); end</code></p>
 
-<p><code>None</code> if no explicit superclass given (i.e. <tt>class Foo; end</tt>)</p>
+<p><code>None</code> if no explicit superclass given (i.e. <code>class Foo; end</code>)</p>
 
 
   </div>
@@ -754,12 +721,12 @@
       <pre class="lines">
 
 
-767
-768
-769</pre>
+704
+705
+706</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 767</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 704</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_superclass'>superclass</span>
   <span class='ivar'>@superclass</span>
@@ -775,7 +742,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

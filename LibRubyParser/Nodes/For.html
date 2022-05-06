@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a <code>for</code> loop</p>
+    <p>Represents a <code>for</code> loop</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>do</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>do</code> keyword.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of the loop.</p>
+    <span class="summary_desc"><div class='inline'><p>Body of the loop.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>end</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>end</code> keyword.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Collection that is for iteration.</p>
+    <span class="summary_desc"><div class='inline'><p>Collection that is for iteration.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Variable that is used in loop, <tt>Lvasgn(“a”)</tt> in <tt>for a in b; end</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Variable that is used in loop, <code>Lvasgn(&quot;a&quot;)</code> in <code>for a in b; end</code>.</p>
 </div></span>
   
 </li>
@@ -315,8 +308,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>for</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>for</code> keyword.</p>
 </div></span>
   
 </li>
@@ -344,8 +336,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>in</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>in</code> keyword.</p>
 </div></span>
   
 </li>
@@ -379,25 +370,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>do</code> keyword</p>
+    <p>Location of the <code>do</code> keyword</p>
 
-<p>*<strong>Note</strong>*: this <code>do</code> is optional, and so <code>begin_l</code> can be <code>None</code>.</p>
+<pre class="code text"><code class="text">for a in b do; end
+           ~~
+</code></pre>
+
+<p><strong>Note</strong>: this <code>do</code> is optional, and so <code>begin_l</code> can be <code>None</code>.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>for a in b do; end
-           ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -418,12 +403,12 @@
       <pre class="lines">
 
 
-1689
-1690
-1691</pre>
+1549
+1550
+1551</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1689</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1549</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -446,8 +431,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of the loop. <code>None</code> if there&#39;s no body</p>
+    <p>Body of the loop. <code>None</code> if there&#39;s no body</p>
 
 
   </div>
@@ -474,12 +458,12 @@
       <pre class="lines">
 
 
-1658
-1659
-1660</pre>
+1520
+1521
+1522</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1658</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1520</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -502,23 +486,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>end</code> keyword</p>
+    <p>Location of the <code>end</code> keyword</p>
+
+<pre class="code text"><code class="text">for a in b; end
+            ~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>for a in b; end
-            ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -539,12 +517,12 @@
       <pre class="lines">
 
 
-1699
-1700
-1701</pre>
+1558
+1559
+1560</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1699</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1558</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -567,23 +545,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">for a in b; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>for a in b; end
-~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -604,12 +577,12 @@
       <pre class="lines">
 
 
-1709
-1710
-1711</pre>
+1567
+1568
+1569</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1709</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1567</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -632,8 +605,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Collection that is for iteration. <tt>Lvar(“b”)</tt> in <tt>for a in b; end</tt></p>
+    <p>Collection that is for iteration. <code>Lvar(&quot;b&quot;)</code> in <code>for a in b; end</code></p>
 
 
   </div>
@@ -660,12 +632,12 @@
       <pre class="lines">
 
 
-1653
-1654
-1655</pre>
+1516
+1517
+1518</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1653</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1516</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_iteratee'>iteratee</span>
   <span class='ivar'>@iteratee</span>
@@ -688,8 +660,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Variable that is used in loop, <tt>Lvasgn(“a”)</tt> in <tt>for a in b; end</tt></p>
+    <p>Variable that is used in loop, <code>Lvasgn(&quot;a&quot;)</code> in <code>for a in b; end</code></p>
 
 
   </div>
@@ -716,12 +687,12 @@
       <pre class="lines">
 
 
-1648
-1649
-1650</pre>
+1512
+1513
+1514</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1648</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1512</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_iterator'>iterator</span>
   <span class='ivar'>@iterator</span>
@@ -744,23 +715,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>for</code> keyword</p>
+    <p>Location of the <code>for</code> keyword</p>
+
+<pre class="code text"><code class="text">for a in b; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>for a in b; end
-~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -781,12 +747,12 @@
       <pre class="lines">
 
 
-1668
-1669
-1670</pre>
+1529
+1530
+1531</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1668</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1529</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -809,23 +775,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>in</code> keyword</p>
+    <p>Location of the <code>in</code> keyword</p>
+
+<pre class="code text"><code class="text">for a in b; end
+      ~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>for a in b; end
-      ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -846,12 +806,12 @@
       <pre class="lines">
 
 
-1678
-1679
-1680</pre>
+1538
+1539
+1540</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1678</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1538</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -867,7 +827,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a block that takes numbered parameters (i.e. <tt>proc { _1 }</tt>)</p>
+    <p>Represents a block that takes numbered parameters (i.e. <code>proc { _1 }</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the open brace.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the open brace.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Block body.</p>
+    <span class="summary_desc"><div class='inline'><p>Block body.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Method call that takes a block.</p>
+    <span class="summary_desc"><div class='inline'><p>Method call that takes a block.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the closing brace.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the closing brace.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the open brace.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the open brace.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Number of parameters that block takes.</p>
+    <span class="summary_desc"><div class='inline'><p>Number of parameters that block takes.</p>
 </div></span>
   
 </li>
@@ -321,23 +314,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the open brace</p>
+    <p>Location of the open brace</p>
+
+<pre class="code text"><code class="text">proc { _1 }
+     ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>proc { _1 }
-     ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -358,12 +345,12 @@
       <pre class="lines">
 
 
-3317
-3318
-3319</pre>
+3026
+3027
+3028</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3317</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3026</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -386,8 +373,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Block body</p>
+    <p>Block body</p>
 
 
   </div>
@@ -414,12 +400,12 @@
       <pre class="lines">
 
 
-3307
-3308
-3309</pre>
+3017
+3018
+3019</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3307</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3017</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -442,8 +428,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Method call that takes a block</p>
+    <p>Method call that takes a block</p>
 
 
   </div>
@@ -470,12 +455,12 @@
       <pre class="lines">
 
 
-3297
-3298
-3299</pre>
+3009
+3010
+3011</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3297</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3009</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span>
   <span class='ivar'>@call</span>
@@ -498,23 +483,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the closing brace</p>
+    <p>Location of the closing brace</p>
+
+<pre class="code text"><code class="text">proc { _1 }
+          ~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>proc { _1 }
-          ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -535,12 +514,12 @@
       <pre class="lines">
 
 
-3327
-3328
-3329</pre>
+3035
+3036
+3037</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3327</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3035</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -563,23 +542,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the open brace</p>
+    <p>Location of the open brace</p>
+
+<pre class="code text"><code class="text">proc { _1 }
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>proc { _1 }
-~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -600,12 +574,12 @@
       <pre class="lines">
 
 
-3337
-3338
-3339</pre>
+3044
+3045
+3046</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3337</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3044</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -628,8 +602,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Number of parameters that block takes</p>
+    <p>Number of parameters that block takes</p>
 
 
   </div>
@@ -656,12 +629,12 @@
       <pre class="lines">
 
 
-3302
-3303
-3304</pre>
+3013
+3014
+3015</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3302</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3013</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_numargs'>numargs</span>
   <span class='ivar'>@numargs</span>
@@ -677,7 +650,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

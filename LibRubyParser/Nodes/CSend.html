@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents conditional method call using <tt>&amp;.</tt> operator</p>
+    <p>Represents conditional method call using <code>&amp;.</code> operator</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>List of arguments.</p>
+    <span class="summary_desc"><div class='inline'><p>List of arguments.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the open parenthesis.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the open parenthesis.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>&amp;.</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>&amp;.</code> operator.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the closing parenthesis.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the closing parenthesis.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of the method, <tt>String(“foo”)</tt> for <tt>1&amp;.foo</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of the method, <code>String(&quot;foo&quot;)</code> for <code>1&amp;.foo</code>.</p>
 </div></span>
   
 </li>
@@ -315,8 +308,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the operator if <code>CSend</code> is a part of assignment like.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the operator if <code>CSend</code> is a part of assignment like.</p>
 </div></span>
   
 </li>
@@ -344,8 +336,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Receiver of the method call, <tt>Int(“1”)</tt> for <tt>1&amp;.foo</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Receiver of the method call, <code>Int(&quot;1&quot;)</code> for <code>1&amp;.foo</code>.</p>
 </div></span>
   
 </li>
@@ -373,8 +364,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the method name.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the method name.</p>
 </div></span>
   
 </li>
@@ -408,24 +398,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>List of arguments</p>
+    <p>List of arguments</p>
+
+<pre class="code text"><code class="text">foo&amp;.bar(42)
+# and also setters like
+foo&amp;.bar = 42
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code><span class='id identifier rubyid_foo'>foo</span><span class='op'>&amp;.</span><span class='id identifier rubyid_bar'>bar</span><span class='lparen'>(</span><span class='int'>42</span><span class='rparen'>)</span>
-<span class='comment'># and also setters like
-</span><span class='id identifier rubyid_foo'>foo</span><span class='op'>&amp;.</span><span class='id identifier rubyid_bar'>bar</span> <span class='op'>=</span> <span class='int'>42</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -446,12 +430,12 @@
       <pre class="lines">
 
 
-962
-963
-964</pre>
+879
+880
+881</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 962</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 879</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_args'>args</span>
   <span class='ivar'>@args</span>
@@ -474,8 +458,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the open parenthesis</p>
+    <p>Location of the open parenthesis</p>
+
+<pre class="code text"><code class="text">foo&amp;.bar(42)
+        ~
+</code></pre>
 
 <p><code>None</code> if there are no parentheses</p>
 
@@ -484,15 +471,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo&amp;.bar(42)
-        ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -513,12 +491,12 @@
       <pre class="lines">
 
 
-994
-995
-996</pre>
+910
+911
+912</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 994</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 910</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -541,23 +519,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>&amp;.</tt> operator</p>
+    <p>Location of the <code>&amp;.</code> operator</p>
+
+<pre class="code text"><code class="text">foo&amp;.bar
+   ~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo&amp;.bar
-   ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -578,12 +550,12 @@
       <pre class="lines">
 
 
-972
-973
-974</pre>
+888
+889
+890</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 972</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 888</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dot_l'>dot_l</span>
   <span class='ivar'>@dot_l</span>
@@ -606,8 +578,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the closing parenthesis</p>
+    <p>Location of the closing parenthesis</p>
+
+<pre class="code text"><code class="text">foo&amp;.bar(42)
+           ~
+</code></pre>
 
 <p><code>None</code> if there are no parentheses</p>
 
@@ -616,15 +591,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo&amp;.bar(42)
-           ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -645,12 +611,12 @@
       <pre class="lines">
 
 
-1005
-1006
-1007</pre>
+921
+922
+923</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1005</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 921</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -673,23 +639,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">foo&amp;.bar(42)
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo&amp;.bar(42)
-~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -710,12 +671,12 @@
       <pre class="lines">
 
 
-1026
-1027
-1028</pre>
+941
+942
+943</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1026</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 941</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -738,8 +699,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Name of the method, <tt>String(“foo”)</tt> for <tt>1&amp;.foo</tt></p>
+    <p>Name of the method, <code>String(&quot;foo&quot;)</code> for <code>1&amp;.foo</code></p>
 
 
   </div>
@@ -766,12 +726,12 @@
       <pre class="lines">
 
 
-951
-952
-953</pre>
+869
+870
+871</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 951</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 869</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_name'>method_name</span>
   <span class='ivar'>@method_name</span>
@@ -794,8 +754,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the operator if <code>CSend</code> is a part of assignment like</p>
+    <p>Location of the operator if <code>CSend</code> is a part of assignment like</p>
+
+<pre class="code text"><code class="text">foo&amp;.bar = 1
+         ~
+</code></pre>
 
 <p><code>None</code> for a regular call.</p>
 
@@ -804,15 +767,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo&amp;.bar = 1
-         ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -833,12 +787,12 @@
       <pre class="lines">
 
 
-1016
-1017
-1018</pre>
+932
+933
+934</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1016</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 932</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -861,8 +815,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Receiver of the method call, <tt>Int(“1”)</tt> for <tt>1&amp;.foo</tt></p>
+    <p>Receiver of the method call, <code>Int(&quot;1&quot;)</code> for <code>1&amp;.foo</code></p>
 
 
   </div>
@@ -889,12 +842,12 @@
       <pre class="lines">
 
 
-946
-947
-948</pre>
+865
+866
+867</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 946</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 865</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_recv'>recv</span>
   <span class='ivar'>@recv</span>
@@ -917,25 +870,19 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the method name</p>
+    <p>Location of the method name</p>
 
-<p><code>None</code> in a very special case when method call is implicit (i.e. <tt>foo&amp;.()</tt>)</p>
+<pre class="code text"><code class="text">foo&amp;.bar(42)
+     ~~~
+</code></pre>
+
+<p><code>None</code> in a very special case when method call is implicit (i.e. <code>foo&amp;.()</code>)</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo&amp;.bar(42)
-     ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -956,12 +903,12 @@
       <pre class="lines">
 
 
-983
-984
-985</pre>
+899
+900
+901</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 983</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 899</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_selector_l'>selector_l</span>
   <span class='ivar'>@selector_l</span>
@@ -977,7 +924,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

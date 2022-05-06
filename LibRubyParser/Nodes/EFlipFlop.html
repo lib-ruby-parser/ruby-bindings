@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents exclusive flip-flop (i.e. in <tt>if foo…bar; end</tt>)</p>
+    <p>Represents exclusive flip-flop (i.e. in <code>if foo...bar; end</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Left part of the flip-flop.</p>
+    <span class="summary_desc"><div class='inline'><p>Left part of the flip-flop.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>...</code> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>...</code> operator.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Right part of the flip-flop.</p>
+    <span class="summary_desc"><div class='inline'><p>Right part of the flip-flop.</p>
 </div></span>
   
 </li>
@@ -263,23 +258,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">if foo...bar; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>if foo...bar; end
-   ~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -300,12 +290,12 @@
       <pre class="lines">
 
 
-1432
-1433
-1434</pre>
+1313
+1314
+1315</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1432</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1313</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -328,8 +318,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Left part of the flip-flop. <code>None</code> if based on a range without begin (<code>...bar</code>)</p>
+    <p>Left part of the flip-flop. <code>None</code> if based on a range without begin (<code>...bar</code>)</p>
 
 
   </div>
@@ -356,12 +345,12 @@
       <pre class="lines">
 
 
-1407
-1408
-1409</pre>
+1291
+1292
+1293</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1407</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1291</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_left'>left</span>
   <span class='ivar'>@left</span>
@@ -384,23 +373,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>...</code> operator</p>
+    <p>Location of the <code>...</code> operator</p>
+
+<pre class="code text"><code class="text">if foo...bar; end
+      ~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>if foo...bar; end
-      ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -421,12 +404,12 @@
       <pre class="lines">
 
 
-1422
-1423
-1424</pre>
+1304
+1305
+1306</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1422</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1304</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -449,8 +432,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Right part of the flip-flop. <code>None</code> if based on a range without end (<code>foo...</code>)</p>
+    <p>Right part of the flip-flop. <code>None</code> if based on a range without end (<code>foo...</code>)</p>
 
 
   </div>
@@ -477,12 +459,12 @@
       <pre class="lines">
 
 
-1412
-1413
-1414</pre>
+1295
+1296
+1297</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1412</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1295</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_right'>right</span>
   <span class='ivar'>@right</span>
@@ -498,7 +480,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

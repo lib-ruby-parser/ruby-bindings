@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a branch of the <code>case</code> statement (i.e. <tt>when foo</tt>)</p>
+    <p>Represents a branch of the <code>case</code> statement (i.e. <code>when foo</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>then</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>then</code> keyword.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of the <code>when</code> branch.</p>
+    <span class="summary_desc"><div class='inline'><p>Body of the <code>when</code> branch.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>when</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>when</code> keyword.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of values to compare/match against.</p>
+    <span class="summary_desc"><div class='inline'><p>A list of values to compare/match against.</p>
 </div></span>
   
 </li>
@@ -292,8 +286,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>then</code> keyword</p>
+    <p>Location of the <code>then</code> keyword</p>
+
+<pre class="code text"><code class="text">case foo; when bar then baz; end
+                   ~~~~
+</code></pre>
 
 <p><code>then</code> is optional, and so <code>begin_l</code> can be <code>None</code></p>
 
@@ -302,15 +299,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; when bar then baz; end
-                   ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -331,12 +319,12 @@
       <pre class="lines">
 
 
-4591
-4592
-4593</pre>
+4193
+4194
+4195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4591</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4193</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -359,8 +347,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of the <code>when</code> branch</p>
+    <p>Body of the <code>when</code> branch</p>
 
 
   </div>
@@ -387,12 +374,12 @@
       <pre class="lines">
 
 
-4570
-4571
-4572</pre>
+4173
+4174
+4175</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4570</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4173</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -415,23 +402,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">case foo; when bar then baz; end
+          ~~~~~~~~~~~~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; when bar then baz; end
-          ~~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -452,12 +433,12 @@
       <pre class="lines">
 
 
-4601
-4602
-4603</pre>
+4202
+4203
+4204</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4601</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4202</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -480,23 +461,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>when</code> keyword</p>
+    <p>Location of the <code>when</code> keyword</p>
+
+<pre class="code text"><code class="text">case foo; when bar; end
+          ~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; when bar; end
-          ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -517,12 +492,12 @@
       <pre class="lines">
 
 
-4580
-4581
-4582</pre>
+4182
+4183
+4184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4580</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4182</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -545,8 +520,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of values to compare/match against</p>
+    <p>A list of values to compare/match against</p>
 
 
   </div>
@@ -573,12 +547,12 @@
       <pre class="lines">
 
 
-4565
-4566
-4567</pre>
+4169
+4170
+4171</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4565</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4169</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_patterns'>patterns</span>
   <span class='ivar'>@patterns</span>
@@ -594,7 +568,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

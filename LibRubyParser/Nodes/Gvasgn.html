@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents global variable assignment (i.e. <tt>$foo = 42</tt>)</p>
+    <p>Represents global variable assignment (i.e. <code>$foo = 42</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Name of the global variable, <tt>String(“$foo”)</tt> for <tt>$foo</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Name of the global variable, <code>String(&quot;$foo&quot;)</code> for <code>$foo</code>.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the global variable name.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the global variable name.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>=</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>=</code> operator.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Value that is assigned to global variable, <tt>Int(“42”)</tt> for <tt>$foo = 42</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Value that is assigned to global variable, <code>Int(&quot;42&quot;)</code> for <code>$foo = 42</code>.</p>
 </div></span>
   
 </li>
@@ -292,23 +286,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">$foo = 42
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>$foo = 42
-~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -329,12 +318,12 @@
       <pre class="lines">
 
 
-1805
-1806
-1807</pre>
+1655
+1656
+1657</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1805</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1655</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -357,8 +346,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Name of the global variable, <tt>String(“$foo”)</tt> for <tt>$foo</tt></p>
+    <p>Name of the global variable, <code>String(&quot;$foo&quot;)</code> for <code>$foo</code></p>
 
 
   </div>
@@ -385,12 +373,12 @@
       <pre class="lines">
 
 
-1765
-1766
-1767</pre>
+1618
+1619
+1620</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1765</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1618</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='ivar'>@name</span>
@@ -413,23 +401,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the global variable name</p>
+    <p>Location of the global variable name</p>
+
+<pre class="code text"><code class="text">$foo = 42
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>$foo = 42
-~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -450,12 +433,12 @@
       <pre class="lines">
 
 
-1783
-1784
-1785</pre>
+1634
+1635
+1636</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1783</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1634</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name_l'>name_l</span>
   <span class='ivar'>@name_l</span>
@@ -478,25 +461,20 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>=</tt> operator</p>
+    <p>Location of the <code>=</code> operator</p>
 
-<p><code>None</code> if global variable assignment is a part of the multi-assignment. In such case <tt>=</tt> operator belongs to the <code>Masgn</code> node.</p>
+<pre class="code text"><code class="text">$foo = 42
+     ~
+</code></pre>
+
+<p><code>None</code> if global variable assignment is a part of the multi-assignment.
+In such case <code>=</code> operator belongs to the <code>Masgn</code> node.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>$foo = 42
-     ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -517,12 +495,12 @@
       <pre class="lines">
 
 
-1795
-1796
-1797</pre>
+1646
+1647
+1648</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1795</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1646</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -545,10 +523,10 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Value that is assigned to global variable, <tt>Int(“42”)</tt> for <tt>$foo = 42</tt></p>
+    <p>Value that is assigned to global variable, <code>Int(&quot;42&quot;)</code> for <code>$foo = 42</code></p>
 
-<p><code>None</code> if global variable assignment is a part of the multi-assignment. In such case <code>value</code> is a part of the <code>Masgn</code> node.</p>
+<p><code>None</code> if global variable assignment is a part of the multi-assignment.
+In such case <code>value</code> is a part of the <code>Masgn</code> node.</p>
 
 
   </div>
@@ -575,12 +553,12 @@
       <pre class="lines">
 
 
-1773
-1774
-1775</pre>
+1625
+1626
+1627</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1773</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1625</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -596,7 +574,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

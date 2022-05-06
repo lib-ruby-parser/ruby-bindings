@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents an integer literal (i.e. <code>42</code>)</p>
+    <p>Represents an integer literal (i.e. <code>42</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of unary <code>-</code> (but not +++).</p>
+    <span class="summary_desc"><div class='inline'><p>Location of unary <code>-</code> (but not <code>+</code>).</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>String value of the literal, <tt>String(“42”)</tt> for <code>42</code>.</p>
+    <span class="summary_desc"><div class='inline'><p>String value of the literal, <code>String(&quot;42&quot;)</code> for <code>42</code>.</p>
 </div></span>
   
 </li>
@@ -234,23 +230,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">-42
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>-42
-~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -271,12 +262,12 @@
       <pre class="lines">
 
 
-2358
-2359
-2360</pre>
+2157
+2158
+2159</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2358</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2157</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -299,23 +290,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of unary <code>-</code> (but not +++)</p>
+    <p>Location of unary <code>-</code> (but not <code>+</code>)</p>
+
+<pre class="code text"><code class="text">-42
+~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>-42
-~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -336,12 +321,12 @@
       <pre class="lines">
 
 
-2348
-2349
-2350</pre>
+2148
+2149
+2150</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2348</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2148</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -364,8 +349,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>String value of the literal, <tt>String(“42”)</tt> for <code>42</code></p>
+    <p>String value of the literal, <code>String(&quot;42&quot;)</code> for <code>42</code></p>
 
 
   </div>
@@ -392,12 +376,12 @@
       <pre class="lines">
 
 
-2338
-2339
-2340</pre>
+2139
+2140
+2141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2338</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2139</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -413,7 +397,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

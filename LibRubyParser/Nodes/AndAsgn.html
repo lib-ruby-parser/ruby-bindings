@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents <tt>a &amp;&amp;= 1</tt> statement.</p>
+    <p>Represents <code>a &amp;&amp;= 1</code> statement.</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>&amp;&amp;=</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>&amp;&amp;=</code> operator.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Receiver of the <tt>&amp;&amp;=</tt> operation.</p>
+    <span class="summary_desc"><div class='inline'><p>Receiver of the <code>&amp;&amp;=</code> operation.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Right hand statement of assignment.</p>
+    <span class="summary_desc"><div class='inline'><p>Right hand statement of assignment.</p>
 </div></span>
   
 </li>
@@ -263,23 +258,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">a &amp;&amp;= 1
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>a &amp;&amp;= 1
-~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -300,12 +290,12 @@
       <pre class="lines">
 
 
-117
-118
-119</pre>
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 106</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -328,23 +318,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>&amp;&amp;=</tt> operator</p>
+    <p>Location of the <code>&amp;&amp;=</code> operator</p>
+
+<pre class="code text"><code class="text">a &amp;&amp;= 1
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>a &amp;&amp;= 1
-  ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -365,12 +350,12 @@
       <pre class="lines">
 
 
-107
-108
-109</pre>
+97
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -393,10 +378,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Receiver of the <tt>&amp;&amp;=</tt> operation.</p>
+    <p>Receiver of the <code>&amp;&amp;=</code> operation.</p>
 
-<p><tt>Lvasgn(“a”)</tt> node for <tt>a &amp;&amp;= 1</tt></p>
+<p><code>Lvasgn(&quot;a&quot;)</code> node for <code>a &amp;&amp;= 1</code></p>
 
 
   </div>
@@ -423,12 +407,12 @@
       <pre class="lines">
 
 
-90
-91
-92</pre>
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 82</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_recv'>recv</span>
   <span class='ivar'>@recv</span>
@@ -451,10 +435,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Right hand statement of assignment</p>
+    <p>Right hand statement of assignment</p>
 
-<p><tt>Int(“1”)</tt> node for <tt>a &amp;&amp;= 1</tt></p>
+<p><code>Int(&quot;1&quot;)</code> node for <code>a &amp;&amp;= 1</code></p>
 
 
   </div>
@@ -481,12 +464,12 @@
       <pre class="lines">
 
 
-97
-98
-99</pre>
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 97</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -502,7 +485,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:46 2021 by
+  Generated on Fri May  6 23:53:59 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

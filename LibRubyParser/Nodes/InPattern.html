@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents an <tt>in pattern</tt> branch of the pattern matching</p>
+    <p>Represents an <code>in pattern</code> branch of the pattern matching</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>then</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>then</code> keyword.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of the branch that is invoked if value matches pattern.</p>
+    <span class="summary_desc"><div class='inline'><p>Body of the branch that is invoked if value matches pattern.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Guard that is used for matching.</p>
+    <span class="summary_desc"><div class='inline'><p>Guard that is used for matching.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>in</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>in</code> keyword.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Value that is used for matching.</p>
+    <span class="summary_desc"><div class='inline'><p>Value that is used for matching.</p>
 </div></span>
   
 </li>
@@ -321,23 +314,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>then</code> keyword</p>
+    <p>Location of the <code>then</code> keyword</p>
+
+<pre class="code text"><code class="text">case value; in pattern then; end
+                       ~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case value; in pattern then; end
-                       ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -358,12 +345,12 @@
       <pre class="lines">
 
 
-2319
-2320
-2321</pre>
+2122
+2123
+2124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2319</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2122</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -386,8 +373,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of the branch that is invoked if value matches pattern</p>
+    <p>Body of the branch that is invoked if value matches pattern</p>
 
 
   </div>
@@ -414,12 +400,12 @@
       <pre class="lines">
 
 
-2299
-2300
-2301</pre>
+2104
+2105
+2106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2299</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2104</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -442,23 +428,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">case value; in pattern then; 42; end
+            ~~~~~~~~~~~~~~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case value; in pattern then; 42; end
-            ~~~~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -479,12 +459,12 @@
       <pre class="lines">
 
 
-2329
-2330
-2331</pre>
+2131
+2132
+2133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2329</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2131</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -507,8 +487,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Guard that is used for matching</p>
+    <p>Guard that is used for matching</p>
 
 <p>Optional, so can be <code>None</code></p>
 
@@ -537,12 +516,12 @@
       <pre class="lines">
 
 
-2294
-2295
-2296</pre>
+2100
+2101
+2102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2294</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2100</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_guard'>guard</span>
   <span class='ivar'>@guard</span>
@@ -565,23 +544,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>in</code> keyword</p>
+    <p>Location of the <code>in</code> keyword</p>
+
+<pre class="code text"><code class="text">case value; in pattern; end
+            ~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case value; in pattern; end
-            ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -602,12 +575,12 @@
       <pre class="lines">
 
 
-2309
-2310
-2311</pre>
+2113
+2114
+2115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2309</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2113</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -630,8 +603,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Value that is used for matching</p>
+    <p>Value that is used for matching</p>
 
 
   </div>
@@ -658,12 +630,12 @@
       <pre class="lines">
 
 
-2287
-2288
-2289</pre>
+2094
+2095
+2096</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2287</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2094</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_pattern'>pattern</span>
   <span class='ivar'>@pattern</span>
@@ -679,7 +651,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents an <code>if</code>/<code>unless</code> modifier (i.e. <tt>stmt if cond</tt>)</p>
+    <p>Represents an <code>if</code>/<code>unless</code> modifier (i.e. <code>stmt if cond</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Condition of the modifier.</p>
+    <span class="summary_desc"><div class='inline'><p>Condition of the modifier.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>False-branch of the modifier.</p>
+    <span class="summary_desc"><div class='inline'><p>False-branch of the modifier.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>True-branch of the modifier.</p>
+    <span class="summary_desc"><div class='inline'><p>True-branch of the modifier.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>if</code>/<code>unless</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>if</code>/<code>unless</code> keyword.</p>
 </div></span>
   
 </li>
@@ -292,8 +286,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Condition of the modifier</p>
+    <p>Condition of the modifier</p>
 
 
   </div>
@@ -320,12 +313,12 @@
       <pre class="lines">
 
 
-2079
-2080
-2081</pre>
+1908
+1909
+1910</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2079</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1908</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cond'>cond</span>
   <span class='ivar'>@cond</span>
@@ -348,26 +341,20 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">stmt if cond
+</code></pre>
+
+<p>stmt unless cond</p>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>stmt if cond
-~~~~~~~~~~~~
-
-stmt unless cond
-~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -388,12 +375,12 @@ stmt unless cond
       <pre class="lines">
 
 
-2121
-2122
-2123</pre>
+1946
+1947
+1948</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2121</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1946</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -416,10 +403,10 @@ stmt unless cond
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>False-branch of the modifier.</p>
+    <p>False-branch of the modifier.</p>
 
-<p>Always set for <code>unless</code> modifier. Always <code>None</code> for <code>if</code> modifier.</p>
+<p>Always set for <code>unless</code> modifier.
+Always <code>None</code> for <code>if</code> modifier.</p>
 
 
   </div>
@@ -446,12 +433,12 @@ stmt unless cond
       <pre class="lines">
 
 
-2095
-2096
-2097</pre>
+1922
+1923
+1924</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2095</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1922</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_if_false'>if_false</span>
   <span class='ivar'>@if_false</span>
@@ -474,10 +461,10 @@ stmt unless cond
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>True-branch of the modifier.</p>
+    <p>True-branch of the modifier.</p>
 
-<p>Always set for <code>if</code> modifier. Always <code>None</code> for <code>unless</code> modifier.</p>
+<p>Always set for <code>if</code> modifier.
+Always <code>None</code> for <code>unless</code> modifier.</p>
 
 
   </div>
@@ -504,12 +491,12 @@ stmt unless cond
       <pre class="lines">
 
 
-2087
-2088
-2089</pre>
+1915
+1916
+1917</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2087</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1915</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_if_true'>if_true</span>
   <span class='ivar'>@if_true</span>
@@ -532,26 +519,20 @@ stmt unless cond
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>if</code>/<code>unless</code> keyword</p>
+    <p>Location of the <code>if</code>/<code>unless</code> keyword</p>
+
+<pre class="code text"><code class="text">stmt if cond
+     ~~
+
+stmt unless cond
+     ~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>stmt if cond
-     ~~
-
-stmt unless cond
-     ~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -572,12 +553,12 @@ stmt unless cond
       <pre class="lines">
 
 
-2108
-2109
-2110</pre>
+1934
+1935
+1936</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2108</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1934</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -593,7 +574,7 @@ stmt unless cond
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

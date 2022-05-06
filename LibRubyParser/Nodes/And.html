@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents <tt>foo &amp;&amp; bar</tt> (or <tt>foo and bar</tt>) statement.</p>
+    <p>Represents <code>foo &amp;&amp; bar</code> (or <code>foo and bar</code>) statement.</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Left hand statament of the <tt>&amp;&amp;</tt> operation.</p>
+    <span class="summary_desc"><div class='inline'><p>Left hand statament of the <code>&amp;&amp;</code> operation.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>&amp;&amp;</tt> (or <code>and</code>) operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>&amp;&amp;</code> (or <code>and</code>) operator.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Right hand statement of the <tt>&amp;&amp;</tt> operation.</p>
+    <span class="summary_desc"><div class='inline'><p>Right hand statement of the <code>&amp;&amp;</code> operation.</p>
 </div></span>
   
 </li>
@@ -263,23 +258,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">a &amp;&amp; b
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>a &amp;&amp; b
-~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -300,12 +290,12 @@
       <pre class="lines">
 
 
-79
-80
-81</pre>
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -328,10 +318,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Left hand statament of the <tt>&amp;&amp;</tt> operation.</p>
+    <p>Left hand statament of the <code>&amp;&amp;</code> operation.</p>
 
-<p><tt>Lvar(“foo”)</tt> node for <tt>foo &amp;&amp; bar</tt></p>
+<p><code>Lvar(&quot;foo&quot;)</code> node for <code>foo &amp;&amp; bar</code></p>
 
 
   </div>
@@ -358,12 +347,12 @@
       <pre class="lines">
 
 
-52
-53
-54</pre>
+48
+49
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 48</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lhs'>lhs</span>
   <span class='ivar'>@lhs</span>
@@ -386,23 +375,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>&amp;&amp;</tt> (or <code>and</code>) operator</p>
+    <p>Location of the <code>&amp;&amp;</code> (or <code>and</code>) operator</p>
+
+<pre class="code text"><code class="text">a &amp;&amp; b
+  ~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>a &amp;&amp; b
-  ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -423,12 +406,12 @@
       <pre class="lines">
 
 
-69
-70
-71</pre>
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -451,10 +434,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Right hand statement of the <tt>&amp;&amp;</tt> operation.</p>
+    <p>Right hand statement of the <code>&amp;&amp;</code> operation.</p>
 
-<p><tt>Lvar(“bar”)</tt> node for <tt>foo &amp;&amp; bar</tt></p>
+<p><code>Lvar(&quot;bar&quot;)</code> node for <code>foo &amp;&amp; bar</code></p>
 
 
   </div>
@@ -481,12 +463,12 @@
       <pre class="lines">
 
 
-59
-60
-61</pre>
+54
+55
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 54</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rhs'>rhs</span>
   <span class='ivar'>@rhs</span>
@@ -502,7 +484,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:46 2021 by
+  Generated on Fri May  6 23:53:59 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents an <code>undef</code> keyword (e.g. <tt>undef foo, :bar</tt>)</p>
+    <p>Represents an <code>undef</code> keyword (e.g. <code>undef foo, :bar</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location the <code>undef</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location the <code>undef</code> keyword.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of names to <code>undef</code>.</p>
+    <span class="summary_desc"><div class='inline'><p>A list of names to <code>undef</code>.</p>
 </div></span>
   
 </li>
@@ -234,23 +230,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">undef :foo, bar
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>undef :foo, bar
-~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -271,12 +262,12 @@
       <pre class="lines">
 
 
-4426
-4427
-4428</pre>
+4042
+4043
+4044</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4426</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4042</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -299,23 +290,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location the <code>undef</code> keyword</p>
+    <p>Location the <code>undef</code> keyword</p>
+
+<pre class="code text"><code class="text">undef foo, :bar
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>undef foo, :bar
-~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -336,12 +322,12 @@
       <pre class="lines">
 
 
-4416
-4417
-4418</pre>
+4033
+4034
+4035</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4416</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4033</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -364,8 +350,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of names to <code>undef</code></p>
+    <p>A list of names to <code>undef</code></p>
 
 
   </div>
@@ -392,12 +377,12 @@
       <pre class="lines">
 
 
-4406
-4407
-4408</pre>
+4024
+4025
+4026</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4406</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4024</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_names'>names</span>
   <span class='ivar'>@names</span>
@@ -413,7 +398,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a <code>Complex</code> literal (that returns an <code>Complex</code> number)</p>
+    <p>Represents a <code>Complex</code> literal (that returns an <code>Complex</code> number)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>-</code> (but not +++) operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>-</code> (but not <code>+</code>) operator.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Value of the complex literal, returned as a <code>String</code>, <tt>String(“1i”)</tt> for <code>1i</code>.</p>
+    <span class="summary_desc"><div class='inline'><p>Value of the complex literal, returned as a <code>String</code>, <code>String(&quot;1i&quot;)</code> for <code>1i</code>.</p>
 </div></span>
   
 </li>
@@ -234,23 +230,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">-1i
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>-1i
-~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -271,12 +262,12 @@
       <pre class="lines">
 
 
-844
-845
-846</pre>
+774
+775
+776</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 844</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 774</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -299,28 +290,22 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>-</code> (but not +++) operator. +++ is a part of the literal:</p>
-<ol><li>
-<p><tt><code>1i</code> is </tt>String(“+1i”)+ with <tt>operator = None</tt></p>
-</li><li>
-<p><code>-1i</code> is <tt>String(“1i”)</tt> with <tt>operator = String(“-”)</tt></p>
-</li></ol>
+    <p>Location of the <code>-</code> (but not <code>+</code>) operator. <code>+</code> is a part of the literal:</p>
+
+<ol>
+<li><code>+1i</code> is <code>String(&quot;+1i&quot;)</code> with <code>operator = None</code></li>
+<li><code>-1i</code> is <code>String(&quot;1i&quot;)</code> with <code>operator = String(&quot;-&quot;)</code></li>
+</ol>
+
+<pre class="code text"><code class="text">-1i
+~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>-1i
-~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -341,12 +326,12 @@
       <pre class="lines">
 
 
-834
-835
-836</pre>
+765
+766
+767</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 834</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 765</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -369,8 +354,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Value of the complex literal, returned as a <code>String</code>, <tt>String(“1i”)</tt> for <code>1i</code></p>
+    <p>Value of the complex literal, returned as a <code>String</code>, <code>String(&quot;1i&quot;)</code> for <code>1i</code></p>
 
 
   </div>
@@ -397,12 +381,12 @@
       <pre class="lines">
 
 
-822
-823
-824</pre>
+754
+755
+756</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 822</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 754</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -418,7 +402,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

@@ -57,12 +57,11 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-LibRubyParser">LibRubyParser</h1>
+      <div id="content"><div id='filecontents'><h1 id="librubyparser">LibRubyParser</h1>
 
-<p>Ruby bindings for <a href="https://github.com/lib-ruby-parser/lib-ruby-parser">lib-ruby-parser</a></p>
+<p>Ruby bindings for <a href="https://github.com/lib-ruby-parser/lib-ruby-parser"><code>lib-ruby-parser</code></a></p>
 
-<h2 id="label-Installation">Installation</h2>
+<h2 id="installation">Installation</h2>
 
 <p>Add this line to your application&#39;s Gemfile:</p>
 
@@ -79,7 +78,7 @@
 <pre class="code ruby"><code class="ruby">$ gem install lib-ruby-parser
 </code></pre>
 
-<h2 id="label-Usage">Usage</h2>
+<h2 id="usage">Usage</h2>
 
 <p>Basic usage:</p>
 
@@ -97,78 +96,65 @@ end
 
 <p>Full documentation can be found <a href="https://lib-ruby-parser.github.io/ruby-bindings/">here</a></p>
 
-<h2 id="label-Development">Development</h2>
+<h2 id="development">Development</h2>
 
-<p>This repo is <strong>mostly</strong> based on <a href="https://github.com/lib-ruby-parser/c-bindings">c-bindings</a> and <a href="https://github.com/lib-ruby-parser/nodes">lib-ruby-parser-nodes Rust crate</a></p>
-<ol><li>
-<p><code>c-bindings</code> directory contains static library and header file from the latest <a href="https://github.com/lib-ruby-parser/c-bindings/releases">c-bindings release</a>. Both header and static lib are under gitignore.</p>
-</li><li>
-<p><code>codegen</code> directory is a Rust micro-library that generates:</p>
-<ul><li>
-<p><code>nodes.h</code> - header file with C -&gt; Ruby conversion functions for all <code>Node</code> types</p>
-</li><li>
-<p><code>messages.h</code> - header file with C -&gt; Ruby conversion functions for all <code>DiagnosticMessage</code> types</p>
-</li><li>
-<p><code>lib/lib-ruby-parser/nodes.rb</code> - classes and documentation for all <code>Node</code> types</p>
-</li><li>
-<p><code>lib/lib-ruby-parser/messages.rb</code> - classes and documentation for all <code>DiagnosticMessage</code> types</p>
-</li></ul>
-</li><li>
-<p><code>lib</code> directory contains classes and documentation for all classes except dynamic nodes and diagnostic messages</p>
-</li><li>
-<p><code>main.c</code> is the main entrypoint to C world. It defines a single <code>LibRubyParser.parse</code> function that converts given Ruby objects, converts them to C equivalent, calls <code>LIB_RUBY_PARSER_parse</code> from <code>c-bindings</code> and converts returned C objects back to Ruby objects. 90% function names in <code>main.c</code> end with either <code>__from_ruby</code> (to convert object from Ruby to C) or <code>__to_ruby</code> (to convert C -&gt; Ruby).</p>
-</li><li>
-<p><code>scripts</code> directory:</p>
-<ol><li>
-<p><code>scripts/targets</code> - directory with target- (and in our case OS-) specific configurations</p>
-</li><li>
-<p><code>scripts/compile.rb</code> - prints code to compile <code>main.c</code> to <code>main.o</code></p>
-</li><li>
-<p><code>scripts/link.rb</code> - prints code to link <code>main.o</code> to <code>lib/lib-ruby-parser/native/lib_ruby_parser.$(DYLIB_EXT)</code></p>
-</li><li>
-<p><code>scripts/setup.mk</code> - basic setup, prints debug information, auto-included by root Makefile</p>
-</li></ol>
-</li><li>
-<p><code>test</code> directory contains a single minitest test that performs a smoke test</p>
-</li></ol>
+<p>This repo is <strong>mostly</strong> based on <a href="https://github.com/lib-ruby-parser/c-bindings"><code>c-bindings</code></a> and <a href="https://github.com/lib-ruby-parser/nodes"><code>lib-ruby-parser-nodes Rust crate</code></a></p>
+
+<ol>
+<li><code>c-bindings</code> directory contains static library and header file from the latest <a href="https://github.com/lib-ruby-parser/c-bindings/releases">c-bindings release</a>. Both header and static lib are under gitignore.</li>
+<li><code>codegen</code> directory is a Rust micro-library that generates:
+
+<ul>
+<li><code>nodes.h</code> - header file with C -&gt; Ruby conversion functions for all <code>Node</code> types</li>
+<li><code>messages.h</code> - header file with C -&gt; Ruby conversion functions for all <code>DiagnosticMessage</code> types</li>
+<li><code>lib/lib-ruby-parser/nodes.rb</code> - classes and documentation for all <code>Node</code> types</li>
+<li><code>lib/lib-ruby-parser/messages.rb</code> - classes and documentation for all <code>DiagnosticMessage</code> types</li>
+</ul></li>
+<li><code>lib</code> directory contains classes and documentation for all classes except dynamic nodes and diagnostic messages</li>
+<li><code>main.c</code> is the main entrypoint to C world. It defines a single <code>LibRubyParser.parse</code> function that converts given Ruby objects, converts them to C equivalent, calls <code>LIB_RUBY_PARSER_parse</code> from <code>c-bindings</code> and converts returned C objects back to Ruby objects. 90% function names in <code>main.c</code> end with either <code>__from_ruby</code> (to convert object from Ruby to C) or <code>__to_ruby</code> (to convert C -&gt; Ruby).</li>
+<li><code>scripts</code> directory:
+
+<ol>
+<li><code>scripts/targets</code> - directory with target- (and in our case OS-) specific configurations</li>
+<li><code>scripts/compile.rb</code> - prints code to compile <code>main.c</code> to <code>main.o</code></li>
+<li><code>scripts/link.rb</code> - prints code to link <code>main.o</code> to <code>lib/lib-ruby-parser/native/lib_ruby_parser.$(DYLIB_EXT)</code></li>
+<li><code>scripts/setup.mk</code> - basic setup, prints debug information, auto-included by root Makefile</li>
+</ol></li>
+<li><code>test</code> directory contains a single minitest test that performs a smoke test</li>
+</ol>
 
 <p>To run it locally:</p>
-<ol><li>
-<p>make sure to have Ruby and Rust</p>
-</li><li>
-<p><code>git clone</code> the repo</p>
-</li><li>
-<p>run <code>bundle install</code></p>
-</li><li>
-<p>run <code>make test</code></p>
-</li></ol>
 
-<h2 id="label-Safety">Safety</h2>
+<ol>
+<li>make sure to have Ruby and Rust</li>
+<li><code>git clone</code> the repo</li>
+<li>run <code>bundle install</code></li>
+<li>run <code>make test</code></li>
+</ol>
+
+<h2 id="safety">Safety</h2>
 
 <p><code>c-bindings</code> is tested with Address Sanitizer (ASAN) on every commit, so it&#39;s clean from memory leaks.</p>
 
-<p>We do run ASAN on CI on every commit for this repo too, but enabling it is a bit tricky. Ruby executable is not linked with <code>libasan.so</code>, and so if <code>main.c</code> is compiled with <code>-fsanitize=address</code> loading <code>lib_ruby_parser.dylib</code> gives an error at runtime, <code>malloc</code> is supposed to “track itself” using <code>libasan.so</code> functionality, but it&#39;s not available. <code>LD_PRELOAD</code> (on Linux) and <code>DYLD_INSERT_LIBRARIES</code> (on MacOS) can do the trick.</p>
-<ol><li>
-<p>On Linux:</p>
-<ul><li>
-<p>Pass <code>CFLAGS=&quot;-fsanitize=address&quot;</code> to <code>make test</code> to get <code>lib/lib-ruby-parser/native/lib_ruby_parser.so</code> compiled with ASAN</p>
-</li><li>
-<p>Get path to <code>libasan.so</code> by running <code>gcc -print-file-name=libasan.so</code></p>
-</li><li>
-<p>Pass it to <code>make test</code> with <code>LD_PRELOAD=$(gcc -print-file-name=libasan.so) make test</code></p>
-</li></ul>
-</li><li>
-<p>On MacOS:</p>
-<ul><li>
-<p>Make sure to have <code>clang</code> installed with Homebrew, default <code>clang</code> that ships with MacOS doesn&#39;t have it.</p>
-</li><li>
-<p>Pass <code>CC=clang CFLAGS=&quot;-fsanitize=address&quot;</code> to <code>make test</code> to get <code>lib/lib-ruby-parser/native/lib_ruby_parser.bundle</code> compiled with ASAN</p>
-</li><li>
-<p>Get path to <code>libclang_rt.asan_osx_dynamic.dylib</code> by running <code>clang --print-file-name=libclang_rt.asan_osx_dynamic.dylib</code></p>
-</li><li>
-<p>Pass it to <code>make test</code> with <code>DYLD_INSERT_LIBRARIES=$(clang --print-file-name=libclang_rt.asan_osx_dynamic.dylib) make test</code></p>
-</li></ul>
-</li></ol>
+<p>We do run ASAN on CI on every commit for this repo too, but enabling it is a bit tricky. Ruby executable is not linked with <code>libasan.so</code>, and so if <code>main.c</code> is compiled with <code>-fsanitize=address</code> loading <code>lib_ruby_parser.dylib</code> gives an error at runtime, <code>malloc</code> is supposed to &quot;track itself&quot; using <code>libasan.so</code> functionality, but it&#39;s not available. <code>LD_PRELOAD</code> (on Linux) and <code>DYLD_INSERT_LIBRARIES</code> (on MacOS) can do the trick.</p>
+
+<ol>
+<li>On Linux:
+
+<ul>
+<li>Pass <code>CFLAGS=&quot;-fsanitize=address&quot;</code> to <code>make test</code> to get <code>lib/lib-ruby-parser/native/lib_ruby_parser.so</code> compiled with ASAN</li>
+<li>Get path to <code>libasan.so</code> by running <code>gcc -print-file-name=libasan.so</code></li>
+<li>Pass it to <code>make test</code> with <code>LD_PRELOAD=$(gcc -print-file-name=libasan.so) make test</code></li>
+</ul></li>
+<li>On MacOS:
+
+<ul>
+<li>Make sure to have <code>clang</code> installed with Homebrew, default <code>clang</code> that ships with MacOS doesn&#39;t have it.</li>
+<li>Pass <code>CC=clang CFLAGS=&quot;-fsanitize=address&quot;</code> to <code>make test</code> to get <code>lib/lib-ruby-parser/native/lib_ruby_parser.bundle</code> compiled with ASAN</li>
+<li>Get path to <code>libclang_rt.asan_osx_dynamic.dylib</code> by running <code>clang --print-file-name=libclang_rt.asan_osx_dynamic.dylib</code></li>
+<li>Pass it to <code>make test</code> with <code>DYLD_INSERT_LIBRARIES=$(clang --print-file-name=libclang_rt.asan_osx_dynamic.dylib) make test</code></li>
+</ul></li>
+</ol>
 
 <p>CI does the same thing on every commit.</p>
 
@@ -206,13 +192,13 @@ Direct leak of 48 byte(s) in 1 object(s) allocated from:
 
 <p>We use the same file on CI, no functions from <code>lib-ruby-parser</code> are allowed to produce leaks.</p>
 
-<h2 id="label-Contributing">Contributing</h2>
+<h2 id="contributing">Contributing</h2>
 
-<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/lib-ruby-parser/ruby-bindings">github.com/lib-ruby-parser/ruby-bindings</a>.</p>
+<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/lib-ruby-parser/ruby-bindings">https://github.com/lib-ruby-parser/ruby-bindings</a>.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:46 2021 by
+  Generated on Fri May  6 23:53:59 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents an <code>unless</code> guard used in pattern matching (i.e. <tt>in pattern unless guard</tt>)</p>
+    <p>Represents an <code>unless</code> guard used in pattern matching (i.e. <code>in pattern unless guard</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Condition of the guard, <tt>Lvar(“foo”)</tt> in <tt>in pattern unless guard</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Condition of the guard, <code>Lvar(&quot;foo&quot;)</code> in <code>in pattern unless guard</code>.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>unless</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>unless</code> keyword.</p>
 </div></span>
   
 </li>
@@ -234,8 +230,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Condition of the guard, <tt>Lvar(“foo”)</tt> in <tt>in pattern unless guard</tt></p>
+    <p>Condition of the guard, <code>Lvar(&quot;foo&quot;)</code> in <code>in pattern unless guard</code></p>
 
 
   </div>
@@ -262,12 +257,12 @@
       <pre class="lines">
 
 
-4435
-4436
-4437</pre>
+4050
+4051
+4052</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4435</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4050</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cond'>cond</span>
   <span class='ivar'>@cond</span>
@@ -290,23 +285,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">case foo; in pattern unless cond; end
+                     ~~~~~~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; in pattern unless cond; end
-                     ~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -327,12 +316,12 @@
       <pre class="lines">
 
 
-4455
-4456
-4457</pre>
+4068
+4069
+4070</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4455</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4068</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -355,23 +344,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>unless</code> keyword</p>
+    <p>Location of the <code>unless</code> keyword</p>
+
+<pre class="code text"><code class="text">case foo; in pattern unless cond; end
+                     ~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>case foo; in pattern unless cond; end
-                     ~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -392,12 +375,12 @@
       <pre class="lines">
 
 
-4445
-4446
-4447</pre>
+4059
+4060
+4061</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4445</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4059</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -413,7 +396,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

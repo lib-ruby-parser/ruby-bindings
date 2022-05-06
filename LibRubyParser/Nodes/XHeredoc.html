@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a executable here-document literal (both with and without interpolation)</p>
+    <p>Represents a executable here-document literal (both with and without interpolation)</p>
 
 <p>It&#39;s similar to <code>Xstr</code> in terms of abstract syntax tree, but has different source maps.</p>
 
@@ -143,8 +142,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the executable here-document identifier.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the executable here-document identifier.</p>
 </div></span>
   
 </li>
@@ -172,8 +170,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the executable here-document body.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the executable here-document body.</p>
 </div></span>
   
 </li>
@@ -201,8 +198,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the executable here-document end.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the executable here-document end.</p>
 </div></span>
   
 </li>
@@ -230,8 +226,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of string parts (static literals and interpolated expressions).</p>
+    <span class="summary_desc"><div class='inline'><p>A list of string parts (static literals and interpolated expressions).</p>
 </div></span>
   
 </li>
@@ -265,30 +260,26 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the executable here-document identifier</p>
+    <p>Location of the executable here-document identifier</p>
 
-<p>*<strong>Note</strong>*: This is the only node (with <code>Heredoc</code>) that has <code>expression_l</code> smaller that all other sub-locations merged. The reason for that is that it&#39;s possible to add more code after here-document ID:</p>
+<pre class="code text"><code class="text">&lt;&lt;-`HERE`\n  a\n   #{42}\nHERE
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">
+**Note**: This is the only node (with `Heredoc`) that has `expression_l` smaller that all other sub-locations merged.
+The reason for that is that it&#39;s possible to add more code after here-document ID:
+
+```text
+&lt;&lt;-`HERE` + &quot;rest&quot;
+content
+HERE
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>&lt;&lt;-`HERE`\n  a\n   #{42}\nHERE
-~~~~~~~</code></pre>
-    
-      
-      <pre class="example code"><code><span class='heredoc_beg'>&lt;&lt;-`HERE`</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rest</span><span class='tstring_end'>&quot;</span></span>
-<span class='tstring_content'>content
-</span><span class='heredoc_end'>HERE</span></code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -309,12 +300,12 @@
       <pre class="lines">
 
 
-4751
-4752
-4753</pre>
+4341
+4342
+4343</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4751</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4341</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -337,23 +328,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the executable here-document body</p>
+    <p>Location of the executable here-document body</p>
+
+<pre class="code text"><code class="text">&lt;&lt;-`HERE`\n  a\n   #{42}\nHERE
+         ~~~~~~~~~~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>&lt;&lt;-`HERE`\n  a\n   #{42}\nHERE
-         ~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -374,12 +359,12 @@
       <pre class="lines">
 
 
-4723
-4724
-4725</pre>
+4314
+4315
+4316</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4723</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4314</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_heredoc_body_l'>heredoc_body_l</span>
   <span class='ivar'>@heredoc_body_l</span>
@@ -402,23 +387,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the executable here-document end</p>
+    <p>Location of the executable here-document end</p>
+
+<pre class="code text"><code class="text">&lt;&lt;-`HERE`\n  a\n   #{42}\nHERE
+                          ~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>&lt;&lt;-`HERE`\n  a\n   #{42}\nHERE
-                          ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -439,12 +418,12 @@
       <pre class="lines">
 
 
-4733
-4734
-4735</pre>
+4323
+4324
+4325</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4733</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4323</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_heredoc_end_l'>heredoc_end_l</span>
   <span class='ivar'>@heredoc_end_l</span>
@@ -467,8 +446,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of string parts (static literals and interpolated expressions)</p>
+    <p>A list of string parts (static literals and interpolated expressions)</p>
 
 
   </div>
@@ -495,12 +473,12 @@
       <pre class="lines">
 
 
-4713
-4714
-4715</pre>
+4305
+4306
+4307</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4713</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4305</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parts'>parts</span>
   <span class='ivar'>@parts</span>
@@ -516,7 +494,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

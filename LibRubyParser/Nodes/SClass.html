@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents opening a singleton class (i.e. <tt>class &lt;&lt; foo; … end;</tt>)</p>
+    <p>Represents opening a singleton class (i.e. <code>class &lt;&lt; foo; ... end;</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Body of the block.</p>
+    <span class="summary_desc"><div class='inline'><p>Body of the block.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>end</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>end</code> keyword.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Expression that is used to get a singleton class.</p>
+    <span class="summary_desc"><div class='inline'><p>Expression that is used to get a singleton class.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>class</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>class</code> keyword.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>&lt;&lt;</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>&lt;&lt;</code> operator.</p>
 </div></span>
   
 </li>
@@ -321,8 +314,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Body of the block</p>
+    <p>Body of the block</p>
 
 
   </div>
@@ -349,12 +341,12 @@
       <pre class="lines">
 
 
-4036
-4037
-4038</pre>
+3677
+3678
+3679</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4036</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3677</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -377,23 +369,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>end</code> keyword</p>
+    <p>Location of the <code>end</code> keyword</p>
+
+<pre class="code text"><code class="text">class &lt;&lt; foo; end
+              ~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>class &lt;&lt; foo; end
-              ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -414,12 +400,12 @@
       <pre class="lines">
 
 
-4066
-4067
-4068</pre>
+3704
+3705
+3706</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4066</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3704</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -442,10 +428,9 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Expression that is used to get a singleton class</p>
+    <p>Expression that is used to get a singleton class</p>
 
-<p><tt>Lvar(“foo”)</tt> for <tt>class &lt;&lt; foo; end</tt></p>
+<p><code>Lvar(&quot;foo&quot;)</code> for <code>class &lt;&lt; foo; end</code></p>
 
 
   </div>
@@ -472,12 +457,12 @@
       <pre class="lines">
 
 
-4031
-4032
-4033</pre>
+3673
+3674
+3675</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4031</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3673</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expr'>expr</span>
   <span class='ivar'>@expr</span>
@@ -500,23 +485,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">class &lt;&lt; foo; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>class &lt;&lt; foo; end
-~~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -537,12 +517,12 @@
       <pre class="lines">
 
 
-4076
-4077
-4078</pre>
+3713
+3714
+3715</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4076</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3713</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -565,23 +545,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>class</code> keyword</p>
+    <p>Location of the <code>class</code> keyword</p>
+
+<pre class="code text"><code class="text">class &lt;&lt; foo; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>class &lt;&lt; foo; end
-~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -602,12 +577,12 @@
       <pre class="lines">
 
 
-4046
-4047
-4048</pre>
+3686
+3687
+3688</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4046</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3686</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -630,23 +605,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>&lt;&lt;</tt> operator</p>
+    <p>Location of the <code>&lt;&lt;</code> operator</p>
+
+<pre class="code text"><code class="text">class &lt;&lt; foo; end
+      ~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>class &lt;&lt; foo; end
-      ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -667,12 +636,12 @@
       <pre class="lines">
 
 
-4056
-4057
-4058</pre>
+3695
+3696
+3697</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 4056</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3695</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -688,7 +657,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

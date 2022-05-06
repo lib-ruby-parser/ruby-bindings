@@ -103,10 +103,12 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents an explicit <tt>begin; end</tt> block.</p>
+    <p>Represents an explicit <code>begin; end</code> block.</p>
 
 <p>The reason why it&#39;s different is that</p>
+
+<pre class="code text"><code class="text">begin; foo; end while cond
+</code></pre>
 
 <p>is a post-while loop (same with post-until loop)</p>
 
@@ -115,14 +117,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code><span class='kw'>begin</span><span class='semicolon'>;</span> <span class='id identifier rubyid_foo'>foo</span><span class='semicolon'>;</span> <span class='kw'>end</span> <span class='kw'>while</span> <span class='id identifier rubyid_cond'>cond</span></code></pre>
-    
-  </div>
-
 
 </div>
 
@@ -153,8 +147,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>begin</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>begin</code> keyword.</p>
 </div></span>
   
 </li>
@@ -182,8 +175,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>end</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>end</code> keyword.</p>
 </div></span>
   
 </li>
@@ -211,8 +203,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -240,8 +231,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A list of statements.</p>
+    <span class="summary_desc"><div class='inline'><p>A list of statements.</p>
 </div></span>
   
 </li>
@@ -275,23 +265,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>begin</code> keyword</p>
+    <p>Location of the <code>begin</code> keyword</p>
+
+<pre class="code text"><code class="text">begin; foo; end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; foo; end
-~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -312,12 +297,12 @@
       <pre class="lines">
 
 
-2534
-2535
-2536</pre>
+2315
+2316
+2317</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2534</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2315</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -340,23 +325,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>end</code> keyword</p>
+    <p>Location of the <code>end</code> keyword</p>
+
+<pre class="code text"><code class="text">begin; foo; end
+            ~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; foo; end
-            ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -377,12 +356,12 @@
       <pre class="lines">
 
 
-2544
-2545
-2546</pre>
+2324
+2325
+2326</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2544</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2324</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -405,23 +384,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">begin; foo; bar
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>begin; foo; bar
-~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -442,12 +416,12 @@
       <pre class="lines">
 
 
-2554
-2555
-2556</pre>
+2333
+2334
+2335</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2554</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2333</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -470,8 +444,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>A list of statements</p>
+    <p>A list of statements</p>
 
 
   </div>
@@ -498,12 +471,12 @@
       <pre class="lines">
 
 
-2524
-2525
-2526</pre>
+2306
+2307
+2308</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2524</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2306</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_statements'>statements</span>
   <span class='ivar'>@statements</span>
@@ -519,7 +492,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

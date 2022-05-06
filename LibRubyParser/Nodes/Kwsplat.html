@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a keyword arguments splat (i.e. <tt>**bar</tt> in a call like <tt>foo(**bar)</tt>)</p>
+    <p>Represents a keyword arguments splat (i.e. <code>**bar</code> in a call like <code>foo(**bar)</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>**</tt> operator.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>**</code> operator.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Value that is converted into a <code>Hash</code> using <tt>**</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Value that is converted into a <code>Hash</code> using <code>**</code>.</p>
 </div></span>
   
 </li>
@@ -234,23 +230,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">foo(**bar)
+    ~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo(**bar)
-    ~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -271,12 +261,12 @@
       <pre class="lines">
 
 
-2683
-2684
-2685</pre>
+2450
+2451
+2452</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2683</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2450</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -299,23 +289,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>**</tt> operator</p>
+    <p>Location of the <code>**</code> operator</p>
+
+<pre class="code text"><code class="text">foo(**bar)
+    ~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>foo(**bar)
-    ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -336,12 +320,12 @@
       <pre class="lines">
 
 
-2673
-2674
-2675</pre>
+2441
+2442
+2443</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2673</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2441</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -364,8 +348,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Value that is converted into a <code>Hash</code> using <tt>**</tt></p>
+    <p>Value that is converted into a <code>Hash</code> using <code>**</code></p>
 
 
   </div>
@@ -392,12 +375,12 @@
       <pre class="lines">
 
 
-2663
-2664
-2665</pre>
+2432
+2433
+2434</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2663</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2432</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -413,7 +396,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

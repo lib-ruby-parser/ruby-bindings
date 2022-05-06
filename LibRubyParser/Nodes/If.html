@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents an <code>if</code> statement (i.e. <tt>if foo; bar; else; baz; end</tt>)</p>
+    <p>Represents an <code>if</code> statement (i.e. <code>if foo; bar; else; baz; end</code>)</p>
 
 
   </div>
@@ -141,8 +140,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>then</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>then</code> keyword.</p>
 </div></span>
   
 </li>
@@ -170,8 +168,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Condition given to the <code>if</code> statement, <tt>Lvar(“a”)</tt> for <tt>if a; b; else; c; end</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>Condition given to the <code>if</code> statement, <code>Lvar(&quot;a&quot;)</code> for <code>if a; b; else; c; end</code>.</p>
 </div></span>
   
 </li>
@@ -199,8 +196,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>else</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>else</code> keyword.</p>
 </div></span>
   
 </li>
@@ -228,8 +224,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>end</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>end</code> keyword.</p>
 </div></span>
   
 </li>
@@ -257,8 +252,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -286,8 +280,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>False-branch of the <code>if</code> statement, <tt>Lvar(“c”)</tt> for <tt>if a; b; else; c; end</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>False-branch of the <code>if</code> statement, <code>Lvar(&quot;c&quot;)</code> for <code>if a; b; else; c; end</code>.</p>
 </div></span>
   
 </li>
@@ -315,8 +308,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>True-branch of the <code>if</code> statement, <tt>Lvar(“b”)</tt> for <tt>if a; b; else; c; end</tt>.</p>
+    <span class="summary_desc"><div class='inline'><p>True-branch of the <code>if</code> statement, <code>Lvar(&quot;b&quot;)</code> for <code>if a; b; else; c; end</code>.</p>
 </div></span>
   
 </li>
@@ -344,8 +336,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <code>if</code> keyword.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>if</code> keyword.</p>
 </div></span>
   
 </li>
@@ -379,8 +370,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>then</code> keyword</p>
+    <p>Location of the <code>then</code> keyword</p>
+
+<pre class="code text"><code class="text">if foo then; end
+       ~~~~
+</code></pre>
 
 <p><code>None</code> if <code>then</code> keyword is omitted</p>
 
@@ -389,15 +383,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>if foo then; end
-       ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -418,12 +403,12 @@
       <pre class="lines">
 
 
-1976
-1977
-1978</pre>
+1815
+1816
+1817</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1976</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1815</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -446,8 +431,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Condition given to the <code>if</code> statement, <tt>Lvar(“a”)</tt> for <tt>if a; b; else; c; end</tt></p>
+    <p>Condition given to the <code>if</code> statement, <code>Lvar(&quot;a&quot;)</code> for <code>if a; b; else; c; end</code></p>
 
 
   </div>
@@ -474,12 +458,12 @@
       <pre class="lines">
 
 
-1945
-1946
-1947</pre>
+1787
+1788
+1789</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1945</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1787</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cond'>cond</span>
   <span class='ivar'>@cond</span>
@@ -502,8 +486,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>else</code> keyword</p>
+    <p>Location of the <code>else</code> keyword</p>
+
+<pre class="code text"><code class="text">if foo; else; end
+        ~~~~
+</code></pre>
 
 <p><code>None</code> if there&#39;s no <code>else</code> branch</p>
 
@@ -512,15 +499,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>if foo; else; end
-        ~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -541,12 +519,12 @@
       <pre class="lines">
 
 
-1987
-1988
-1989</pre>
+1826
+1827
+1828</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1987</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1826</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_else_l'>else_l</span>
   <span class='ivar'>@else_l</span>
@@ -569,23 +547,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>end</code> keyword</p>
+    <p>Location of the <code>end</code> keyword</p>
+
+<pre class="code text"><code class="text">if foo; end
+        ~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>if foo; end
-        ~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -606,12 +578,12 @@
       <pre class="lines">
 
 
-1997
-1998
-1999</pre>
+1835
+1836
+1837</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1997</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1835</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -634,23 +606,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">if a then; b; else; c end
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>if a then; b; else; c end
-~~~~~~~~~~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -671,12 +638,12 @@
       <pre class="lines">
 
 
-2007
-2008
-2009</pre>
+1844
+1845
+1846</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2007</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1844</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -699,8 +666,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>False-branch of the <code>if</code> statement, <tt>Lvar(“c”)</tt> for <tt>if a; b; else; c; end</tt></p>
+    <p>False-branch of the <code>if</code> statement, <code>Lvar(&quot;c&quot;)</code> for <code>if a; b; else; c; end</code></p>
 
 
   </div>
@@ -727,12 +693,12 @@
       <pre class="lines">
 
 
-1955
-1956
-1957</pre>
+1795
+1796
+1797</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1955</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1795</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_if_false'>if_false</span>
   <span class='ivar'>@if_false</span>
@@ -755,8 +721,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>True-branch of the <code>if</code> statement, <tt>Lvar(“b”)</tt> for <tt>if a; b; else; c; end</tt></p>
+    <p>True-branch of the <code>if</code> statement, <code>Lvar(&quot;b&quot;)</code> for <code>if a; b; else; c; end</code></p>
 
 
   </div>
@@ -783,12 +748,12 @@
       <pre class="lines">
 
 
-1950
-1951
-1952</pre>
+1791
+1792
+1793</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1950</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1791</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_if_true'>if_true</span>
   <span class='ivar'>@if_true</span>
@@ -811,23 +776,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <code>if</code> keyword</p>
+    <p>Location of the <code>if</code> keyword</p>
+
+<pre class="code text"><code class="text">if foo; end
+~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>if foo; end
-~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -848,12 +807,12 @@
       <pre class="lines">
 
 
-1965
-1966
-1967</pre>
+1804
+1805
+1806</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1965</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 1804</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_keyword_l'>keyword_l</span>
   <span class='ivar'>@keyword_l</span>
@@ -869,7 +828,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:47 2021 by
+  Generated on Fri May  6 23:54:00 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

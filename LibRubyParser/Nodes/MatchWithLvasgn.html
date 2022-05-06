@@ -103,8 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents matching a regex that produces local variables (i.e. <tt>/(?&lt;match&gt;bar)/ =~ &#39;bar&#39;</tt>)</p>
+    <p>Represents matching a regex that produces local variables (i.e. <code>/(?&lt;match&gt;bar)/ =~ &#39;bar&#39;</code>)</p>
 
 <p>Each named group in regex declares a local variable.</p>
 
@@ -143,8 +142,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -172,8 +170,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the <tt>=~</tt> operatir.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the <code>=~</code> operatir.</p>
 </div></span>
   
 </li>
@@ -201,8 +198,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Regex that is used for matching.</p>
+    <span class="summary_desc"><div class='inline'><p>Regex that is used for matching.</p>
 </div></span>
   
 </li>
@@ -230,8 +226,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Value that is used for matching.</p>
+    <span class="summary_desc"><div class='inline'><p>Value that is used for matching.</p>
 </div></span>
   
 </li>
@@ -265,23 +260,18 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">/(?&lt;match&gt;bar)/ =~ &#39;bar&#39;
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">&lt;/code&gt;</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>/(?&lt;match&gt;bar)/ =~ &#39;bar&#39;
-~~~~~~~~~~~~~~~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -302,12 +292,12 @@
       <pre class="lines">
 
 
-3139
-3140
-3141</pre>
+2865
+2866
+2867</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3139</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2865</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -330,23 +320,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the <tt>=~</tt> operatir</p>
+    <p>Location of the <code>=~</code> operatir</p>
+
+<pre class="code text"><code class="text">/(?&lt;match&gt;bar)/ =~ &#39;bar&#39;
+                ~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>/(?&lt;match&gt;bar)/ =~ &#39;bar&#39;
-                ~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -367,12 +351,12 @@
       <pre class="lines">
 
 
-3129
-3130
-3131</pre>
+2856
+2857
+2858</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3129</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2856</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_operator_l'>operator_l</span>
   <span class='ivar'>@operator_l</span>
@@ -395,8 +379,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Regex that is used for matching</p>
+    <p>Regex that is used for matching</p>
 
 
   </div>
@@ -423,12 +406,12 @@
       <pre class="lines">
 
 
-3114
-3115
-3116</pre>
+2843
+2844
+2845</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3114</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2843</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_re'>re</span>
   <span class='ivar'>@re</span>
@@ -451,8 +434,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Value that is used for matching</p>
+    <p>Value that is used for matching</p>
 
 
   </div>
@@ -479,12 +461,12 @@
       <pre class="lines">
 
 
-3119
-3120
-3121</pre>
+2847
+2848
+2849</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3119</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 2847</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span>
   <span class='ivar'>@value</span>
@@ -500,7 +482,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:48 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>

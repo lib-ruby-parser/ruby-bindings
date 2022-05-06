@@ -103,10 +103,10 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Represents a sole block argument (e.g. <tt>|foo|</tt>)</p>
+    <p>Represents a sole block argument (e.g. <code>|foo|</code>)</p>
 
-<p>Block that takes a single array argument automatically expands it. Adding trailing comma after block argument disables this behavior (and then the only argument is emitted as <code>Arg</code>).</p>
+<p>Block that takes a single array argument automatically expands it.
+Adding trailing comma after block argument disables this behavior (and then the only argument is emitted as <code>Arg</code>).</p>
 
 
   </div>
@@ -143,8 +143,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Parts of the sole block argument.</p>
+    <span class="summary_desc"><div class='inline'><p>Parts of the sole block argument.</p>
 </div></span>
   
 </li>
@@ -172,8 +171,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the open parenthesis.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the open parenthesis.</p>
 </div></span>
   
 </li>
@@ -201,8 +199,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the open parenthesis.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the open parenthesis.</p>
 </div></span>
   
 </li>
@@ -230,8 +227,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Location of the full expression.</p>
+    <span class="summary_desc"><div class='inline'><p>Location of the full expression.</p>
 </div></span>
   
 </li>
@@ -265,15 +261,14 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Parts of the sole block argument.</p>
+    <p>Parts of the sole block argument.</p>
 
-<p><tt>proc { |(a, b)| }</tt> also counts as a sole argument, so this list may contain:</p>
-<ol><li>
-<p>A single <code>Arg</code> node (for <tt>proc { |a| }</tt> case)</p>
-</li><li>
-<p>Multiple <code>Arg</code> nodes  (for <tt>proc { |(a, b, c)| }</tt> case)</p>
-</li></ol>
+<p><code>proc { |(a, b)| }</code> also counts as a sole argument, so this list may contain:</p>
+
+<ol>
+<li>A single <code>Arg</code> node (for <code>proc { |a| }</code> case)</li>
+<li>Multiple <code>Arg</code> nodes  (for <code>proc { |(a, b, c)| }</code> case)</li>
+</ol>
 
 
   </div>
@@ -300,12 +295,12 @@
       <pre class="lines">
 
 
-3682
-3683
-3684</pre>
+3353
+3354
+3355</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3682</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3353</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_args'>args</span>
   <span class='ivar'>@args</span>
@@ -328,8 +323,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the open parenthesis</p>
+    <p>Location of the open parenthesis</p>
+
+<pre class="code text"><code class="text">proc { |(foo, bar)| }
+        ~
+</code></pre>
 
 <p><code>None</code> if there&#39;s only one argument</p>
 
@@ -338,15 +336,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>proc { |(foo, bar)| }
-        ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -367,12 +356,12 @@
       <pre class="lines">
 
 
-3693
-3694
-3695</pre>
+3364
+3365
+3366</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3693</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3364</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_begin_l'>begin_l</span>
   <span class='ivar'>@begin_l</span>
@@ -395,8 +384,11 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the open parenthesis</p>
+    <p>Location of the open parenthesis</p>
+
+<pre class="code text"><code class="text">proc { |(foo, bar)| }
+                 ~
+</code></pre>
 
 <p><code>None</code> if there&#39;s only one argument</p>
 
@@ -405,15 +397,6 @@
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>proc { |(foo, bar)| }
-                 ~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -434,12 +417,12 @@
       <pre class="lines">
 
 
-3704
-3705
-3706</pre>
+3375
+3376
+3377</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3704</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3375</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_end_l'>end_l</span>
   <span class='ivar'>@end_l</span>
@@ -462,23 +445,17 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Location of the full expression</p>
+    <p>Location of the full expression</p>
+
+<pre class="code text"><code class="text">proc { |(foo, bar)| }
+        ~~~~~~~~~~
+</code></pre>
 
 
   </div>
 </div>
 <div class="tags">
   
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>proc { |(foo, bar)| }
-        ~~~~~~~~~~</code></pre>
-    
-  </div>
-
 <p class="tag_title">Returns:</p>
 <ul class="return">
   
@@ -499,12 +476,12 @@
       <pre class="lines">
 
 
-3714
-3715
-3716</pre>
+3384
+3385
+3386</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3714</span>
+      <pre class="code"><span class="info file"># File 'lib/lib-ruby-parser/nodes.rb', line 3384</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_expression_l'>expression_l</span>
   <span class='ivar'>@expression_l</span>
@@ -520,7 +497,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Dec  2 13:17:49 2021 by
+  Generated on Fri May  6 23:54:01 2022 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.27 (ruby-3.0.0).
 </div>
