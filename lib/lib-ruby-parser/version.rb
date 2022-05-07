@@ -1,4 +1,4 @@
 module LibRubyParser
-  # Version of the parser
-  VERSION = '0.0.1.beta3'
+  # Version of the lib-ruby-parser + monotonically increasing ".N"
+  VERSION = '1.0.0'
 end
