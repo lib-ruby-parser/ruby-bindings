@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/lib-ruby-parser/ruby-bindings'
 
   spec.required_ruby_version = Gem::Requirement.new('>= 2.6.0')
-  spec.platform              = 'x86_64-darwin'
+  spec.platform              = 'arm64-darwin'
 
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = 'https://github.com/lib-ruby-parser/ruby-bindings'
@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
     'lib/lib-ruby-parser/version.rb',
     'lib/lib-ruby-parser/messages.rb',
     'lib/lib-ruby-parser/nodes.rb',
-    'lib/lib-ruby-parser/native/x86_64-apple-darwin/lib_ruby_parser.bundle',
+    'lib/lib-ruby-parser/native/aarch64-apple-darwin/lib_ruby_parser.bundle',
   ]
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }

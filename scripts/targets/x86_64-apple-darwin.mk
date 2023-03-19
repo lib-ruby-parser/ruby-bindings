@@ -6,5 +6,6 @@ DYLIB = bundle
 EXE =
 
 BENCHMARK_RUNNER_ASSET_NAME = rust-parser-x86_64-apple-darwin
+CODEGEN_ASSET_NAME = codegen-x86_64-apple-darwin
 
-LIB_RUBY_PARSER_DYLIB = lib/lib-ruby-parser/native/lib_ruby_parser.bundle
+LIB_RUBY_PARSER_DYLIB = lib/lib-ruby-parser/native/x86_64-apple-darwin/lib_ruby_parser.bundle

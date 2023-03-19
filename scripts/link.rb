@@ -2,6 +2,21 @@ require 'rbconfig'
 
 *src, output = ARGV
 
+if ENV['TARGET'] == 'aarch64-apple-darwin'
+    script = [
+        'zig',
+        'build-lib',
+        '-target aarch64-macos',
+        '-dynamic',
+        '-fallow-shlib-undefined',
+        *src,
+        "-femit-bin=#{output}"
+    ].join(' ')
+    puts script
+    system(script)
+    exit $?.exitstatus
+end
+
 def link_dir(dir)
     "-L#{dir}"
 end
