@@ -13,6 +13,8 @@ $(LIB_RUBY_PARSER_DYLIB): main.$(O) c-bindings/libruby_parser_c-$(TARGET).$(A)
 	$(call link_dylib)
 CLEAN += $(LIB_RUBY_PARSER_DYLIB)
 
+dylib: $(LIB_RUBY_PARSER_DYLIB)
+
 test: $(LIB_RUBY_PARSER_DYLIB) $(CODEGEN_FILES)
 	ruby test/test_parser.rb
 

@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
     'lib/lib-ruby-parser/version.rb',
     'lib/lib-ruby-parser/messages.rb',
     'lib/lib-ruby-parser/nodes.rb',
-    'lib/lib-ruby-parser/native/lib_ruby_parser.so',
+    'lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/lib_ruby_parser.so',
   ]
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }

@@ -294,21 +294,27 @@ require_relative './lib-ruby-parser/messages'
 require 'rbconfig'
 
 os = RbConfig::CONFIG['host_os']
+is_windows = !!(os =~ /mingw/)
+is_darwin = !!(os =~ /darwin/)
+is_linux = !!(os =~ /linux/)
+
+cpu = RbConfig::CONFIG['host_cpu']
+is_x86_64 = cpu == 'x86_64' || cpu == 'x64'
+is_arm64 = ['arm64', 'aarch64'].include?(cpu)
+
 ruby_version = Gem::Version.new(RUBY_VERSION).segments.first(2).join('.')
 
-case ruby_version
-when '3.0', '2.7', '2.6'
-  # ok
-else
-  warn "[lib-ruby-parser] You are running on windows/mingw with Ruby #{ruby_version}."
-  warn '[lib-ruby-parser] This version has not been tested, so it may crash.'
-end
+native_dylib_path =
+  if is_darwin && is_x86_64
+    'x86_64-apple-darwin/lib_ruby_parser'
+  elsif is_darwin && is_arm64
+    'aarch64-apple-darwin/lib_ruby_parser'
+  elsif is_linux && is_x86_64
+    'x86_64-unknown-linux-gnu/lib_ruby_parser'
+  elsif is_windows && is_x86_64 && ['3.2', '3.1', '3.0'].include?(ruby_version)
+    "x86_64-pc-windows-gnu/#{ruby_version}/lib_ruby_parser"
+  else
+    raise "[lib-ruby-parser] Unsupported os/cpu/ruby-version combination '#{os}'/'#{cpu}'/'#{ruby_version}'"
+  end
 
-case os
-when /mingw/
-  require_relative "./lib-ruby-parser/native/#{ruby_version}/lib_ruby_parser"
-when /darwin/, /linux/
-  require_relative './lib-ruby-parser/native/lib_ruby_parser'
-else
-  raise "[lib-ruby-parser] Unsupported OS '#{os}'"
-end
+require_relative "./lib-ruby-parser/native/#{native_dylib_path}"

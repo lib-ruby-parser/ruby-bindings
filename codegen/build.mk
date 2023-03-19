@@ -1,6 +1,6 @@
 CODEGEN_EXE = codegen/codegen$(EXE)
 $(CODEGEN_EXE):
-	$(call download_file, https://github.com/lib-ruby-parser/lib-ruby-parser/releases/download/codegen-v1.0.1/codegen-$(TARGET)$(EXE), $@)
+	$(call download_file, https://github.com/lib-ruby-parser/lib-ruby-parser/releases/download/codegen-v1.0.3/$(CODEGEN_ASSET_NAME), $@)
 	chmod +x $(CODEGEN_EXE)
 CLEAN += $(CODEGEN_EXE)
 
