@@ -11,7 +11,7 @@ defaults:
 
 jobs:
   compile-and-test:
-    name: build and test ${{ matrix.build.os }} / ${{ matrix.build.ruby }}
+    name: build and test ${{ matrix.build.target }} / ${{ matrix.build.ruby }}
     runs-on: ${{ matrix.build.os }}
     env:
       TARGET: ${{ matrix.build.target }}
@@ -22,27 +22,86 @@ jobs:
           - os: ubuntu-latest
             ruby: '3.2'
             target: x86_64-unknown-linux-gnu
-            lib-file: lib/lib-ruby-parser/native/lib_ruby_parser.so
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/3.2/lib_ruby_parser.so
+
+          - os: ubuntu-latest
+            ruby: '3.1'
+            target: x86_64-unknown-linux-gnu
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/3.1/lib_ruby_parser.so
+
+          - os: ubuntu-latest
+            ruby: '3.0'
+            target: x86_64-unknown-linux-gnu
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/3.0/lib_ruby_parser.so
 
           - os: macos-latest
             ruby: '3.2'
             target: x86_64-apple-darwin
-            lib-file: lib/lib-ruby-parser/native/lib_ruby_parser.bundle
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-apple-darwin/3.2/lib_ruby_parser.bundle
+
+          - os: macos-latest
+            ruby: '3.1'
+            target: x86_64-apple-darwin
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-apple-darwin/3.1/lib_ruby_parser.bundle
+
+          - os: macos-latest
+            ruby: '3.0'
+            target: x86_64-apple-darwin
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-apple-darwin/3.0/lib_ruby_parser.bundle
+
+          - os: macos-latest
+            ruby: '3.2'
+            target: aarch64-apple-darwin
+            zig: true
+            run-tests: false
+            lib-file: lib/lib-ruby-parser/native/aarch64-apple-darwin/3.2/lib_ruby_parser.bundle
+
+          - os: macos-latest
+            ruby: '3.1'
+            target: aarch64-apple-darwin
+            zig: true
+            run-tests: false
+            lib-file: lib/lib-ruby-parser/native/aarch64-apple-darwin/3.1/lib_ruby_parser.bundle
+
+          - os: macos-latest
+            ruby: '3.0'
+            target: aarch64-apple-darwin
+            zig: true
+            run-tests: false
+            lib-file: lib/lib-ruby-parser/native/aarch64-apple-darwin/3.0/lib_ruby_parser.bundle
 
           - os: windows-latest
             ruby: '3.2'
             target: x86_64-pc-windows-gnu
-            lib-file: lib/lib-ruby-parser/native/3.2/lib_ruby_parser.so
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-pc-windows-gnu/3.2/lib_ruby_parser.so
 
           - os: windows-latest
             ruby: '3.1'
             target: x86_64-pc-windows-gnu
-            lib-file: lib/lib-ruby-parser/native/3.1/lib_ruby_parser.so
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-pc-windows-gnu/3.1/lib_ruby_parser.so
 
           - os: windows-latest
             ruby: '3.0'
             target: x86_64-pc-windows-gnu
-            lib-file: lib/lib-ruby-parser/native/3.0/lib_ruby_parser.so
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-pc-windows-gnu/3.0/lib_ruby_parser.so
 
     steps:
       - name: checkout
@@ -54,33 +113,40 @@ jobs:
           ruby-version: ${{ matrix.build.ruby }}
           bundler-cache: true
 
-      - name: compile and test
+      - name: install zig
+        uses: goto-bus-stop/setup-zig@v2
+        if: ${{ matrix.build.zig }}
+
+      - name: compile
+        run: make dylib
+
+      - name: test
+        if: ${{ matrix.build.run-tests }}
         run: make test
+
+      - name: rename dylib
+        run: mv ${{ matrix.build.lib-file }} ${{ matrix.build.target }}-${{ matrix.build.ruby }}.dylib
 
       - name: upload dylib
         uses: actions/upload-artifact@v2
         with:
-          path: ${{ matrix.build.lib-file }}
+          path: ${{ matrix.build.target }}-${{ matrix.build.ruby }}.dylib
           name: ${{ matrix.build.target }}-${{ matrix.build.ruby }}.dylib
 
   build-gem:
     needs: ['compile-and-test']
     name: build per-platform gems
-    runs-on: ${{ matrix.build.os }}
+    runs-on: ubuntu-latest
     env:
       TARGET: ${{ matrix.build.target }}
     strategy:
       fail-fast: false
       matrix:
         build:
-          - os: ubuntu-latest
-            target: x86_64-unknown-linux-gnu
-
-          - os: macos-latest
-            target: x86_64-apple-darwin
-
-          - os: windows-latest
-            target: x86_64-pc-windows-gnu
+          - target: x86_64-unknown-linux-gnu
+          - target: x86_64-apple-darwin
+          - target: aarch64-apple-darwin
+          - target: x86_64-pc-windows-gnu
 
     steps:
       - name: checkout
@@ -99,14 +165,26 @@ jobs:
 
       - name: put all artifacts back to their directories
         run: |
-          mv x86_64-unknown-linux-gnu-3.2.dylib/lib_ruby_parser.so lib/lib-ruby-parser/native/lib_ruby_parser.so
-          mv x86_64-apple-darwin-3.2.dylib/lib_ruby_parser.bundle lib/lib-ruby-parser/native/lib_ruby_parser.bundle
-          mv x86_64-pc-windows-gnu-3.2.dylib/lib_ruby_parser.so lib/lib-ruby-parser/native/3.2/lib_ruby_parser.so
-          mv x86_64-pc-windows-gnu-3.1.dylib/lib_ruby_parser.so lib/lib-ruby-parser/native/3.1/lib_ruby_parser.so
-          mv x86_64-pc-windows-gnu-3.0.dylib/lib_ruby_parser.so lib/lib-ruby-parser/native/3.0/lib_ruby_parser.so
+          find .
+
+          mv x86_64-unknown-linux-gnu-3.2.dylib/x86_64-unknown-linux-gnu-3.2.dylib lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/3.2/lib_ruby_parser.so
+          mv x86_64-unknown-linux-gnu-3.1.dylib/x86_64-unknown-linux-gnu-3.1.dylib lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/3.1/lib_ruby_parser.so
+          mv x86_64-unknown-linux-gnu-3.0.dylib/x86_64-unknown-linux-gnu-3.0.dylib lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/3.0/lib_ruby_parser.so
+
+          mv x86_64-apple-darwin-3.2.dylib/x86_64-apple-darwin-3.2.dylib lib/lib-ruby-parser/native/x86_64-apple-darwin/3.2/lib_ruby_parser.bundle
+          mv x86_64-apple-darwin-3.1.dylib/x86_64-apple-darwin-3.1.dylib lib/lib-ruby-parser/native/x86_64-apple-darwin/3.1/lib_ruby_parser.bundle
+          mv x86_64-apple-darwin-3.0.dylib/x86_64-apple-darwin-3.0.dylib lib/lib-ruby-parser/native/x86_64-apple-darwin/3.0/lib_ruby_parser.bundle
+
+          mv aarch64-apple-darwin-3.2.dylib/aarch64-apple-darwin-3.2.dylib lib/lib-ruby-parser/native/aarch64-apple-darwin/3.2/lib_ruby_parser.bundle
+          mv aarch64-apple-darwin-3.1.dylib/aarch64-apple-darwin-3.1.dylib lib/lib-ruby-parser/native/aarch64-apple-darwin/3.1/lib_ruby_parser.bundle
+          mv aarch64-apple-darwin-3.0.dylib/aarch64-apple-darwin-3.0.dylib lib/lib-ruby-parser/native/aarch64-apple-darwin/3.0/lib_ruby_parser.bundle
+
+          mv x86_64-pc-windows-gnu-3.2.dylib/x86_64-pc-windows-gnu-3.2.dylib lib/lib-ruby-parser/native/x86_64-pc-windows-gnu/3.2/lib_ruby_parser.so
+          mv x86_64-pc-windows-gnu-3.1.dylib/x86_64-pc-windows-gnu-3.1.dylib lib/lib-ruby-parser/native/x86_64-pc-windows-gnu/3.1/lib_ruby_parser.so
+          mv x86_64-pc-windows-gnu-3.0.dylib/x86_64-pc-windows-gnu-3.0.dylib lib/lib-ruby-parser/native/x86_64-pc-windows-gnu/3.0/lib_ruby_parser.so
 
       - name: run codegen
-        run: make do-codegen
+        run: TARGET=x86_64-unknown-linux-gnu make do-codegen
 
       - name: pack .gem file
         run: make build-package
@@ -126,14 +204,14 @@ jobs:
       matrix:
         ruby: ['3.1', '3.2', '3.2']
         build:
-          - os: 'ubuntu-latest'
-            gem-artifact-name: x86_64-unknown-linux-gnu-gem
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-gnu
 
-          - os: 'macos-latest'
-            gem-artifact-name: x86_64-apple-darwin-gem
+          - os: macos-latest
+            target: x86_64-apple-darwin
 
-          - os: 'windows-latest'
-            gem-artifact-name: x86_64-pc-windows-gnu-gem
+          - os: windows-latest
+            target: x86_64-pc-windows-gnu
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -146,7 +224,7 @@ jobs:
       - name: download .gem artifact
         uses: actions/download-artifact@v2
         with:
-          name: ${{ matrix.build.gem-artifact-name }}
+          name: ${{ matrix.build.target }}-gem
           path: gem-artifact
 
       - name: install gem
@@ -176,11 +254,17 @@ jobs:
           name: x86_64-unknown-linux-gnu-gem
           path: x86_64-unknown-linux-gnu-gem
 
-      - name: download mac .gem artifact
+      - name: download mac x86 .gem artifact
         uses: actions/download-artifact@v2
         with:
           name: x86_64-apple-darwin-gem
           path: x86_64-apple-darwin-gem
+
+      - name: download mac aarch64 .gem artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: aarch64-apple-darwin-gem
+          path: aarch64-apple-darwin-gem
 
       - name: download windows .gem artifact
         uses: actions/download-artifact@v2
@@ -191,5 +275,6 @@ jobs:
       - name: push gems
         run: |
           gem push x86_64-unknown-linux-gnu-gem/lib-ruby-parser.gem
+          gem push aarch64-apple-darwin-gem/lib-ruby-parser.gem
           gem push x86_64-apple-darwin-gem/lib-ruby-parser.gem
           gem push x86_64-pc-windows-gnu-gem/lib-ruby-parser.gem
