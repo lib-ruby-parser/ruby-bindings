@@ -25,21 +25,63 @@ jobs:
             target: x86_64-unknown-linux-gnu
             zig: false
             run-tests: true
-            lib-file: lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/lib_ruby_parser.so
+            lib-file: lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/3.2/lib_ruby_parser.so
+
+          - os: ubuntu-latest
+            ruby: '3.1'
+            target: x86_64-unknown-linux-gnu
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/3.1/lib_ruby_parser.so
+
+          - os: ubuntu-latest
+            ruby: '3.0'
+            target: x86_64-unknown-linux-gnu
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/3.0/lib_ruby_parser.so
 
           - os: macos-latest
             ruby: '3.2'
             target: x86_64-apple-darwin
             zig: false
             run-tests: true
-            lib-file: lib/lib-ruby-parser/native/x86_64-apple-darwin/lib_ruby_parser.bundle
+            lib-file: lib/lib-ruby-parser/native/x86_64-apple-darwin/3.2/lib_ruby_parser.bundle
+
+          - os: macos-latest
+            ruby: '3.1'
+            target: x86_64-apple-darwin
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-apple-darwin/3.1/lib_ruby_parser.bundle
+
+          - os: macos-latest
+            ruby: '3.0'
+            target: x86_64-apple-darwin
+            zig: false
+            run-tests: true
+            lib-file: lib/lib-ruby-parser/native/x86_64-apple-darwin/3.0/lib_ruby_parser.bundle
 
           - os: macos-latest
             ruby: '3.2'
             target: aarch64-apple-darwin
             zig: true
             run-tests: false
-            lib-file: lib/lib-ruby-parser/native/aarch64-apple-darwin/lib_ruby_parser.bundle
+            lib-file: lib/lib-ruby-parser/native/aarch64-apple-darwin/3.2/lib_ruby_parser.bundle
+
+          - os: macos-latest
+            ruby: '3.1'
+            target: aarch64-apple-darwin
+            zig: true
+            run-tests: false
+            lib-file: lib/lib-ruby-parser/native/aarch64-apple-darwin/3.1/lib_ruby_parser.bundle
+
+          - os: macos-latest
+            ruby: '3.0'
+            target: aarch64-apple-darwin
+            zig: true
+            run-tests: false
+            lib-file: lib/lib-ruby-parser/native/aarch64-apple-darwin/3.0/lib_ruby_parser.bundle
 
           - os: windows-latest
             ruby: '3.2'
@@ -126,9 +168,18 @@ jobs:
         run: |
           find .
 
-          mv x86_64-unknown-linux-gnu-3.2.dylib/x86_64-unknown-linux-gnu-3.2.dylib lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/lib_ruby_parser.so
-          mv x86_64-apple-darwin-3.2.dylib/x86_64-apple-darwin-3.2.dylib lib/lib-ruby-parser/native/x86_64-apple-darwin/lib_ruby_parser.bundle
-          mv aarch64-apple-darwin-3.2.dylib/aarch64-apple-darwin-3.2.dylib lib/lib-ruby-parser/native/aarch64-apple-darwin/lib_ruby_parser.bundle
+          mv x86_64-unknown-linux-gnu-3.2.dylib/x86_64-unknown-linux-gnu-3.2.dylib lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/3.2/lib_ruby_parser.so
+          mv x86_64-unknown-linux-gnu-3.1.dylib/x86_64-unknown-linux-gnu-3.1.dylib lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/3.1/lib_ruby_parser.so
+          mv x86_64-unknown-linux-gnu-3.0.dylib/x86_64-unknown-linux-gnu-3.0.dylib lib/lib-ruby-parser/native/x86_64-unknown-linux-gnu/3.0/lib_ruby_parser.so
+
+          mv x86_64-apple-darwin-3.2.dylib/x86_64-apple-darwin-3.2.dylib lib/lib-ruby-parser/native/x86_64-apple-darwin/3.2/lib_ruby_parser.bundle
+          mv x86_64-apple-darwin-3.1.dylib/x86_64-apple-darwin-3.1.dylib lib/lib-ruby-parser/native/x86_64-apple-darwin/3.1/lib_ruby_parser.bundle
+          mv x86_64-apple-darwin-3.0.dylib/x86_64-apple-darwin-3.0.dylib lib/lib-ruby-parser/native/x86_64-apple-darwin/3.0/lib_ruby_parser.bundle
+
+          mv aarch64-apple-darwin-3.2.dylib/aarch64-apple-darwin-3.2.dylib lib/lib-ruby-parser/native/aarch64-apple-darwin/3.2/lib_ruby_parser.bundle
+          mv aarch64-apple-darwin-3.1.dylib/aarch64-apple-darwin-3.1.dylib lib/lib-ruby-parser/native/aarch64-apple-darwin/3.1/lib_ruby_parser.bundle
+          mv aarch64-apple-darwin-3.0.dylib/aarch64-apple-darwin-3.0.dylib lib/lib-ruby-parser/native/aarch64-apple-darwin/3.0/lib_ruby_parser.bundle
+
           mv x86_64-pc-windows-gnu-3.2.dylib/x86_64-pc-windows-gnu-3.2.dylib lib/lib-ruby-parser/native/x86_64-pc-windows-gnu/3.2/lib_ruby_parser.so
           mv x86_64-pc-windows-gnu-3.1.dylib/x86_64-pc-windows-gnu-3.1.dylib lib/lib-ruby-parser/native/x86_64-pc-windows-gnu/3.1/lib_ruby_parser.so
           mv x86_64-pc-windows-gnu-3.0.dylib/x86_64-pc-windows-gnu-3.0.dylib lib/lib-ruby-parser/native/x86_64-pc-windows-gnu/3.0/lib_ruby_parser.so
