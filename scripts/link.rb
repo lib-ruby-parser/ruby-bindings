@@ -43,6 +43,7 @@ script = [
 
     link_dir(RbConfig::CONFIG['libdir']),
     RbConfig::CONFIG['LDFLAGS'],
+    '-Wl,-undefined,dynamic_lookup',
     RbConfig::CONFIG['DLDFLAGS'],
 
     *OS_SPECIFIC_OPTIONS,

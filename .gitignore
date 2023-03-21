@@ -29,3 +29,9 @@ build/
 codegen/codegen
 lib/lib-ruby-parser/messages.rb
 lib/lib-ruby-parser/nodes.rb
+ruby-3.2.0-headers
+ruby-3.2.0-headers.zip
+ruby-3.1.0-headers
+ruby-3.1.0-headers.zip
+ruby-3.0.0-headers
+ruby-3.0.0-headers.zip

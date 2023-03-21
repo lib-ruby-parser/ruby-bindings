@@ -17,16 +17,20 @@ def run(script)
 end
 
 if ENV['TARGET'] == 'aarch64-apple-darwin'
-    unless Dir.exist?('ruby-3.0-arm64-headers')
-        system('wget https://github.com/lib-ruby-parser/ruby-bindings/releases/download/ruby-3.0-arm64-headers/ruby-3.0-arm64-headers.zip')
-        system('unzip ruby-3.0-arm64-headers.zip')
+    ruby_version = Gem::Version.new(RUBY_VERSION).segments.first(2).join('.') + '.0'
+
+    headers = "ruby-#{ruby_version}-headers"
+
+    unless Dir.exist?(headers)
+        system("wget https://github.com/lib-ruby-parser/ruby-bindings/releases/download/ruby-aarch64-headers/#{headers}.zip")
+        system("unzip #{headers}.zip")
     end
 
     script = [
         'zig cc',
         '--target=aarch64-macos',
         '-I.',
-        '-Iruby-3.0-arm64-headers',
+        "-I#{headers}",
         '-fno-common',
         '-fdeclspec',
         '-O3',
