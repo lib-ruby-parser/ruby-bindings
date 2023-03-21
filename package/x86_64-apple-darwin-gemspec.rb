@@ -26,7 +26,9 @@ Gem::Specification.new do |spec|
     'lib/lib-ruby-parser/version.rb',
     'lib/lib-ruby-parser/messages.rb',
     'lib/lib-ruby-parser/nodes.rb',
-    'lib/lib-ruby-parser/native/x86_64-apple-darwin/lib_ruby_parser.bundle',
+    'lib/lib-ruby-parser/native/x86_64-apple-darwin/3.2/lib_ruby_parser.bundle',
+    'lib/lib-ruby-parser/native/x86_64-apple-darwin/3.1/lib_ruby_parser.bundle',
+    'lib/lib-ruby-parser/native/x86_64-apple-darwin/3.0/lib_ruby_parser.bundle',
   ]
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }

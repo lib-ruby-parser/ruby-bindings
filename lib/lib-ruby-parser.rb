@@ -293,6 +293,11 @@ require_relative './lib-ruby-parser/messages'
 
 require 'rbconfig'
 
+ruby_version = Gem::Version.new(RUBY_VERSION).segments.first(2).join('.')
+unless ['3.2', '3.1', '3.0'].include?(ruby_version)
+  raise "[lib-ruby-parser] Unsupported ruby-version #{ruby_version}"
+end
+
 os = RbConfig::CONFIG['host_os']
 is_windows = !!(os =~ /mingw/)
 is_darwin = !!(os =~ /darwin/)
@@ -302,19 +307,17 @@ cpu = RbConfig::CONFIG['host_cpu']
 is_x86_64 = cpu == 'x86_64' || cpu == 'x64'
 is_arm64 = ['arm64', 'aarch64'].include?(cpu)
 
-ruby_version = Gem::Version.new(RUBY_VERSION).segments.first(2).join('.')
-
-native_dylib_path =
+triplet =
   if is_darwin && is_x86_64
-    'x86_64-apple-darwin/lib_ruby_parser'
+    'x86_64-apple-darwin'
   elsif is_darwin && is_arm64
-    'aarch64-apple-darwin/lib_ruby_parser'
+    'aarch64-apple-darwin'
   elsif is_linux && is_x86_64
-    'x86_64-unknown-linux-gnu/lib_ruby_parser'
-  elsif is_windows && is_x86_64 && ['3.2', '3.1', '3.0'].include?(ruby_version)
-    "x86_64-pc-windows-gnu/#{ruby_version}/lib_ruby_parser"
+    'x86_64-unknown-linux-gnu'
+  elsif is_windows && is_x86_64
+    'x86_64-pc-windows-gnu'
   else
-    raise "[lib-ruby-parser] Unsupported os/cpu/ruby-version combination '#{os}'/'#{cpu}'/'#{ruby_version}'"
+    raise "[lib-ruby-parser] Unsupported os/cpu combination '#{os}'/'#{cpu}'"
   end
 
-require_relative "./lib-ruby-parser/native/#{native_dylib_path}"
+require_relative "./lib-ruby-parser/native/#{triplet}/#{ruby_version}/lib_ruby_parser"
