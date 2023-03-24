@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'Ruby bindings for lib-ruby-parser.'
   spec.homepage      = 'https://github.com/lib-ruby-parser/ruby-bindings'
 
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.6.0')
+  spec.required_ruby_version = Gem::Requirement.new('>=3.0.0')
   spec.platform              = 'arm64-darwin'
 
   spec.metadata['homepage_uri'] = spec.homepage
