@@ -90,8 +90,18 @@
 end
 </span><span class='heredoc_end'>RUBY
 </span>
-<span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="LibRubyParser.html" title="LibRubyParser (module)">LibRubyParser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'><span class='object_link'><a href="LibRubyParser.html#parse-class_method" title="LibRubyParser.parse (method)">parse</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="LibRubyParser.html" title="LibRubyParser (module)">LibRubyParser</a></span></span><span class='period'>.</span><span class='id identifier rubyid_parse'><span class='object_link'><a href="LibRubyParser.html#parse-class_method" title="LibRubyParser.parse (method)">parse</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_input'>input</span><span class='rparen'>)</span>
 <span class='id identifier rubyid_pp'>pp</span> <span class='id identifier rubyid_result'>result</span>
+</code></pre>
+
+<p>It also accepts an option hash:</p>
+
+<pre class="code rb"><code class="rb">LibRubyParser.parse(
+  input, 
+  {
+     record_tokens: false 
+  }
+)
 </code></pre>
 
 <p>Full documentation can be found <a href="https://lib-ruby-parser.github.io/ruby-bindings/">here</a></p>
@@ -198,7 +208,7 @@ Direct leak of 48 byte(s) in 1 object(s) allocated from:
 </div></div>
 
       <div id="footer">
-  Generated on Fri Mar 24 13:54:45 2023 by
+  Generated on Thu Mar 30 19:26:32 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.28 (ruby-3.0.0).
 </div>
