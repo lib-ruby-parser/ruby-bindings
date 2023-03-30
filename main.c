@@ -46,8 +46,20 @@ static VALUE LIB_RUBY_PARSER_SourceLine__to_ruby(LIB_RUBY_PARSER_SourceLine *sou
 static VALUE LIB_RUBY_PARSER_SourceLineList__to_ruby(LIB_RUBY_PARSER_SourceLineList *source_line_list);
 static VALUE LIB_RUBY_PARSER_DecodedInput__to_ruby(LIB_RUBY_PARSER_DecodedInput *decoded_input);
 
-static VALUE rb_parse(VALUE self, VALUE rb_input, VALUE rb_options)
+static VALUE rb_parse(int argc, VALUE* argv, VALUE self)
 {
+    VALUE rb_options;
+    VALUE rb_input;
+
+    if (argc == 1) {
+      rb_input = argv[0];
+    } else if(argc == 2) {
+      rb_input = argv[0];
+      rb_options = argv[1];
+    } else {
+      rb_raise(rb_eArgError, "wrong number of arguments");
+    }
+
     (void)self;
     LIB_RUBY_PARSER_ParserOptions options = LIB_RUBY_PARSER_ParserOptions__from_ruby(rb_options);
     LIB_RUBY_PARSER_ByteList input = LIB_RUBY_PARSER_ByteList__from_ruby(rb_input);
@@ -58,7 +70,7 @@ static VALUE rb_parse(VALUE self, VALUE rb_input, VALUE rb_options)
 void Init_lib_ruby_parser()
 {
     VALUE rb_mLibRubyParser = rb_const_get(rb_cObject, rb_intern("LibRubyParser"));
-    rb_define_singleton_method(rb_mLibRubyParser, "parse", rb_parse, 2);
+    rb_define_singleton_method(rb_mLibRubyParser, "parse", rb_parse, -1);
 }
 
 // __from_ruby

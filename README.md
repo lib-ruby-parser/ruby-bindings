@@ -31,8 +31,19 @@ def foo(a, b, c)
 end
 RUBY
 
-result = LibRubyParser.parse(input, {})
+result = LibRubyParser.parse(input)
 pp result
+```
+
+It also accepts an option hash:
+
+```rb
+LibRubyParser.parse(
+  input, 
+  {
+     record_tokens: false 
+  }
+)
 ```
 
 Full documentation can be found [here](https://lib-ruby-parser.github.io/ruby-bindings/)
